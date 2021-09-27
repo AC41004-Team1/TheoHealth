@@ -1,16 +1,10 @@
-# AgileDevelopment_templateCWRepo
-AC31007/AC51003 Agile Software Engineering - Group Number [x]
+# Industrial Team Project
+AC41004 Industrial Team Project - Team #1
 
 Group Members:
-- Member 1 (Matriculation Number)
-- Member 2 (Matriculation Number)
-- Member X (Matriculation Number)
-
-## Hints:
-- You may wish to change the issue tags that are in GitHub to map to different activities that you are carrying out:
- - Code Review
- - Documentation
- - Daily Scrums
- - etc.
-- Feel free to add in additional folders/documents that you feel will benefit your repository.
-- Have a look at the gitHub documentation for advice on how to use more advanced features in GitHub to support your work
+- Taha Kashaf (180020889/Team Lead)
+- Christy McCarron (150007015)
+- Craig Methven (180007416)
+- Jesse Chan (180010828)
+- Euan Taylor (180007209)
+- Elliot Kinkead (170018727)
