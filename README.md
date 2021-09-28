@@ -9,6 +9,6 @@ Group Members:
 - Euan Taylor (180007209)
 - Elliot Kinkead (170018727)
 
-# Industrial Team Project
+# Definition Of Done
 
-Our Definition Of Done: Developed, Reviewed, Tested.
+Developed, Reviewed, Tested.
