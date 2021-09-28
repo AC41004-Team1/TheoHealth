@@ -8,3 +8,7 @@ Group Members:
 - Jesse Chan (180010828)
 - Euan Taylor (180007209)
 - Elliot Kinkead (170018727)
+
+# Industrial Team Project
+
+Our Definition Of Done: Developed, Reviewed, Tested.
