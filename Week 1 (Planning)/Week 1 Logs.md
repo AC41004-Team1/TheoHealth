@@ -40,4 +40,24 @@ A number of things were both completed and established in todays meeting, as wel
  - Had a long discussion about the technologies we want to implement, ended up deciding on a simple HTML Front End and PHP Backend, instead of a more complicated React/JS based Front End. This was the topic of much discussion but in the end, due to the teams experience levels with various technologies we decided on PHP even if it is the older and more outdated platform.
  - Discussed 3D Model vs. 2D Model
  - Established roles within the team: Elliot/Euan as primary Front End Devs, Taha/Craig as primary Back End Devs, Jesse/Christy as primary Devs for the Visualization Feature. This was decided to maximize everyones productivity based on skills they were most proficient in.
+
+---
+## Day [3] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+Meeting started late at 10:10AM, instead of 9AM due to scheduled client meetings.
+
+### Members Present:
+Taha, Christy, Craig, Jesse, Euan, Elliot
+
+### Members Not Present:
+William
+
+### Apologies:
+
+
+### Summary of Conversation:
+Short meeting at the start of the day to discuss the various questions posed to the Management Team and the answers recieved. Team understood the answers communicated to them through the Team Leader well, no standing confusions. However, a few questions need to be asked on Monday for further clarification as directed by the Mangement Team.
+Significant disussion was also had on the data from the sensors and the timestamps presented by them, which don't seem to add up to what we're being told.
+Meeting was adjorned and members split up to work on induvidual aspects of the project - everyone seemed happy and had something to do.
+
 ---
