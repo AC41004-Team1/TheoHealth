@@ -12,32 +12,54 @@
 </head>
 
 <body>
-  <header style="height:150px;">
-    <form method="POST">
-      <input type="submit" value="Log Out" name="logout" style="float: right; margin:20px">
-    </form>
-  </header>
 
-  <div class="jumbotron text-center">
-    <h1 class="text-center">Index Heading</h1>
+  <header style="height:150px;">
+    
+    <!-- <form method="POST">
+      
+      <input type="submit" value="Log Out" name="logout" style="float: right; margin:20px">
+    </form> -->
+    <div class="jumbotron text-center">
+      <h1 class= "text-left">Theo  Health</h1>
+      <h1 class="text-center">Welcome</h1>
+    </div>
+  </header>
+ 
+  <div class="container-fluid" style="padding:0, center">
+
+    <img src="https://via.placeholder.com/400x150" alt= "Place Holder" >
+
   </div>
+  
+  
   <div class="container-fluid" style="padding:0">
     <div class="jumbotron" style="margin-bottom:1px;">
       <form>
         <div class="form-group">
-          <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</label>
-          <input type="text" name="question"><br><br>
-          <input type="submit" value="Template button">
+          <label>Username</label>
+
+            
+            <input type="text" name="username" class="form-control" value="">
+            <span class="help-block" style="color:red"></span>
+          
+          </div>
+          <div class="form-group">
+          <label>Password</label>
+
+            
+            <input type="text" name="password" class="form-control" value="">
+            <span class="help-block" style="color:red"></span>
+          
+          </div>
+          <input type="submit" value="Submit">
       </form>
       <br></br>
-      <form>
-        <input type="submit" value="Template button">
-      </form>
+      
     </div>
   </div>
 
   <footer>
-        
+          <p>Footer stuff</p>
   </footer>
 </body>
 
