@@ -9,35 +9,64 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
   <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="styleTemp.css">
+  <style type="text/css">
+    .wrapper{ margin-left: 35%; margin-right:35%; width: 30%; }
+</style>
 </head>
 
 <body>
-  <header style="height:150px;">
-    <form method="POST">
+
+    <header style="height:200px;">
+      <div class="jumbotron " >
+        <h1 class="text-left">THEO HEALTH</h1>
+        <h1 class="text-center">Welcome</h1>
+      </div>
+    <!-- <form method="POST">
+      
       <input type="submit" value="Log Out" name="logout" style="float: right; margin:20px">
-    </form>
+    </form> -->
+    
   </header>
 
-  <div class="jumbotron text-center">
-    <h1 class="text-center">Index Heading</h1>
+ 
+ 
+  <div class="container-fluid" style="padding:0 ">
+
+    <img src="https://via.placeholder.com/700x300" alt= "Place Holder" class="center">
+
   </div>
+  
+  
   <div class="container-fluid" style="padding:0">
-    <div class="jumbotron" style="margin-bottom:1px;">
+    <div class="jumbotron " style="margin-bottom:1px;">
+      <div class= "wrapper"> 
       <form>
         <div class="form-group">
-          <label>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</label>
-          <input type="text" name="question"><br><br>
-          <input type="submit" value="Template button">
+          <label>Username:</label>
+
+            
+            <input type="text" name="username" class="form-control" value="" style="width: 250px">
+            <span class="help-block" style="color:red"></span>
+          
+          </div>
+          <div class="form-group">
+          <label>Password:</label>
+
+            
+            <input type="text" name="password" class="form-control" value="" style="width: 250px">
+            <span class="help-block" style="color:red"></span>
+          
+          </div>
+          <input type="submit" value="Submit">
       </form>
       <br></br>
-      <form>
-        <input type="submit" value="Template button">
-      </form>
+      
     </div>
   </div>
+</div>
 
   <footer>
-        
+          <p>Footer stuff</p>
   </footer>
 </body>
 
