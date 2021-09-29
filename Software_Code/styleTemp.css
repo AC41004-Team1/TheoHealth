@@ -10,15 +10,15 @@ body{
   font-size: 20px;
   font-weight: 300px;
   background-color: #f1f6f9;
+  margin-left:40px ;
+
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #14274E;
 }
 
-.jumbotron {
-  background-color: #f1f6f9;
-}
+
 
 .center {
   text-align: center;
@@ -28,9 +28,33 @@ h1, h2, h3, h4, h5, h6 {
 }
   
 .form-group {
-    text-align: center;
-    margin: 0 auto; 
+    text-align: left;
+    margin-left:40px ;
     width:250px;
+    float: left;
 }
 
+.leftContainer{
+  text-align: left;
+  padding: 10px;
+  align-items: left
+  
+
+}
+
+.right-half {
+  
+  position: absolute;
+  right: 0px;
+  width: 50%;
+}
+
+.left-half {
+  
+  position: absolute; 
+  left: 0px;
+  width: 50%;
+  align-items: center;
+  float: left;
+}
 
