@@ -59,5 +59,30 @@ William
 Short meeting at the start of the day to discuss the various questions posed to the Management Team and the answers recieved. Team understood the answers communicated to them through the Team Leader well, no standing confusions. However, a few questions need to be asked on Monday for further clarification as directed by the Mangement Team.
 Significant disussion was also had on the data from the sensors and the timestamps presented by them, which don't seem to add up to what we're being told.
 Meeting was adjorned and members split up to work on induvidual aspects of the project - everyone seemed happy and had something to do.
+ - Jesse and Christy completed 2D Visualization, began setting up 3D.
+ - Craig set up Data Base (however we later switched host)
+ - Euan got Wireframe designs for the HTML
+ - Elliot sketched out website designs
 
+---
+## Day [4] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+Meeting started at 9:05AM
+
+### Members Present:
+Taha, Craig, Jesse, Euan, Elliot
+
+### Members Not Present:
+William, Christy
+
+### Apologies:
+
+
+### Summary of Conversation:
+Short meeting at the start of the everyone discussed what they had left to do this week.
+ - Short discussion on new DB Host
+ - Short discussion about times for meetings
+ - Clarified questions
+ - Discussed that the team doesn't think we have a lot of work left for a full 2 weeks.
+ - Sorted hosting for both the DB and the Webserver
 ---
