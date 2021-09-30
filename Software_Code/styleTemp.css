@@ -10,15 +10,31 @@ body{
   font-size: 20px;
   font-weight: 300px;
   background-color: #f1f6f9;
-  margin-left:40px ;
-
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #14274E;
 }
 
+.jumbotron {
+  background-color: #f1f6f9;
+}
 
+.MainContent {
+  vertical-align: middle;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  column-gap: 40px;
+  
+}
+
+.btn-account-grp {
+  position: absolute;
+  top: 55px;
+  right: 40px; 
+  margin-right: 0;
+}
 
 .center {
   text-align: center;
@@ -26,35 +42,44 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: auto;
   margin-right: auto;
 }
-  
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
 .form-group {
-    text-align: left;
-    margin-left:40px ;
+    text-align: center;
+    margin: 0 auto; 
     width:250px;
-    float: left;
+      display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+
+
 }
 
-.leftContainer{
-  text-align: left;
-  padding: 10px;
-  align-items: left
+.appgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 1rem;
   
-
 }
 
-.right-half {
-  
-  position: absolute;
-  right: 0px;
-  width: 50%;
+.appgrid > div {
+  background: black;
+  padding: 1rem;
+}
+.appgrid > div::before {
+  content: "";
+  padding-bottom: 100%;
+  display: block;
+}
+.appgrid > div > img {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.left-half {
-  
-  position: absolute; 
-  left: 0px;
-  width: 50%;
-  align-items: center;
-  float: left;
-}
+
 
