@@ -6,11 +6,9 @@
 
 <?php
 
-$conn = new mysqli("oaicontezoagile.mysql.db","oaicontezoagile","M5fgq184HDVu","oaicontezoagile");
-if ($conn -> connect_errno) {
-  echo "<br>Failed to connect to MySQL: " . $conn -> connect_error;
-  exit();
-}
+include "connection.php";
+$connection = openCon();
+
 ?>
 
 
@@ -29,20 +27,20 @@ if ($conn -> connect_errno) {
 
       //  $sql = "SELECT * FROM TABLENAME";
         $queryInput = "CALL getAllClientData(1)";
-        $result = $conn->query($queryInput);
+        $result = $connection->query($queryInput);
         echo "Done Query";
         echo "End of result";
         if($result->num_rows > 0){
           echo "Done if";
           $time = array();
-          $sensor = array();
+          $reading = array();
           echo "Created variables";
           while($row = $result->fetch_object()){
-            echo "in the loop";
+
             $time[] = $row->TimeStamp;
-            echo "past time";
-            $sensor[] = $row->SensorNum;
-            echo "past sensor";
+
+            $reading[] = $row->Reading;
+
           }
           echo "populated arrays";
           unset($result);
@@ -125,12 +123,14 @@ if ($conn -> connect_errno) {
 // setup
 const time = <?php echo json_encode($time); ?>;
 console.log(time);
-const sensor = <?php echo json_encode($sensor); ?>;
+const reading = <?php echo json_encode($reading); ?>;
+console.log(reading);
+
 const data = {
-labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], // Put times here but we need to edit it.
+labels: [0,1,2,3,4,5,6,7,8,9,1,1,1,1,,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], // Put times here but we need to edit it Manually put in time labels to fix this problem
 datasets: [{
-    label: '# of Votes',
-    data: [12, 19, 3, 5, 2, 3], // Replace with Sensor
+    label: 'Muscle Tension Sensor 1',
+    data: reading, // Replace with Sensor
     backgroundColor: [
         'rgba(255, 99, 132, 0.2)',
         'rgba(54, 162, 235, 0.2)',
@@ -172,5 +172,8 @@ document.getElementById('myChart'),
 config
 );
 
+<?php
+  closeCon($connection);
+?>
   </script>
 </html>
