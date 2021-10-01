@@ -7,7 +7,7 @@ include "connection.php";
 $connection = openCon();
 
 // Check if the form is submitted
-  if (isset($_POST['submit'])) {
+  if (isset($_POST['submitsignup'])) {
     // retrieve the form data by using the element's name attributes value as key
     $password = hash('ripemd160', $_POST['password']);
     $checkerPassword = hash('ripemd160', $_POST['checkerPassword']);
@@ -23,18 +23,17 @@ $connection = openCon();
       //Got phone number checker from https://stackoverflow.com/questions/3090862/how-to-validate-phone-number-using-php
       //eliminate every char except 0-9
       $phoneNum = preg_replace("/[^0-9]/", '', $phoneNum);
-      if (strlen($justNums) > 9){
+      if (strlen($phoneNum) > 9){
         //Run query to find if there is anyone with that username already
         $SQLInput = "CALL CheckUsername(\"{$username}\")";
         $queryOutput = $connection->query($SQLInput);
         closeCon($connection);
         //If username is unique
-        if(!empty($queryOutput){
+        if(!empty($queryOutput)){
           //Add the user to the database
           $connection = openCon();
-          $queryOutput = $connection->query($SQLInput);
           $SQLInput = "CALL addUser(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\", \"{$email}\")";
-          $queryOutput = $connection->query($SQLInput);
+          $connection->query($SQLInput);
           closeCon($connection);
           //Create and store session variables
           $_SESSION["loggedIn"] = "true";
