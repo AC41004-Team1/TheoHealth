@@ -60,10 +60,18 @@ $connection = openCon();
           $SQLInput = "CALL addUser(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\", \"{$email}\")";
           $connection->query($SQLInput);
           closeCon($connection);
+          
           //Create and store session variables
           $_SESSION["loggedIn"] = "true";
           $_SESSION["role"] = $role;
-          $_SESSION["userIndex"] = $username;
+          //Get the user index to store as a session variable
+          $connection = openCon();
+          $SQLInput = "CALL getUserIndex(\"{$username}\")";
+          $results = $connection->query($SQLInput);
+          closeCon($connection);
+          $row = $results->fetch_object();
+          $_SESSION["userIndex"] = $row-> UserIndex;
+
           //Welcome Message
           echo "Welcome {$fname} {$sname}. Your account has now been created. You'll be taken to your dashboard in 10 seconds or you can click <a href/'/Dashboard.php/'>here</a> to go there now.";
           echo "<meta http-equiv=\"refresh\" content=\"10; URL=/Dashboard.php\" />";
@@ -93,5 +101,5 @@ $connection = openCon();
 </body>
 
 
-  
+
 </html>
