@@ -24,8 +24,11 @@
       <h1 class="text-left">Sign up</h1>
     </div>
   <div class="left-half" style="padding:0" style="margin-bottom:1px" >
-            <div class="card" style= "margin: 10px;">
-              <div class="card-body">
+        <div class="card border-light mb-3" style="max-width: 30rem;" style= "margin: 10px;" >
+          <div class="card-header">Important</div>
+              <div class="card-body" style="font-size:20px"  >
+                <h5 class="card-title">Please Read</h5>
+                  <p class="card-text"></p>
 
 
 
