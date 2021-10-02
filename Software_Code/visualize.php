@@ -357,39 +357,61 @@ config
 ?>
   </script>
 
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script> -->
+
   <script type="module">
 
-  // Find the latest version by visiting https://cdn.skypack.dev/three.
+import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
+import { OrbitControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/OrbitControls.js';
+import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
+  let scene,camera, renderer,hlight,human
 
-  import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(
-    75,
-    window.innerWidth/window.innerHeight,
-    0.1,
-    1000
-  );
-  const renderer = new THREE.WebGLRenderer({antialias: true});
 
+
+function init(){
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xdddddd);
+  camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1, 1000);
+  camera.rotation.y = 45/180*Math.PI;
+  camera.position.x = 800;
+  camera.position.y = 100;
+  camera.position.z = 1000;
+
+
+  renderer = new THREE.WebGLRenderer({antialias: true});
   renderer.setSize(window.innerWidth, window.innerHeight);
 
   document.body.appendChild(renderer.domElement);
 
-const geometry = new THREE.BoxGeometry( 2, 2, 2 );
-const material = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
-const cube = new THREE.Mesh( geometry, material );
-scene.add(cube);
 
-  camera.position.z = 5;
+  hlight = new THREE.AmbientLight(0x404040,100);
+  scene.add(hlight);
 
+
+
+  let controls = new OrbitControls(camera, renderer.domElement);
+  controls.addEventListener('change', animate);
+
+  let cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1))
+    scene.add(cube)
+
+  document.body.appendChild(renderer.domElement);
+
+  let loader = new GLTFLoader();
+  loader.load('scene.gltf',function ( gltf ) {
+    human = gltf.scene.children[0];
+    human.scale.set[0.5,0.5,0.5];
+		scene.add( gltf.scene );
+    animate();
+	});
   function animate(){
-
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
     requestAnimationFrame(animate);
     renderer.render(scene,camera);
   }
-  animate();
+}
+  init();
+
 </script>
 </html>
