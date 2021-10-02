@@ -1,8 +1,30 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 * {
   font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
 }
 
 body{
@@ -16,18 +38,26 @@ h1, h2, h3, h4, h5, h6 {
   color: #14274E;
 }
 
+.dropdown-menu dropdown-menu-dark
+{
+  color: #d99100;
+}
+
+.button-wrapper .btn {
+    margin-bottom:5px;
+}
+
 .jumbotron {
   background-color: #f1f6f9;
 }
 
 .MainContent {
-  vertical-align: middle;
-  position: absolute;
-  margin-left: auto;
-  margin-right: auto;
-  column-gap: 40px;
-  
+  position: auto;
+  flex-wrap: wrap;
+  margin-bottom:600px;
+  margin-top:20px;
 }
+
 
 .btn-account-grp {
   position: absolute;
@@ -54,32 +84,38 @@ h1, h2, h3, h4, h5, h6 {
       display: flex;
   flex-wrap: wrap;
   align-content: center;
-
-
 }
 
-.appgrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 1rem;
+.db-nav
+{
+  text-align: center;
+  margin: auto;
+  width: 50%;
   
 }
 
-.appgrid > div {
-  background: black;
-  padding: 1rem;
-}
-.appgrid > div::before {
-  content: "";
-  padding-bottom: 100%;
-  display: block;
-}
-.appgrid > div > img {
-  grid-area: 1 / 1 / 2 / 2;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.footer-body
+{
+  padding:50px 0;
+  background: rgb(241,246,249);
+background: linear-gradient(180deg, rgba(241,246,249,1) 0%, rgba(252,207,3,1) 35%, rgba(252,207,3,1) 100%);
 }
 
+.b-example-divider {
+  height: 3rem;
+  background-color: rgba(0, 0, 0, .1);
+  border: solid rgba(0, 0, 0, .15);
+  border-width: 1px 0;
+  box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+}
 
+.bi {
+  vertical-align: -.125em;
+  fill: currentColor;
+}
 
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+}
