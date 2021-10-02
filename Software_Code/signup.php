@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>Index</title> <!-- Bootstrap CSS -->
+  <title>Sign up</title> <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
@@ -19,8 +19,12 @@
 </head>
 <body style="background-image: url('theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
   <header style="height:200px;">
-  <div class="left-half" style="padding:0" style="margin-bottom:1px;">
-            <div class="card">
+  <div class="leftContainer">
+      <img src="theoLogo.png" alt="" width="400" height="100">
+      <h1 class="text-left">Sign up</h1>
+    </div>
+  <div class="left-half" style="padding:0" style="margin-bottom:1px" >
+            <div class="card" style= "margin: 10px;">
               <div class="card-body">
 
 
@@ -95,11 +99,9 @@ $connection = openCon();
     echo "<meta http-equiv=\"refresh\" content=\"0; URL=/login.php\" />";
   }
 ?>
-    </div>
-          </div>
         </div>
+      </div>
+    </div>
 </body>
-
-
 
 </html>
