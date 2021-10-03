@@ -28,7 +28,7 @@
 }
 
 body{
-  color:#394867;
+  color:#0297a2;
   font-size: 20px;
   font-weight: 300px;
   background-color: #f1f6f9;
@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-account-grp {
   position: absolute;
   top: 55px;
-  right: 40px; 
+  right: 40px;
   margin-right: 0;
 }
 
@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .form-group {
     text-align: center;
-    margin: 0 auto; 
+    margin: 0 auto;
     width:250px;
       display: flex;
   flex-wrap: wrap;
@@ -91,14 +91,14 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   margin: auto;
   width: 50%;
-  
+
 }
 
 .footer-body
 {
   padding:50px 0;
-  background: rgb(241,246,249);
-background: linear-gradient(180deg, rgba(241,246,249,1) 0%, rgba(252,207,3,1) 35%, rgba(252,207,3,1) 100%);
+  background: rgb(255,255,255);
+  background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(253,212,38,1) 7%, rgba(249,148,22,1) 20%, rgba(247,131,18,1) 100%);
 }
 
 .b-example-divider {
