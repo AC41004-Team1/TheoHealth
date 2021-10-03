@@ -86,3 +86,30 @@ Short meeting at the start of the everyone discussed what they had left to do th
  - Discussed that the team doesn't think we have a lot of work left for a full 2 weeks.
  - Sorted hosting for both the DB and the Webserver
 ---
+
+## Day [5] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+Meeting started at 11:05AM
+
+### Members Present:
+Taha, Craig, Jesse, Euan, Elliot, Christy
+
+### Members Not Present:
+William
+
+### Apologies:
+
+
+### Summary of Conversation:
+Short meeting at the start of the everyone discussed what they had left to do this week, as well as certain team members leftover work for the weekend.
+
+ - Christy to start work on 3D Visualization over the weekend
+ - Elliot to continue on front-end dev
+ - Discussed a progressive web app as an option for a phone application
+ - Euan also continuing on front-end dev
+ - Jesse to continue work on data visualization in the form of graphing.
+
+Further discussion was also had on how we wanted to present our initial progress to the client on Monday, as well as meeting and discussing the marking scheme together after the client meeting and before the management meeting. 
+
+
+---
