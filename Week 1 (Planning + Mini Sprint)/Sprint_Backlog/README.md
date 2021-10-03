@@ -1,3 +1,3 @@
-# Sprint 1 Backlog
+# Mini Sprint Backlog
 
-Your Sprint 1 backlog should be put into this folder.
+The Mini-Sprint Backlog can be found here -> https://github.com/AC41004-Team1/TheoHealth/projects/4
