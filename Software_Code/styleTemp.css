@@ -28,7 +28,7 @@
 }
 
 body{
-  color:#0297a2;
+  color:#000000;
   font-size: 20px;
   font-weight: 300px;
   background-color: #f1f6f9;
@@ -51,11 +51,76 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #f1f6f9;
 }
 
+nav{
+  display: flex;
+  justify-content: space-around;
+  align-items: 8vh;
+  background-color: #d99100;
+}
+
+.logo {
+  color: #14274E;
+  letter-spacing: 2px;
+  font-size: 25px;
+}
+
+.navsite {
+  display: flex;
+  justify-content: space-around;
+  width: 30%;
+}
+
+
+.navsite li{
+  list-style: none;
+}
+
+.navsite a{
+  color: rgb(266, 266, 266);
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.account div {
+width: 25px;
+height: 5px;
+background-color: rgb(266, 266, 266);
+margin 5px;
+}
+
+
 .MainContent {
   position: auto;
   flex-wrap: wrap;
   margin-bottom:600px;
   margin-top:20px;
+}
+
+.card-dash
+{
+  background: hsl(31, 94%, 75%);
+  padding: 2em;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 420px;
+  margin: 1em;
+  flex-direction: row !important;
+  position: relative;
+  width: max-content;
+}
+
+.icon-db {
+  position: absolute;
+  z-index: 1;
+  top: 35%;
+  left: 12%;
+  transforme: translate(-50%, -50%);
+}
+
+.icon-db p {
+  text-align:center;
+  margin-top: 25px;
+  cursor: pointer
 }
 
 
