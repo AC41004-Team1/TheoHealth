@@ -11,7 +11,8 @@ body{
   font-weight: 300px;
   background-color: #f1f6f9;
   margin-left:40px ;
-
+ 
+  
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -47,6 +48,8 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   right: 0px;
   width: 50%;
+  align-items: center;
+  float: right;
 }
 
 .left-half {
@@ -56,5 +59,30 @@ h1, h2, h3, h4, h5, h6 {
   width: 50%;
   align-items: center;
   float: left;
+  margin: 10px;
 }
+
+#form-2-cols{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1em;
+}
+.form-container{
+  overflow: hidden;
+  width: 550px;
+  height: auto;
+  transition: width 1s;
+ 
+  
+}
+.form-hidden{
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  transition: width 1s;
+}
+/* .background-image{
+  opacity: 0.6;
+} */
+
 

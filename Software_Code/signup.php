@@ -1,5 +1,37 @@
-<html>
-<body>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Sign up</title> <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
+  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="styleTemp.css">
+  <style type="text/css">
+    .wrapper {
+      margin-left: 35%;
+      margin-right: 35%;
+      width: 30%;
+    }
+  </style>
+</head>
+<body style="background-image: url('theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
+  <header style="height:200px;">
+  <div class="leftContainer">
+      <img src="theoLogo.png" alt="" width="400" height="100">
+      <h1 class="text-left">Sign up</h1>
+    </div>
+  <div class="left-half" style="padding:0" style="margin-bottom:1px" >
+        <div class="card border-light mb-3" style="max-width: 30rem;" style= "margin: 10px;" >
+          <div class="card-header">Important</div>
+              <div class="card-body" style="font-size:20px"  >
+                <h5 class="card-title">Please Read</h5>
+                  <p class="card-text"></p>
+
+
+
 <?php
 session_start();
 
@@ -7,7 +39,7 @@ include "connection.php";
 $connection = openCon();
 
 // Check if the form is submitted
-  if (isset($_POST['submit'])) {
+  if (isset($_POST['submitsignup'])) {
     // retrieve the form data by using the element's name attributes value as key
     $password = hash('ripemd160', $_POST['password']);
     $checkerPassword = hash('ripemd160', $_POST['checkerPassword']);
@@ -23,23 +55,30 @@ $connection = openCon();
       //Got phone number checker from https://stackoverflow.com/questions/3090862/how-to-validate-phone-number-using-php
       //eliminate every char except 0-9
       $phoneNum = preg_replace("/[^0-9]/", '', $phoneNum);
-      if (strlen($justNums) > 9){
+      if (strlen($phoneNum) > 9){
         //Run query to find if there is anyone with that username already
         $SQLInput = "CALL CheckUsername(\"{$username}\")";
         $queryOutput = $connection->query($SQLInput);
         closeCon($connection);
         //If username is unique
-        if(!empty($queryOutput){
+        if(!empty($queryOutput)){
           //Add the user to the database
           $connection = openCon();
-          $queryOutput = $connection->query($SQLInput);
           $SQLInput = "CALL addUser(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\", \"{$email}\")";
-          $queryOutput = $connection->query($SQLInput);
+          $connection->query($SQLInput);
           closeCon($connection);
+          
           //Create and store session variables
           $_SESSION["loggedIn"] = "true";
           $_SESSION["role"] = $role;
-          $_SESSION["userIndex"] = $usernameIn;
+          //Get the user index to store as a session variable
+          $connection = openCon();
+          $SQLInput = "CALL getUserIndex(\"{$username}\")";
+          $results = $connection->query($SQLInput);
+          closeCon($connection);
+          $row = $results->fetch_object();
+          $_SESSION["userIndex"] = $row-> UserIndex;
+
           //Welcome Message
           echo "Welcome {$fname} {$sname}. Your account has now been created. You'll be taken to your dashboard in 10 seconds or you can click <a href/'/Dashboard.php/'>here</a> to go there now.";
           echo "<meta http-equiv=\"refresh\" content=\"10; URL=/Dashboard.php\" />";
@@ -63,5 +102,9 @@ $connection = openCon();
     echo "<meta http-equiv=\"refresh\" content=\"0; URL=/login.php\" />";
   }
 ?>
+        </div>
+      </div>
+    </div>
 </body>
+
 </html>
