@@ -1,22 +1,85 @@
-# Sprint 1
+## Day [1] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+Meeting started at 11:35AM
 
-All information about your first sprint should be put into this folder. Additionally, the information below should be updated to give a short summary of your daily scrum meetings.
+### Members Present:
+Taha, Christy, Craig, Jesse, Euan, Elliot
+
+### Members Not Present:
+William
+
+### Apologies:
+
+
+### Summary of Conversation:
+ - Had an in-depth discussion about the first meeting with the Client, went over everyones induvidual feedback to the meeting.
+ - Added additional user stories based on further features requested by the client.
+ - Filled out project backlog for tasks needed to be completed during this sprint.
+ - Discussed further questions that needed clarification during our meeting with management.
+
+---
+## Day [2] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+
+### Members Present:
+Taha, Christy, Craig, Jesse, Euan, Elliot
+
+### Members Not Present:
+William
+
+### Apologies:
+
+
+### Summary of Conversation:
+
+
+---
+## Day [3] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+
+
+### Members Present:
+Taha, Christy, Craig, Jesse, Euan, Elliot
+
+### Members Not Present:
+William
+
+### Apologies:
+
+
+### Summary of Conversation:
+
+---
+## Day [4] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+
+
+### Members Present:
+Taha, Craig, Jesse, Euan, Elliot, Christy
+
+### Members Not Present:
+William
+
+### Apologies:
+
+
+### Summary of Conversation:
 
 ---
 
-## Day [X] - Scrum Meeting summary
-The Scrum Master for this meeting was **Mike Crabb**
+## Day [5] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+
 
 ### Members Present:
-Mike, Rachel, information
+Taha, Craig, Jesse, Euan, Elliot, Christy
 
 ### Members Not Present:
-Naughty Student 1, Naughty Student 2
+William
 
 ### Apologies:
-Ill Student 1.
+
 
 ### Summary of Conversation:
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
 ---
