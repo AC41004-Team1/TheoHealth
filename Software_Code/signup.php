@@ -62,7 +62,7 @@
                 $queryOutput = $connection->query($SQLInput);
                 closeCon($connection);
                 //If username is unique
-                if (!empty($queryOutput)) {
+                if ($queryOutput->num_rows > 0) {
                   //Add the user to the database
                   $connection = openCon();
                   $SQLInput = "CALL addUser(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\", \"{$email}\")";
