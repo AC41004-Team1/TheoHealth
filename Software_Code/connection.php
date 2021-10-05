@@ -13,7 +13,7 @@ function openCon() {
     echo "FAIL";
     die("Connection failed: " . $conn->connect_error);
   }
-  // echo "CONNECTED"; This existed for testing purposes.
+  
   return $conn;
 }
 

@@ -1,44 +1,31 @@
+<?php include "head.php" ?>
 <?php
-session_start();
-
 if (isset($_SESSION['failedUsername']) == false) {
   $_SESSION['failedUsername'] = 0;
 }
 
 if (isset($_SESSION['failedPassword']) == false) {
   $_SESSION['failedPassword'] = 0;
-}
-?>
+} ?>
+<link rel="stylesheet" href="styleTemp.css">
+<style type="text/css">
+  .wrapper {
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 30%;
+  }
+</style>
+<script>
+  function swapSignIn(e) {
+    let signup = document.getElementById('signup-form-container')
+    let signin = document.getElementById('signin-form-container')
+    signin.className = signup.className == "form-hidden" ? "form-hidden" : "form-container"
+    signup.className = signup.className == "form-hidden" ? "form-container" : "form-hidden"
+    e.innerText = signup.className == "form-hidden" ? "Not Registered?" : "Already Registered?"
 
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <title>Index</title> <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
-  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="styleTemp.css">
-  <style type="text/css">
-    .wrapper {
-      margin-left: 35%;
-      margin-right: 35%;
-      width: 30%;
-    }
-  </style>
-  <script>
-    function swapSignIn(e) {
-      let signup = document.getElementById('signup-form-container')
-      let signin = document.getElementById('signin-form-container')
-      signin.className = signup.className == "form-hidden" ? "form-hidden" : "form-container"
-      signup.className = signup.className == "form-hidden" ? "form-container" : "form-hidden"
-      e.innerText = signup.className == "form-hidden" ? "Not Registered?" : "Already Registered?"
-
-      return false;
-    }
-  </script>
+    return false;
+  }
+</script>
 </head>
 
 <body style="background-image: url('theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">

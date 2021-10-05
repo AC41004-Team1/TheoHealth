@@ -16,6 +16,7 @@
 
   $usernameQ = "SELECT * FROM login WHERE Username = '$username'";
   $result = $connection->query($usernameQ);
+  
   closeCon($connection);
 
   if ($result->num_rows == 0) {
@@ -26,6 +27,7 @@
     $resultRow = $result->fetch_array();
       if ($resultRow['UserPassword'] == $password) {
         //Successfull login
+        $_SESSION["UserInfo"] = $resultRow;
         header("Location: dashboard.php");
       } else {
         //Failed login due to password not correct
