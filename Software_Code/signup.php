@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
   <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-  <link rel="stylesheet" href="styleTemp.css">
+  <link rel="stylesheet" href="./resources/styles/general.css">
   <style type="text/css">
     .wrapper {
       margin-left: 35%;
@@ -18,10 +18,10 @@
   </style>
 </head>
 
-<body style="background-image: url('theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
+<body style="background-image: url('./resources/images/theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
   <header style="height:200px;">
     <div class="leftContainer">
-      <img src="theoLogo.png" alt="" width="400" height="100">
+      <img src="./resources/images/theoLogo.png" alt="" width="400" height="100">
       <h1 class="text-left">Sign up</h1>
     </div>
     <div class="left-half" style="padding:0" style="margin-bottom:1px">

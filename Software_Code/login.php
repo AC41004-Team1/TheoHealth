@@ -7,7 +7,7 @@ if (isset($_SESSION['failedUsername']) == false) {
 if (isset($_SESSION['failedPassword']) == false) {
   $_SESSION['failedPassword'] = 0;
 } ?>
-<link rel="stylesheet" href="styleTemp.css">
+<link rel="stylesheet" href="./resources/styles/general.css">
 <style type="text/css">
   .wrapper {
     margin-left: 35%;
@@ -28,10 +28,10 @@ if (isset($_SESSION['failedPassword']) == false) {
 </script>
 </head>
 
-<body style="background-image: url('theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
+<body style="background-image: url('./resources/images/theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
   <header style="height:200px;">
     <div class="leftContainer">
-      <img src="theoLogo.png" alt="" width="400" height="100">
+      <img src="./resources/images/theoLogo.png" alt="" width="400" height="100">
       <h1 class="text-left">Login</h1>
     </div>
   </header>
