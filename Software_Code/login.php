@@ -1,4 +1,7 @@
-<?php include "head.php" ?>
+<?php include "head.php";
+    
+      // include "header.php";
+?>
 <?php
 if (isset($_SESSION['failedUsername']) == false) {
   $_SESSION['failedUsername'] = 0;
@@ -8,6 +11,7 @@ if (isset($_SESSION['failedPassword']) == false) {
   $_SESSION['failedPassword'] = 0;
 } ?>
 <link rel="stylesheet" href="./resources/styles/general.css">
+<link rel="stylesheet" href="./resources/styles/footer.css">
 <style type="text/css">
   .wrapper {
     margin-left: 35%;
@@ -28,14 +32,14 @@ if (isset($_SESSION['failedPassword']) == false) {
 </script>
 </head>
 
-<body style="background-image: url('./resources/images/theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
+<body>
   <header style="height:200px;">
     <div class="leftContainer">
-      <img src="./resources/images/theoLogo.png" alt="" width="400" height="100">
+      <img src="./resources/images/theoLogo.png" alt="" width="500" height="100">
       <h1 class="text-left">Login</h1>
     </div>
   </header>
-  <a href="#" style="font-size: 0.75em;" class="link-primary" onclick="swapSignIn(this)">Not Registered?</a>
+  <a href="#" style="font-size: 0.75em; " style ="margin-left: 40px;" class="link-primary" onclick="swapSignIn(this)">Not Registered?</a>
   <div class="left-half" style="padding:0" style="margin-bottom:1px;">
     <div id="signin-form-container" class="form-container">
       <form action="signinform.php" method="post">
@@ -131,7 +135,9 @@ if (isset($_SESSION['failedPassword']) == false) {
   </div>
 
   <footer>
-
+             <?php
+               include "footer.php";
+             ?> 
   </footer>
 </body>
 
