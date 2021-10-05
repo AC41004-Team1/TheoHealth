@@ -26,6 +26,8 @@
     $resultRow = $result->fetch_array();
       if ($resultRow['UserPassword'] == $password) {
         //Successfull login
+        //$_SESSION['UserIndex'] = $resultRow['UserIndex']; //Stores the user unique Index/ID Number in a global sessions variable if the login is succesfull
+        //$_SESSION['Role'] = $resultRow['Role']; //Stores the user role in a global sessions variable if the login is succesfull
         header("Location: dashboard.php");
       } else {
         //Failed login due to password not correct
