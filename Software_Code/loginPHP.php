@@ -1,7 +1,7 @@
 <?php
   session_start();
 
-  include "connection.php";
+  include "connectionPHP.php";
   $connection = openCon();
   
   // Check if the form is submitted

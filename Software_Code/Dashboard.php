@@ -1,5 +1,5 @@
 <?php include "head.php" ?>
-<?php include "auth.php" ?>
+<?php include "authPHP.php" ?>
 <link rel="stylesheet" href="./resources/styles/dashboard.css">
 <title>Theo Health</title>
 </head>
