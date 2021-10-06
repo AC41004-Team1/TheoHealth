@@ -420,7 +420,10 @@ async function init(){
      var material = new THREE.MeshStandardMaterial({ color: 0xff0000, roughness: 0.2, metalness: 0.8 });
 
 
+     const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 
+     const cube = new THREE.Mesh( geometry, material );
+    // scene.add( cube );
     human = gltf.scene;
     human.material = material
     human.material.color.setHex( 0xffffff );
@@ -474,22 +477,47 @@ function onMouseMove( event ) {
   // MAY NEED TO DO SOME MATHS IF WE CHANGE DIMENSIONS
 	// (-1 to +1) for both components
 
-	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
-
+  mouse.x = ( (event.clientX -renderer.domElement.offsetLeft) / renderer.domElement.width ) * 2 - 1;
+   mouse.y = -( (event.clientY - renderer.domElement.offsetTop) / renderer.domElement.height ) * 2 + 1;
 
 
 }
 
 function hoverBody(){
   raycaster.setFromCamera(mouse,camera);
-  const intersects = raycaster.intersectObjects(scene.getObjectByName( "Right_B"));
+  const intersects = raycaster.intersectObjects(scene.children,true);
 
-  console.log(intersects);
+
   for(let i = 0; i<intersects.length; i++){
     intersects[i].object.material.transparent = true;
-    intersect.object.opacity = 0.5;
+      intersects[i].object.material = new THREE.MeshStandardMaterial({ color: 0xff0000, roughness: 0.2, metalness: 0.8 });;
+    intersects[i].object.opacity = 0.5;
+
   }
+}
+
+function onClick(event){
+  raycaster.setFromCamera(mouse,camera);
+  let intersects = raycaster.intersectObjects(scene.children,true);
+      if(intersects.length >0){
+        switch(intersects[0].object.name) {
+    case "Right_A":
+      console.log("RAGA53A4");
+      break;
+    case  "Right_B":
+      console.log("GWGSGS");
+      break;
+      case  "Left_A":
+        console.log("GWGWTBWVQ%");
+        break;
+        case  "Left_B":
+          console.log("3616216%");
+          break;
+    default:
+      // code block
+  }
+       console.log(intersects[0].object.name);
+}
 }
 
 function changeColour(bodyPart,value){
@@ -515,6 +543,7 @@ else{
 
   init();
 window.addEventListener( 'mousemove', onMouseMove, false );
+window.addEventListener('click', onClick)
 
 </script>
 </html>
