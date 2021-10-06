@@ -7,6 +7,8 @@
   <title>Sign up</title>
   <link rel="stylesheet" href="./resources/styles/general.css">
   <link rel="stylesheet" href="./resources/styles/footer.css">
+  <link rel="stylesheet" href="./resources/styles/register.css">
+
   <style type="text/css">
     .wrapper {
       margin-left: 35%;
@@ -19,7 +21,7 @@
 <body>
   <header style="height:200px;">
     <div class="leftContainer">
-      <img src="./resources/images/theoLogo.png" alt="" width="400" height="100">
+      <img src="./resources/images/theoLogo.png" alt="" width="500" height="100">
       <h1 class="text-left">Sign up</h1>
     </div>
     <div class="left-half" style="padding:0" style="margin-bottom:1px">
@@ -78,21 +80,21 @@
 
                   //Welcome Message
                   echo "Welcome {$fname} {$sname}. Your account has now been created. You'll be taken to your dashboard in 10 seconds or you can click <a href/'/Dashboard.php/'>here</a> to go there now.";
-                  echo "<meta http-equiv=\"refresh\" content=\"10; URL=/Dashboard.php\" />";
+                  echo "<meta http-equiv=\"refresh\" content=\"10; URL=./dashboard.php\" />";
                 } else {
                   echo "Sorry your account could not be created. The username you entered is already taken.";
-                  echo "<meta http-equiv=\"refresh\" content=\"8; URL=/login.php\" />";
+                  echo "<meta http-equiv=\"refresh\" content=\"8; URL=./login.php\" />";
                 }
               } else {
                 echo "Sorry your account could not be created. The phone number was invalid.";
-                echo "<meta http-equiv=\"refresh\" content=\"8; URL=/login.php\" />";
+                echo "<meta http-equiv=\"refresh\" content=\"8; URL=./login.php\" />";
               }
             } else {
               echo "Sorry your account could not be created. The second password doesn't match the first.";
-              echo "<meta http-equiv=\"refresh\" content=\"8; URL=/login.php\" />";
+              echo "<meta http-equiv=\"refresh\" content=\"8; URL=./login.php\" />";
             }
           } else {
-            echo "<meta http-equiv=\"refresh\" content=\"0; URL=/login.php\" />";
+            echo "<meta http-equiv=\"refresh\" content=\"0; URL=./login.php\" />";
           }
           ?>
         </div>

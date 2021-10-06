@@ -1,0 +1,10 @@
+.left-half {
+    position: absolute;
+    left: 0px;
+    width: 50%;
+    align-items: center;
+    float: left;
+    margin: 10px;
+    padding-top: 50px;
+    padding-left: 40px;
+}
