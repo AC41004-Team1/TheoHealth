@@ -1,14 +1,12 @@
+<?php include "head.php" ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8">
-  <title>Sign up</title> <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
-  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <title>Sign up</title>
   <link rel="stylesheet" href="./resources/styles/general.css">
+  <link rel="stylesheet" href="./resources/styles/footer.css">
   <style type="text/css">
     .wrapper {
       margin-left: 35%;
@@ -18,7 +16,7 @@
   </style>
 </head>
 
-<body style="background-image: url('./resources/images/theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
+<body>
   <header style="height:200px;">
     <div class="leftContainer">
       <img src="./resources/images/theoLogo.png" alt="" width="400" height="100">
@@ -34,9 +32,7 @@
 
 
           <?php
-          session_start();
-
-          include "connection.php";
+          
           $connection = openCon();
 
           // Check if the form is submitted
@@ -102,6 +98,11 @@
         </div>
       </div>
     </div>
+    <footer>
+             <?php
+               include "footer.php";
+             ?> 
+  </footer>
 </body>
 
 </html>
