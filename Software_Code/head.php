@@ -1,5 +1,6 @@
-<?php include "connection.php";
-session_start()
+<?php 
+    include "connectionPHP.php";
+    session_start()
 ?>
 <!doctype html>
 <html lang="en">
