@@ -44,45 +44,91 @@
             <!--- This will need to change for physicist --->
             <?php
               function getSessions($userIndex){
+                $con = openCon();
+                $query = "CALL getClientsSessions('{$userIndex}');";
+                $result = $con->query($query);
+                closeCon($con);
+                return $result;
+              }
 
+              function printDashCard($sessionIndex, $sessionNum, $sessionDate, $sessionDuration){
+                echo "<div class=\"card-dash\">";
+                   echo "<div class=\"card\" style=\"width: 40rem;\">";
+                        echo "<div href=\"#\" class=\"card-body\">";
+                          echo "Totally a legit link to the visualisation of session {$sessionIndex}. WIP!";
+                          echo "<h1> Session {$sessionNum} </h1>";
+                          echo "<h5 class=\"card-title\">{$sessionDate}</h5>";
+                          echo "<h6 class=\"card-subtitle mb-2 text-muted\">This session lasted: ";
+
+                          $durArray = str_split($sessionDuration,1);
+                          $counter = strlen($sessionDuration);
+                          $wentIn = false;
+                          echo "Counter = {$counter}";
+                          while($counter>4){
+                            echo "{$durArray[strLeng($sessionDuration) - $counter]}h";
+                            $counter = $counter-1;
+                            $wentIn = true;
+                          }
+                          if($wentIn == true){
+                            echo "hours ";
+                            $wentIn = false;
+                          }
+                          echo "Counter = {$counter}";
+                          while($counter>2){
+                            echo "{$durArray[strLeng($sessionDuration)-$counter]}m";
+                            $counter = $counter-1;
+                            $wentIn = true;
+                          }
+                          if($wentIn == true){
+                            echo "mins ";
+                            $wentIn = false;
+                          }
+                          echo "Counter = {$counter}";
+                          while($counter>0){
+                            echo "{$durArray[strLeng($sessionDuration)-$counter]}s";
+                            $counter = $counter-1;
+                            $wentIn = true;
+                          }
+                          if($wentIn == true){
+                            echo "secs";
+                          }
+                          echo "WIP</h6>";
+                        echo "</div>";
+                    echo "</div>";
+                 echo "</div>";
               }
 
               $role = $_SESSION['userInfoArray'][2];
               if($role == "A" || $role == "IA"){
-                echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
+                //Call Query to get results
+                $result = getSessions($_SESSION['userInfoArray'][1]);
+                //If they have done a session before
+                if($result->num_rows > 0){
+                  echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
+                  while($row = $result->fetch_object()){
+                      printDashCard("{$row -> SessionIndex}", "{$row -> SessionNum}", "{$row -> DateTaken}", "{$row -> Duration}");
+                  }
+                }else{
+                  echo "<h1>Come back here once you've started your training.</h1>";
+                }
+
               } else {
-                echo "<h4 class=\"text-center\">Please select a client?</h4>";
+                echo "<h4 class=\"text-center\">Please select a client</h4>";
               }
               ?>
 
-                <div class="card-dash">
-                   <div class="card" style="width: 40rem;">
-                        <div href="#" class="card-body">
-                          <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                          <h5 class="card-title">Recored another exercise</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">Last time you exercise was: </h6> <!--Please Insert data of last data--->
-                        </div>
-                    </div>
-                 </div>
 
-                 <div class="card-dash">
+
+                 <!--<div class="card-dash">
                    <div class="card" style="width: 40rem;">
                         <div href="#" class="card-body">
                           <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
                           <h5 class="card-title">Import new data from an external file</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">Last time you exercise was: </h6> <!--Please Insert data of last data--->
+                          <h6 class="card-subtitle mb-2 text-muted">Last time you exercise was: </h6> --><!--Please Insert data of last data---> <!--
                         </div>
                     </div>
-                 </div>
+                 </div> -->
 
-                 <div class="card" style="width: 40rem;">
-                      <div href="#" class="card-body">
-                        <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                        <h5 class="card-title">View previous results</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">Last time you exercise was: </h6> <!--Please Insert data of last data--->
-                      </div>
-                 </div>
-               ?>
           </div>
       </div>
     </div>

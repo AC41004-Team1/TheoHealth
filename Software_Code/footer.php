@@ -15,7 +15,7 @@
       <div class="col-md-4 d-flex align-items-center">
         <a href="/" class="mb-3 me-2 mb-md-0 text-white text-decoration-none lh-1">
           <!---Insert Theo Health Logo Here --->
-          <span class="text-white">&copy; Theo Health Limited 2021</span>
+          <span class="text-white">Theo Health</span>
       </div>
       <ul class="nav col-md-4 justify-content-end list-unstyled d-flex align-items-center">
         <li class="ms-3"><a class="text-white" href="https://twitter.com/theohealth?lang=en"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-twitter" viewBox="0 0 16 16">
