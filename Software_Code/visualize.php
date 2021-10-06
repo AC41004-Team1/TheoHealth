@@ -179,7 +179,7 @@ $connection = openCon();
 <h1> Bee doop 1 </h1>
 
     <div style = "width: 100%">
-       <canvas id="myChart"></canvas>
+       <!-- <canvas id="myChart"></canvas> -->
     </div>
 <h1> Hello there team 1 </h1>
   </body>
@@ -364,54 +364,157 @@ config
 import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
 import { OrbitControls } from 'https://cdn.skypack.dev/three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js';
-  let scene,camera, renderer,hlight,human
 
 
 
+  let scene,camera, renderer,hlight,human;
+  let Right_A,Left_A,Right_B,Left_B;
+  let raycaster,mouse;
 
-function init(){
+
+async function init(){
 
   scene = new THREE.Scene();
-  scene.background = new THREE.Color(0xdddddd);
+  scene.background = new THREE.Color(0x404040);
   camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1, 1000);
   camera.rotation.y = 45/180*Math.PI;
-  camera.position.x = 800;
-  camera.position.y = 100;
-  camera.position.z = 1000;
+  camera.position.x = 1;
+  camera.position.y = 2.5;
+  camera.position.z = 1;
 
+  var ambient = new THREE.AmbientLight( 0x101030 );
+       scene.add(ambient);
+
+       var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+       directionalLight.position.set( 3, 3, 3 );
+
+       var directionalLight2 = new THREE.DirectionalLight( 0xffeedd );
+       directionalLight2.position.set( 1, 1, 1 );
+
+       var directionalLight3 = new THREE.DirectionalLight( 0xffeedd );
+       directionalLight3.position.set( -1, -1, -1 );
+
+       var directionalLight4 = new THREE.DirectionalLight( 0xffeedd );
+       directionalLight4.position.set( -3, -3, -3 );
+
+
+       scene.add( directionalLight,directionalLight2,directionalLight3 ,directionalLight4  );
 
   renderer = new THREE.WebGLRenderer({antialias: true});
   renderer.setSize(window.innerWidth, window.innerHeight);
 
+  mouse = new THREE.Vector2();
+  raycaster = new THREE.Raycaster();
+
   document.body.appendChild(renderer.domElement);
-
-
-  hlight = new THREE.AmbientLight(0x404040,100);
-  scene.add(hlight);
-
 
 
   let controls = new OrbitControls(camera, renderer.domElement);
   controls.addEventListener('change', animate);
 
-  let cube = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1))
-    scene.add(cube)
 
   document.body.appendChild(renderer.domElement);
 
   let loader = new GLTFLoader();
-  loader.load('scene.gltf',function ( gltf ) {
-    human = gltf.scene.children[0];
-    human.scale.set[0.5,0.5,0.5];
-		scene.add( gltf.scene );
+  loader.load('person2.gltf',function ( gltf ) {
+     var material = new THREE.MeshStandardMaterial({ color: 0xff0000, roughness: 0.2, metalness: 0.8 });
+
+
+
+    human = gltf.scene;
+    human.material = material
+    human.material.color.setHex( 0xffffff );
+    human.scale.set[1,1,1];
+    gltf.parser.getDependencies( 'material' ).then( ( materials ) => {
+
+
+ Right_A = scene.getObjectByName( "Right_A" );
+ Left_A = scene.getObjectByName( "Left_A" );
+ Right_B = scene.getObjectByName( "Right_B" );
+ Left_B = scene.getObjectByName( "Left_B" );
+changeColour(Right_A,"green");
+
+//Left_B.material =  new THREE.MeshStandardMaterial({ color: 0xff99e6, roughness: 0.2, metalness: 0.8 });
+} );
+
+    human.traverse( function( child ) {
+
+                child.material = material;
+                child.material.side = THREE.DoubleSide;
+            //   material = new THREE.MeshStandardMaterial({ color: parseInt(Math.floor(Math.random()*16777215).toString(16),16), roughness: 0.2, metalness: 0.8 });
+
+
+        } );
+
+		scene.add( gltf.scene);
+    scene.background = new THREE.Color('grey');
     animate();
-	});
+  },
+    function( xhr ){
+        console.log( (xhr.loaded / xhr.total * 100) + "% loaded")
+    },
+    function( err ){
+        console.error( "Error loading obj")
+    }
+);
   function animate(){
     requestAnimationFrame(animate);
     renderer.render(scene,camera);
+    hoverBody();
+  }
+
+
+
+}
+
+
+function onMouseMove( event ) {
+
+	// calculate mouse position in normalized device coordinates
+  // MAY NEED TO DO SOME MATHS IF WE CHANGE DIMENSIONS
+	// (-1 to +1) for both components
+
+	mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+	mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+
+
+}
+
+function hoverBody(){
+  raycaster.setFromCamera(mouse,camera);
+  const intersects = raycaster.intersectObjects(scene.getObjectByName( "Right_B"));
+
+  console.log(intersects);
+  for(let i = 0; i<intersects.length; i++){
+    intersects[i].object.material.transparent = true;
+    intersect.object.opacity = 0.5;
   }
 }
+
+function changeColour(bodyPart,value){
+
+let green,orange,red;
+
+green =  new THREE.MeshStandardMaterial({ color: 0x008000 });
+orange = new THREE.MeshStandardMaterial({ color: 0xffa500 });
+red = new THREE.MeshStandardMaterial({ color: 0xff0000 });
+
+console.log(bodyPart);
+if(value == "green"){
+  bodyPart.material = green;
+}
+else if (value == "orange"){
+  bodyPart.material = orange;
+}
+else{
+  bodyPart.material = red;
+}
+
+}
+
   init();
+window.addEventListener( 'mousemove', onMouseMove, false );
 
 </script>
 </html>
