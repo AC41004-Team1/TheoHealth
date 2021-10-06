@@ -1,14 +1,14 @@
+<?php include "head.php" ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8">
-  <title>Sign up</title> <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.min.css" />
-  <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+  <title>Sign up</title>
   <link rel="stylesheet" href="./resources/styles/general.css">
+  <link rel="stylesheet" href="./resources/styles/footer.css">
+  <link rel="stylesheet" href="./resources/styles/register.css">
+
   <style type="text/css">
     .wrapper {
       margin-left: 35%;
@@ -18,10 +18,10 @@
   </style>
 </head>
 
-<body style="background-image: url('./resources/images/theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
+<body>
   <header style="height:200px;">
     <div class="leftContainer">
-      <img src="./resources/images/theoLogo.png" alt="" width="400" height="100">
+      <img src="./resources/images/theoLogo.png" alt="" width="500" height="100">
       <h1 class="text-left">Sign up</h1>
     </div>
     <div class="left-half" style="padding:0" style="margin-bottom:1px">
@@ -34,9 +34,7 @@
 
 
           <?php
-          session_start();
-
-          include "connection.php";
+          
           $connection = openCon();
 
           // Check if the form is submitted
@@ -62,7 +60,7 @@
                 $queryOutput = $connection->query($SQLInput);
                 closeCon($connection);
                 //If username is unique
-                if (!empty($queryOutput)) {
+                if ($queryOutput->num_rows > 0) {
                   //Add the user to the database
                   $connection = openCon();
                   $SQLInput = "CALL addUser(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\", \"{$email}\")";
@@ -82,26 +80,31 @@
 
                   //Welcome Message
                   echo "Welcome {$fname} {$sname}. Your account has now been created. You'll be taken to your dashboard in 10 seconds or you can click <a href/'/Dashboard.php/'>here</a> to go there now.";
-                  echo "<meta http-equiv=\"refresh\" content=\"10; URL=/Dashboard.php\" />";
+                  echo "<meta http-equiv=\"refresh\" content=\"10; URL=./dashboard.php\" />";
                 } else {
                   echo "Sorry your account could not be created. The username you entered is already taken.";
-                  echo "<meta http-equiv=\"refresh\" content=\"8; URL=/login.php\" />";
+                  echo "<meta http-equiv=\"refresh\" content=\"8; URL=./login.php\" />";
                 }
               } else {
                 echo "Sorry your account could not be created. The phone number was invalid.";
-                echo "<meta http-equiv=\"refresh\" content=\"8; URL=/login.php\" />";
+                echo "<meta http-equiv=\"refresh\" content=\"8; URL=./login.php\" />";
               }
             } else {
               echo "Sorry your account could not be created. The second password doesn't match the first.";
-              echo "<meta http-equiv=\"refresh\" content=\"8; URL=/login.php\" />";
+              echo "<meta http-equiv=\"refresh\" content=\"8; URL=./login.php\" />";
             }
           } else {
-            echo "<meta http-equiv=\"refresh\" content=\"0; URL=/login.php\" />";
+            echo "<meta http-equiv=\"refresh\" content=\"0; URL=./login.php\" />";
           }
           ?>
         </div>
       </div>
     </div>
+    <footer>
+             <?php
+               include "footer.php";
+             ?> 
+  </footer>
 </body>
 
 </html>
