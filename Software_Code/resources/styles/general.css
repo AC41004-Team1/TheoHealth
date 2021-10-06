@@ -1,92 +1,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
 * {
-  font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
-body{
-  color:#394867;
-  font-size: 20px;
-  font-weight: 300px;
-  background-color: #f1f6f9;
-  margin-left:40px ;
- 
-  
+body {
+    color: #394867;
+    font-size: 20px;
+    font-weight: 300px;
+    background-color: #f1f6f9;
+    background-image: url('../images/bg1920.png');
+    width: 900px;
+    height: 900px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    padding-left: 0px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: #14274E;
+@media screen and (max-width:1359px) {
+    body {
+        background-image: url('../images/bg1360.png');
+        background-repeat: no-repeat;
+    }
 }
 
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #14274E;
+    font-weight: 100;
+    color: #20a5b7;
+    /* color: #0397a2 */
+    margin-top: 20px;
+}
 
 .center {
-  text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-  
-.form-group {
-    text-align: left;
-    margin-left:40px ;
-    width:250px;
-    float: left;
-}
-
-.leftContainer{
-  text-align: left;
-  padding: 10px;
-  align-items: left
-  
-
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .right-half {
-  
-  position: absolute;
-  right: 0px;
-  width: 50%;
-  align-items: center;
-  float: right;
+    position: absolute;
+    right: 0px;
+    width: 50%;
+    align-items: center;
+    float: right;
 }
 
-.left-half {
-  
-  position: absolute; 
-  left: 0px;
-  width: 50%;
-  align-items: center;
-  float: left;
-  margin: 10px;
+#form-2-cols {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 1em;
 }
-
-#form-2-cols{
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 1em;
-}
-.form-container{
-  overflow: hidden;
-  width: 550px;
-  height: auto;
-  transition: width 1s;
- 
-  
-}
-.form-hidden{
-  overflow: hidden;
-  width: 0;
-  height: 0;
-  transition: width 1s;
-}
-/* .background-image{
-  opacity: 0.6;
-} */
-.wrapper {
-    margin-left: 35%;
-    margin-right: 35%;
-    width: 30%;
-  }
-
-
