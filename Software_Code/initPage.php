@@ -1,15 +1,21 @@
 <?php include "head.php" ?>
-<title>Initialisation</title>
-<link rel="stylesheet" href="./resources/styles/general.css">
-</head>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  
+<head>
+  <meta charset="utf-8">    
+  <title>Initialisation</title>
+  <link rel="stylesheet" href="./resources/styles/general.css">
+  <link rel="stylesheet" href="./resources/styles/footer.css">
+  </head>
 
-<body style="background-image: url('./resources/images/theoHealthBackground.png');  width: 900px; height: 900px; background-repeat: no-repeat ; background-size: cover;">
-  <header style="height:200px;">
-    <div class="leftContainer">
-      <img src="./resources/images/theoLogo.png" alt="" width="400" height="100">
-      <h1 class="text-left">Initialisation</h1>
-    </div>
-  </header>
+  <body>
+    <header style="height:200px;">
+      <div class="leftContainer">
+        <img src="./resources/images/theoLogo.png" alt="" width="400" height="100">
+        <h1 class="text-left">Initialisation</h1>
+      </div>
+    </header>
   <div class="left-half" style="padding: 50px;" style="margin-bottom:1px;">
     <div class="card">
       <!-- add graph in here -->
