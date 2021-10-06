@@ -6,26 +6,9 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <link href="Balknaized-Dashboard.css" rel="stylesheet">
+    <link href="./resources/styles/dashboard.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Mainbody of the web application--->
 <div class="jumbotron" >
@@ -44,7 +27,7 @@
       <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js">
-      </script><script src="dashboard.js"></script>
+      </script>
     </div>
   </div>
   <div class="column">
@@ -83,8 +66,5 @@
     <div class="SecndContent">
       <!--- Place addditonal content below --->
       <img src="https://via.placeholder.com/500x400" alt="">
-      </div>
-
-
-
+    </div>
 </body>
