@@ -63,9 +63,9 @@
                           $durArray = str_split($sessionDuration,1);
                           $counter = strlen($sessionDuration);
                           $wentIn = false;
-                          echo "Counter = {$counter}";
+
                           while($counter>4){
-                            echo "{$durArray[strLeng($sessionDuration) - $counter]}h";
+                            echo "{$durArray[strLen($sessionDuration) - $counter]}";
                             $counter = $counter-1;
                             $wentIn = true;
                           }
@@ -73,9 +73,9 @@
                             echo "hours ";
                             $wentIn = false;
                           }
-                          echo "Counter = {$counter}";
+
                           while($counter>2){
-                            echo "{$durArray[strLeng($sessionDuration)-$counter]}m";
+                            echo "{$durArray[strLen($sessionDuration)-$counter]}";
                             $counter = $counter-1;
                             $wentIn = true;
                           }
@@ -83,16 +83,21 @@
                             echo "mins ";
                             $wentIn = false;
                           }
-                          echo "Counter = {$counter}";
-                          while($counter>0){
-                            echo "{$durArray[strLeng($sessionDuration)-$counter]}s";
-                            $counter = $counter-1;
+
+                          if($counter>0){
+                            $valueString = $durArray[strLen($sessionDuration)-$counter];
+                            $valueString .= $durArray[strLen(($sessionDuration)-$counter)-1];
+                            $valueInt = intval($valueString);
+                            if($valueInt > 59){
+                              $valueInt = $valueInt - 40;
+                            }
+                            echo "{$valueInt}";
                             $wentIn = true;
                           }
                           if($wentIn == true){
                             echo "secs";
                           }
-                          echo "WIP</h6>";
+                          echo "</h6>";
                         echo "</div>";
                     echo "</div>";
                  echo "</div>";
