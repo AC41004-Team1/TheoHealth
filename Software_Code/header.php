@@ -15,7 +15,7 @@
     </svg>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning">
       <div class="container-fluid">
-        <a class="navbar-brand" href="./index.php">Theo Health</a>
+        <a class="navbar-brand" href="./index.html">Theo Health</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="bi bi-person-circle"></span>
         </button>

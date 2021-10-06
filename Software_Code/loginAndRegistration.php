@@ -1,21 +1,20 @@
-<?php include "head.php";
+<?php 
+  include "head.php";
+  include "checkSigninPHP.php";
+  if (isset($_SESSION['failedUsername']) == false) {
+    $_SESSION['failedUsername'] = 0;
+  }
 
-// include "header.php";
+  if (isset($_SESSION['failedPassword']) == false) {
+    $_SESSION['failedPassword'] = 0;
+  }
 ?>
-<?php
-if (isset($_SESSION['failedUsername']) == false) {
-  $_SESSION['failedUsername'] = 0;
-}
 
-if (isset($_SESSION['failedPassword']) == false) {
-  $_SESSION['failedPassword'] = 0;
-} ?>
 <link rel="stylesheet" href="./resources/styles/general.css">
 <link rel="stylesheet" href="./resources/styles/footer.css">
 <link rel="stylesheet" href="./resources/styles/login.css">
-<style type="text/css">
+<style type="text/css"></style>
 
-</style>
 <script>
   function swapSignIn(e) {
     let signup = document.getElementById('signup-form-container')
@@ -40,7 +39,7 @@ if (isset($_SESSION['failedPassword']) == false) {
     <a href="#" style="font-size: 0.75em; " class="link-primary" onclick="swapSignIn(this)">Not Registered?</a>
     <div class="left-half" style="padding:0" style="margin-bottom:1px;">
       <div id="signin-form-container" class="form-container">
-        <form action="signinform.php" method="post">
+        <form action="loginPHP.php" method="post">
           <div class="form-group">
 
             <label for="username">Username:</label>
@@ -71,7 +70,7 @@ if (isset($_SESSION['failedPassword']) == false) {
         </form>
       </div>
       <div id="signup-form-container" class="form-hidden">
-        <form action="signup.php" method="post">
+        <form action="registrationPHP.php" method="post">
           <div class="form-group" id="form-2-cols">
             <div id="form-group-left">
               <label for="fname">First name:</label>
@@ -123,14 +122,8 @@ if (isset($_SESSION['failedPassword']) == false) {
             <button class="btn btn-outline-primary" type="submit" name="submitsignup" style="margin-top: 10px;">Sign up</button>
           </div>
         </form>
-
-
       </div>
     </div>
-
-
-
-
   </div>
 
   <footer>
