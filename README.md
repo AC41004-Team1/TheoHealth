@@ -2,7 +2,7 @@
 AC41004 Industrial Team Project - Team #1
 
 Group Members:
-- Taha Kashaf (180020889/Team Lead)
+- Taha Kashaf (Griffin - 180020889 - Team Lead)
 - Christy McCarron (150007015)
 - Craig Methven (180007416)
 - Jesse Chan (180010828)
