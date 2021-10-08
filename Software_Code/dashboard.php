@@ -1,7 +1,6 @@
 <?php
   include "head.php";
   include "authPHP.php";
-
  ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,12 +9,13 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
     <link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
   <?php
-  include "header.php";
+  include "./header.php";
   ?>
 
 <!-- Mainbody of the web application--->
@@ -23,6 +23,55 @@
   <h1 class="text-center">Welcome Back <?php echo $_SESSION['userInfoArray'][0]; ?></h1>
   <!--<hr class="my-4">-->
   <!--<p class="lead">You could place something here</p>-->
+</div>
+<div class ="chart-overall-container">
+  <canvas id="myChart" width="1920" height="300"></canvas>
+</div>
+<script>
+
+var xValues = [50,60,70,80,90,100,110];
+var yValues = [7,8,8,9,9,9,10,11,14,14,15];
+
+var options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    y: {
+      stacked: true,
+      grid: {
+        display: true,
+        color: "rgba(255,99,132,0.2)"
+      }
+    },
+    x: {
+      grid: {
+        display: false
+      }
+    }
+  }
+};
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{
+      fill: false,
+      lineTension: 0,
+      backgroundColor: "rgba(0,0,255,1.0)",
+      borderColor: "rgba(0,0,255,0.1)",
+      data: yValues
+    }]
+  },
+  options: {
+    legend: {display: false},
+    scales: {
+      yAxes: [{ticks: {min: 6, max:16}}],
+    }
+  }
+});
+
+</script>
 </div>
 
 <div class="MainContent">
@@ -33,10 +82,11 @@
         <h1 class="h2">Your last results</h1>
        </div>
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js">
-      </script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.2/js/bootstrap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script> <!-- Remove once implmenting the visualisation-->
     </div>
   </div>
   <div class="column">
@@ -97,11 +147,10 @@
               //Method to print the session labels
               function printDashCard($sessionIndex, $sessionNum, $sessionDate, $sessionDuration){
                 echo "<div class=\"card-dash\">";
-                   echo "<div class=\"card\" style=\"width: 40rem;\">";
-                        echo "<div class=\"card-body\">";
-                          echo "<form action=\"./vis.php\" method=\"post\">";
-                          echo "<button name=\"sessionIndexIn\" type=\"submit\" value=\"{$sessionIndex}\"><h1> Session {$sessionNum} </h1></button>";
-                          echo "</form>";
+                   echo "<div class=\"card border-light mb-3\" style=\"width: 40rem;\">";
+                        echo "<div href=\"#\" class=\"card-body\">";
+                          echo "Totally a legit link to the visualisation of session {$sessionIndex}. WIP!";
+                          echo "<h1> Session {$sessionNum} </h1>";
                           echo "<h5 class=\"card-title\">{$sessionDate}</h5>";
                           echo "<h6 class=\"card-subtitle mb-2 text-muted\">This session lasted: ";
                           printTime($sessionDuration);
@@ -133,7 +182,7 @@
                 $index = $_SESSION['userInfoArray'][1];
                 $SQLInput = "CALL getManagersClients('{$index}')";
                 $result = $conn->query($SQLInput);
-                closeCon($con);
+                $conn -> close();
                 $clientsIndex = [];
 
                 //If there are clients
@@ -172,48 +221,48 @@
               }
 
               //Java script for the drop down menu
-              echo "<script>";
-                echo "console.log(\"Im in\");";
-                echo "var ddl = document.getElementById(\"ClientSelect\");";
-                echo "ddl.onchange = function(){";
-                  //Get the drop down
+echo "<script>";
+  echo "console.log(\"Im in\");";
+  echo "var ddl = document.getElementById(\"ClientSelect\");";
+  echo "ddl.onchange = function(){";
+    //Get the drop down
 
-                  //Get the client index selected in the drop down
-                  echo "var selectedValue = ddl.value;";
-                  echo "if(selectedValue == \"blank\"){";
-                  echo "return false;";
-                  echo "}";
-                  //echo "console.log(selectedValue);";
-                  echo "let userArray = [];";
-                  //Loop through all form containers and set all to be invisible
-                  $loopI = $tempI-1;
-                  while($loopI >= 0){
-                    echo "let user{$clientsIndex[$loopI]} = document.getElementById('user{$clientsIndex[$loopI]}-form-container');";
-                    echo "user{$clientsIndex[$loopI]}.className = 'form-hidden';";
-                    echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
-                    $loopI--;
-                  }
-                  //Set required
-                  //echo "document.getElementById(myContainer.className) = form-container;";
+    //Get the client index selected in the drop down
+    echo "var selectedValue = ddl.value;";
+    echo "if(selectedValue == \"blank\"){";
+    echo "return false;";
+    echo "}";
+    //echo "console.log(selectedValue);";
+    echo "let userArray = [];";
+    //Loop through all form containers and set all to be invisible
+    $loopI = $tempI-1;
+    while($loopI >= 0){
+      echo "let user{$clientsIndex[$loopI]} = document.getElementById('user{$clientsIndex[$loopI]}-form-container');";
+      echo "user{$clientsIndex[$loopI]}.className = 'form-hidden';";
+      echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
+      $loopI--;
+    }
+    //Set required
+    //echo "document.getElementById(myContainer.className) = form-container;";
 
-                  // echo "for (let i = 0; i < {$tempI}; i++) {";
-                  //   echo "userArray[i].className = form-hidden;";
-                  // echo "}";
+    // echo "for (let i = 0; i < {$tempI}; i++) {";
+    //   echo "userArray[i].className = form-hidden;";
+    // echo "}";
 
-                  // //Concatenating a string to be the name of the container needed
-                  echo "let myContainer = 'user';";
-                  echo "myContainer += selectedValue;";
-                  echo "myContainer += '-form-container';";
-                  //Making the container visable
-                  echo "document.getElementById(myContainer).className = 'form-container';";
+    // //Concatenating a string to be the name of the container needed
+    echo "let myContainer = 'user';";
+    echo "myContainer += selectedValue;";
+    echo "myContainer += '-form-container';";
+    //Making the container visable
+    echo "document.getElementById(myContainer).className = 'form-container';";
 
-                  //echo "console.log(\"something, please help\");";
-                  //echo "console.log(selectedValue);";
+    //echo "console.log(\"something, please help\");";
+    //echo "console.log(selectedValue);";
 
-                  echo "return false;";
-                echo "}";
-              echo "</script>";
-              ?>
+    echo "return false;";
+  echo "}";
+echo "</script>";
+?>
 
 
 
@@ -231,7 +280,7 @@
       </div>
     </div>
     <?php
-    include "footer.php";
+    include "./footer.php";
     ?>
     <!-- <div class="SecndContent">-->
       <!--- Place addditonal content below --->
