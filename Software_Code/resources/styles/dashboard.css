@@ -67,3 +67,18 @@ width: 50%;
           font-size: 3.5rem;
         }
       }
+
+.form-hidden {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    transition: width 1s;
+    visibility: hidden;
+}
+
+.form-container {
+    overflow: hidden;
+    width: 550px;
+    transition: width 1s;
+    visibility: visible;
+}

@@ -60,3 +60,10 @@
     height: 0;
     transition: width 1s;
 }
+
+.form-submit {
+    text-align: left;
+    margin-left: 40px;
+    width: 500px;
+    float: left;
+}
