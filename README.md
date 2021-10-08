@@ -30,10 +30,9 @@ Meeting etiquette:
 
 Agile Behaviour:
  - Be positive and give constructive criticism to promote respect and courage
- - Follow our definition of done (on our meeting 1 notes)
+ - Follow our definition of done
  - Follow agile principles as much as possible - do not burnout 
  - If you need resources, motivation or a helping hand ask the SCRUM master. If its a bigger issue, come to the daily drop-in session at 1 pm or message
- - If you have questions about the work ask the PO (James S)
  - Take breaks regularly to keep productive and avoid burnout. A good time for this is at 1 pm during the drop-in session if you have no issues.
 Work closely to the brief
 
