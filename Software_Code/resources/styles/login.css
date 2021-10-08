@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-image: url('../images/bg1920.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (max-width:1359px) {
+    body {
+        background-image: url('../images/bg1360.png');
+        background-repeat: no-repeat;
+    }
+}
+
+#loginBox {
+    margin-left: 40px;
+    overflow: hidden;
+}
+
+.leftContainer {
+    text-align: left;
+    padding: 10px;
+    align-items: left
+}
+
+.left-half {
+    position: absolute;
+    left: 0px;
+    width: 50%;
+    align-items: center;
+    float: left;
+    margin: 10px;
+}
+
+.form-container {
+    overflow: hidden;
+    width: 550px;
+    transition: width 1s;
+}
+
+.form-group {
+    text-align: left;
+    margin-left: 40px;
+    width: 250px;
+    float: left;
+}
+
+.signin-form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.signup-form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.wrapper {
+    margin-left: 35%;
+    margin-right: 35%;
+    width: 30%;
+}
+
+.form-hidden {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    transition: width 1s;
+}

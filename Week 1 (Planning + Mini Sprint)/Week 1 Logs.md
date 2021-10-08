@@ -59,5 +59,57 @@ William
 Short meeting at the start of the day to discuss the various questions posed to the Management Team and the answers recieved. Team understood the answers communicated to them through the Team Leader well, no standing confusions. However, a few questions need to be asked on Monday for further clarification as directed by the Mangement Team.
 Significant disussion was also had on the data from the sensors and the timestamps presented by them, which don't seem to add up to what we're being told.
 Meeting was adjorned and members split up to work on induvidual aspects of the project - everyone seemed happy and had something to do.
+ - Jesse and Christy completed 2D Visualization, began setting up 3D.
+ - Craig set up Data Base (however we later switched host)
+ - Euan got Wireframe designs for the HTML
+ - Elliot sketched out website designs
+
+---
+## Day [4] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+Meeting started at 9:05AM
+
+### Members Present:
+Taha, Craig, Jesse, Euan, Elliot
+
+### Members Not Present:
+William, Christy
+
+### Apologies:
+
+
+### Summary of Conversation:
+Short meeting at the start of the everyone discussed what they had left to do this week.
+ - Short discussion on new DB Host
+ - Short discussion about times for meetings
+ - Clarified questions
+ - Discussed that the team doesn't think we have a lot of work left for a full 2 weeks.
+ - Sorted hosting for both the DB and the Webserver
+---
+
+## Day [5] - Meeting Summary
+The Chair for this meeting was **Taha Kashaf**
+Meeting started at 11:05AM
+
+### Members Present:
+Taha, Craig, Jesse, Euan, Elliot, Christy
+
+### Members Not Present:
+William
+
+### Apologies:
+
+
+### Summary of Conversation:
+Short meeting at the start of the everyone discussed what they had left to do this week, as well as certain team members leftover work for the weekend.
+
+ - Christy to start work on 3D Visualization over the weekend
+ - Elliot to continue on front-end dev
+ - Discussed a progressive web app as an option for a phone application
+ - Euan also continuing on front-end dev
+ - Jesse to continue work on data visualization in the form of graphing.
+
+Further discussion was also had on how we wanted to present our initial progress to the client on Monday, as well as meeting and discussing the marking scheme together after the client meeting and before the management meeting. 
+
 
 ---
