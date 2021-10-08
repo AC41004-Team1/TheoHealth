@@ -3,6 +3,20 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+body {
+    background-image: url('../images/bg1920.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (max-width:1359px) {
+    body {
+        background-image: url('../images/bg1360.png');
+        background-repeat: no-repeat;
+    }
+}
+
 #loginBox {
     margin-left: 40px;
     overflow: hidden;

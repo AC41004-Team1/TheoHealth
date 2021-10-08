@@ -15,7 +15,7 @@
 <body>
 
   <?php
-  include "./header.php";
+  include "header.php";
   ?>
 
 <!-- Mainbody of the web application--->
@@ -138,7 +138,7 @@
       </div>
     </div>
     <?php
-    include "./footer.php";
+    include "footer.php";
     ?>
     <!-- <div class="SecndContent">-->
       <!--- Place addditonal content below --->

@@ -3,8 +3,6 @@
 ?>
 <title>Visulisation</title>
 <link rel="stylesheet" href="./resources/styles/general.css">
-<link rel="stylesheet" href="./resources/styles/footer.css">
-<link rel="stylesheet" href="./resources/styles/Header.css">
 <link rel="stylesheet" href="./resources/styles/vis.css">
 
 
@@ -16,6 +14,7 @@
       <h1 class="text-left">Visualisation</h1>
     </div>
   </header>
+  <div class= form-container>
   <div class="right-half" style="padding: 50px;" style="margin-bottom:1px;">
   <div class="card">
     <!-- insert body model -->
@@ -41,9 +40,17 @@
         <p class="card-text">Wow look at your cool graph. So exciting!!!!!!!!!!</p>
       </div>
     </div>
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">Feedback:</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>  
   </div>
-  
-</body>
+  </div>
+</div>
+<footer>
 <?php include "footer.php" ?>
+</footer>
+
+</body>
+
 
 </html>

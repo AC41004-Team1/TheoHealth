@@ -8,19 +8,8 @@ body {
     font-size: 20px;
     font-weight: 300px;
     background-color: #f1f6f9;
-    background-image: url('../images/bg1920.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
     min-height: 100vh;
     padding-left: 0px;
-}
-
-@media screen and (max-width:1359px) {
-    body {
-        background-image: url('../images/bg1360.png');
-        background-repeat: no-repeat;
-    }
 }
 
 h1,

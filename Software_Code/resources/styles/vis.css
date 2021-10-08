@@ -4,7 +4,6 @@
     width: 50%;
     align-items: center;
     float: right;
-    height: 50%;
 }
 
 .left-half {
@@ -13,5 +12,4 @@
     width: 50%;
     align-items: center;
     float: left;
-    height: 50%;
 }
