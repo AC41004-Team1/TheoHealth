@@ -94,16 +94,3 @@ body {
   border-color: transparent;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
 }
-
-.form-hidden {
-    overflow: hidden;
-    width: 0;
-    height: 0;
-    transition: width 1s;
-}
-
-.form-container {
-    overflow: hidden;
-    width: 550px;
-    transition: width 1s;
-}

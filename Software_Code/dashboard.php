@@ -11,11 +11,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css"/>
-    <script>
-      function changedDropdown() {
-        console.log("Please don't see this");
-      }
-    </script>
 </head>
 <body>
 
@@ -26,8 +21,8 @@
 <!-- Mainbody of the web application--->
 <div class="jumbotron" >
   <h1 class="text-center">Welcome Back <?php echo $_SESSION['userInfoArray'][0]; ?></h1>
-  <hr class="my-4">
-  <p class="lead">You could place something here</p>
+  <!--<hr class="my-4">-->
+  <!--<p class="lead">You could place something here</p>-->
 </div>
 
 <div class="MainContent">
@@ -36,14 +31,6 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">Your last results</h1>
-        <?php
-        //Start of section
-        $role = $_SESSION['userInfoArray'][2];
-        //Display invite link for PT and Ps
-        if($role == "P" || $role == "PT"){
-          <a href = "#"> Invite Link </a>
-        }
-         ?>
        </div>
       <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
       <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
@@ -150,8 +137,8 @@
 
                 //If there are clients
                 if($result->num_rows > 0){
-                  echo "<select id=\"ClientSelect\" name = \"Client\" onchange='changedDropdown()'>";
-                  echo "<option value=\"2\"> Tester </option>";
+                  echo "<select id=\"ClientSelect\" name = \"Client\">";
+                  echo "<option value=\"blank\"> Select Client </option>";
                   while($row = $result->fetch_object()){
                     echo "<option value=\"{$row -> UserIndex}\"> {$row -> FirstName} {$row -> LastName} </option>";
                     array_push($clientsIndex,$row -> UserIndex);
@@ -167,8 +154,8 @@
                     $result = getSessions($clientsIndex[$i]);
                     //If they have done a session before
                     if($result->num_rows > 0){
-                      echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
                       echo "<div id=\"user{$clientsIndex[$i]}-form-container\" class=\"form-hidden\">";
+                      echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
                       while($row = $result->fetch_object()){
                           printDashCard("{$row -> SessionIndex}", "{$row -> SessionNum}", "{$row -> DateTaken}", "{$row -> Duration}");
                           //echo "{$row -> SessionIndex}{$row -> SessionNum}{$row -> DateTaken}{$row -> Duration}";
@@ -186,22 +173,26 @@
               //Java script for the drop down menu
               echo "<script>";
                 echo "console.log(\"Im in\");";
-                echo "function changedDropdown() {";
+                echo "var ddl = document.getElementById(\"ClientSelect\");";
+                echo "ddl.onchange = function(){";
                   //Get the drop down
-                  echo "var ddl = document.getElementById(\"ClientSelect\");";
+
                   //Get the client index selected in the drop down
                   echo "var selectedValue = ddl.value;";
-
-                  echo "let userArray = []";
+                  echo "if(selectedValue == \"blank\"){";
+                  echo "return false;";
+                  echo "}";
+                  //echo "console.log(selectedValue);";
+                  echo "let userArray = [];";
                   //Loop through all form containers and set all to be invisible
                   $loopI = $tempI;
                   for($loopI--; $loopI >= 0; $loopI--){
                     echo "let user{$clientsIndex[$loopI]} = document.getElementById('user{$clientsIndex[$loopI]}-form-container');";
-                    echo "user{$clientsIndex[$loopI]}.className = form-hidden;";
+                    echo "user{$clientsIndex[$loopI]}.className = 'form-hidden';";
                     echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
                   }
                   //Set required
-                  echo "document.getElementById(myContainer.className = form-container;";
+                  //echo "document.getElementById(myContainer.className) = form-container;";
 
                   // echo "for (let i = 0; i < {$tempI}; i++) {";
                   //   echo "userArray[i].className = form-hidden;";
@@ -212,10 +203,10 @@
                   echo "myContainer += selectedValue;";
                   echo "myContainer += '-form-container';";
                   //Making the container visable
-                  echo "document.getElementById(myContainer.className = form-container;";
+                  echo "document.getElementById(myContainer).className = 'form-container';";
 
-                  echo "console.log(\"something, please help\");";
-                  echo "console.log(selectedValue);";
+                  //echo "console.log(\"something, please help\");";
+                  //echo "console.log(selectedValue);";
 
                   echo "return false;";
                 echo "}";
@@ -246,17 +237,3 @@
     </div> -->
 
 </body>
-
-<script>
-  // function changedDropdown() {
-  //   console.log("You're allowed to see this one");
-  // }
-  var ddl = document.getElementById("ClientSelect");
-  var selectedValue = ddl.value;
-  if(selectedValue == "1"){
-    console.log("far pig");
-  }else{
-    console.log("near pig");
-  }
-  console.log(selectedValue);
-</script>
