@@ -100,7 +100,6 @@
                    echo "<div class=\"card\" style=\"width: 40rem;\">";
                         echo "<div class=\"card-body\">";
                           echo "<form action=\"./vis.php\" method=\"post\">";
-                          echo "<textarea class=\"form-control\" name = \"messageSent\" rows=\"3\"></textarea>";
                           echo "<button name=\"sessionIndexIn\" type=\"submit\" value=\"{$sessionIndex}\"><h1> Session {$sessionNum} </h1></button>";
                           echo "</form>";
                           echo "<h5 class=\"card-title\">{$sessionDate}</h5>";
@@ -134,7 +133,7 @@
                 $index = $_SESSION['userInfoArray'][1];
                 $SQLInput = "CALL getManagersClients('{$index}')";
                 $result = $conn->query($SQLInput);
-                $conn -> close();
+                closeCon($con);
                 $clientsIndex = [];
 
                 //If there are clients
