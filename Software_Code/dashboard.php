@@ -98,9 +98,10 @@
               function printDashCard($sessionIndex, $sessionNum, $sessionDate, $sessionDuration){
                 echo "<div class=\"card-dash\">";
                    echo "<div class=\"card\" style=\"width: 40rem;\">";
-                        echo "<div href=\"#\" class=\"card-body\">";
-                          echo "Totally a legit link to the visualisation of session {$sessionIndex}. WIP!";
-                          echo "<h1> Session {$sessionNum} </h1>";
+                        echo "<div class=\"card-body\">";
+                          echo "<form action=\"vis.php\" method=\"post\">";
+                          echo "<button name=\"sessionIndexIn\" type=\"submit\ value=\"{$sessionIndex}\"><h1> Session {$sessionNum} </h1></button>";
+                          echo "</form>";
                           echo "<h5 class=\"card-title\">{$sessionDate}</h5>";
                           echo "<h6 class=\"card-subtitle mb-2 text-muted\">This session lasted: ";
                           printTime($sessionDuration);
