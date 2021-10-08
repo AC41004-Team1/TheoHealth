@@ -9,11 +9,11 @@
 </head>
 
 <body>
-  <header>
+  
     <div class="leftContainer">
       <h1 class="text-left">Visualisation</h1>
     </div>
-  </header>
+  
   <div class= form-container>
   <div class="right-half" style="padding: 50px;" style="margin-bottom:1px;">
   <div class="card">
