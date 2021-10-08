@@ -5,11 +5,9 @@
       if (isset($_POST['sessionIndexIn'])) {
         //retrieve the form data by using the element's name attributes value as key
         $sessionIndex = $_POST['sessionIndexIn'];
-        echo "Session index is {$sessionIndex}";
       } else {
         //return to dashboard
-        $sessionIndex = 8;
-        echo "You haven't used a link";
+        header("Location: dashboard.php");
       }
 ?>
 
@@ -17,6 +15,19 @@
 <link rel="stylesheet" href="./resources/styles/general.css">
 <link rel="stylesheet" href="./resources/styles/vis.css">
 
+<?php
+  // Check if the form is submitted
+  if (isset($_POST['submitMessage'])) {
+      //retrieve the form data by using the element's name attributes value as key
+      echo "Message sent";
+      $sessionIndex = $_POST['submitMessage'];
+      $theMessage = $_POST['messageSent'];
+      $connection = openCon();
+      $query = "CALL addComment('{$sessionIndex}','{$_SESSION['userInfoArray'][1]}','{$theMessage}')";
+      $result = $connection->query($query);
+      closeCon($connection);
+  }
+?>
 
 </head>
 
@@ -61,7 +72,7 @@
         $conn = openCon();
         $SQLInput = "CALL getComments(\"{$sessionIndex}\")";
         $result = $conn->query($SQLInput);
-        $conn -> close();
+        closeCon($conn);
         //If there are comments
         if($result->num_rows > 0){
           echo "<div class=\"card-body\">";
@@ -76,10 +87,20 @@
               //if not ourself get and display username
               else{
                 //query database for username
-                echo "<p id=\"userName\">{$row -> SenderIndex}:</p>";
+                $conn = openCon();
+                $SQLInput = "CALL getUsername(\"{$row -> SenderIndex}\")";
+                $result1 = $conn->query($SQLInput);
+                closeCon($conn);
+                if($result1->num_rows > 0){
+                  $row1 = $result1->fetch_object();
+                  $tester = $row1 -> Username;
+                  echo "<p id=\"userName\">{$tester}:</p>";
+                }
               }
               //Display message
               echo  "<p id=\"userMessage\">{$row -> MessageSent}</p>";
+              echo "<hr>";
+
             }
           echo "</div>";
         }
@@ -88,9 +109,10 @@
       if($alreadySent == false){
         echo "<div class=\"form-group\">";
           //Create form with text area and
-          echo "<form action=\"./sendMessage.php\" method=\"post\">";
+          echo "<form action=\"#\" method=\"post\">";
             echo "<label for=\"messageSent\">Enter Feedback:</label>";
             echo "<textarea class=\"form-control\" name = \"messageSent\" rows=\"3\"></textarea>";
+            echo "<input type=text value= \"{$sessionIndex}\" name = 'sessionIndexIn' class = \"form-hidden\" ></input>";
             echo "<button class=\"btn btn-outline-primary\" type=\"submit\" name=\"submitMessage\" value = \"{$sessionIndex}\" style=\"margin-top: 10px;\">Send feedback</button>";
           echo "</form>";
         echo "</div>";
