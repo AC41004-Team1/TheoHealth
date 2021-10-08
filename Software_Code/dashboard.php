@@ -15,7 +15,7 @@
 <body>
 
   <?php
-  include "./header.php";
+  include "header.php";
   ?>
 
 <!-- Mainbody of the web application--->
@@ -99,8 +99,9 @@
                 echo "<div class=\"card-dash\">";
                    echo "<div class=\"card\" style=\"width: 40rem;\">";
                         echo "<div class=\"card-body\">";
-                          echo "<form action=\"vis.php\" method=\"post\">";
-                          echo "<button name=\"sessionIndexIn\" type=\"submit\ value=\"{$sessionIndex}\"><h1> Session {$sessionNum} </h1></button>";
+                          echo "<form action=\"./vis.php\" method=\"post\">";
+                          echo "<textarea class=\"form-control\" name = \"messageSent\" rows=\"3\"></textarea>";
+                          echo "<button name=\"sessionIndexIn\" type=\"submit\" value=\"{$sessionIndex}\"><h1> Session {$sessionNum} </h1></button>";
                           echo "</form>";
                           echo "<h5 class=\"card-title\">{$sessionDate}</h5>";
                           echo "<h6 class=\"card-subtitle mb-2 text-muted\">This session lasted: ";
@@ -186,11 +187,12 @@
                   //echo "console.log(selectedValue);";
                   echo "let userArray = [];";
                   //Loop through all form containers and set all to be invisible
-                  $loopI = $tempI;
-                  for($loopI--; $loopI >= 0; $loopI--){
+                  $loopI = $tempI-1;
+                  while($loopI >= 0){
                     echo "let user{$clientsIndex[$loopI]} = document.getElementById('user{$clientsIndex[$loopI]}-form-container');";
                     echo "user{$clientsIndex[$loopI]}.className = 'form-hidden';";
                     echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
+                    $loopI--;
                   }
                   //Set required
                   //echo "document.getElementById(myContainer.className) = form-container;";
@@ -230,7 +232,7 @@
       </div>
     </div>
     <?php
-    include "./footer.php";
+    include "footer.php";
     ?>
     <!-- <div class="SecndContent">-->
       <!--- Place addditonal content below --->
