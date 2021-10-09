@@ -17,7 +17,7 @@
   </header>
   <div id="loginBox" class="form-container">
     <div class="left-half" style="padding:0" style="margin-bottom:1px;">
-      
+
       <div id="signin-form-container" class="form-container">
         <form action="registrationPHP.php" method="post">
           <div class="form-group" id="form-2-cols">
@@ -45,7 +45,7 @@
               <input type="text" name="phoneNum" id="phoneNum" class="form-control" placeholder="Enter phone number" style="width: 250px">
               <span class="help-block" style="color:red">
               </span>
-              
+
             </div>
             <div id="form-group-right" >
               <label for="email">Email:</label>
@@ -73,12 +73,13 @@
             <div class="form-container form-submit" >
               <label for="signUpReason">Reason for sign up:</label>
               <input type="text" name="signUpReason" id="signUpReason" class="form-control"  placeholder="Enter reason for sign up" style="width:100%">
+              <input type="hidden" name="GUID" id="GUID" class="form-control" value="<?php echo($_GET['ID']); ?>" style="width: 250px">
               <button class="btn btn-outline-primary" type="submit" name="submitsignup" style="margin-top: 10px;">Sign up</button>
               </div>
-            
+
 
           </div>
-        </form> 
+        </form>
       </div>
     </div>
 
