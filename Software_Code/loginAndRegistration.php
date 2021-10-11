@@ -1,19 +1,24 @@
-<?php 
-  include "head.php";
-  include "checkSigninPHP.php";
-  if (isset($_SESSION['failedUsername']) == false) {
-    $_SESSION['failedUsername'] = 0;
-  }
+<?php
+include "head.php";
+include "checkSigninPHP.php";
+if (isset($_SESSION['failedUsername']) == false) {
+  $_SESSION['failedUsername'] = 0;
+}
 
-  if (isset($_SESSION['failedPassword']) == false) {
-    $_SESSION['failedPassword'] = 0;
-  }
+if (isset($_SESSION['failedPassword']) == false) {
+  $_SESSION['failedPassword'] = 0;
+}
 ?>
 
 <link rel="stylesheet" href="./resources/styles/general.css">
 <link rel="stylesheet" href="./resources/styles/footer.css">
 <link rel="stylesheet" href="./resources/styles/login.css">
-<style type="text/css"></style>
+<style type="text/css">
+  body {
+    display: grid;
+    grid-template-rows: 6em 10fr 1fr;
+  }
+</style>
 
 <script>
   function swapSignIn(e) {
@@ -29,9 +34,9 @@
 </head>
 
 <body>
-  <header style="height:200px;">
+  <header >
     <div class="leftContainer">
-      <img src="./resources/images/theoLogo.png" alt="" width="500" height="100">
+      <img src="./resources/images/theoLogo.png" alt="" style="height:1em; width :auto;">
       <h1 class="text-left">Login</h1>
     </div>
   </header>

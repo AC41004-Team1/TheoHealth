@@ -4,7 +4,6 @@
     width: 50%;
     align-items: center;
     float: right;
-    height: 50%;
 }
 
 .left-half {
@@ -13,5 +12,12 @@
     width: 50%;
     align-items: center;
     float: left;
-    height: 50%;
+}
+
+.form-hidden{
+  overflow: hidden;
+  width: 0;
+  height: 0;
+  transition: width 1s;
+  visibility: hidden;
 }

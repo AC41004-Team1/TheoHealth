@@ -1,72 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
 * {
-  font-family: 'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
 
-body{
-  color:#394867;
-  font-size: 20px;
-  font-weight: 300px;
-  background-color: #f1f6f9;
-  margin-left:40px;
-  padding: 35px;
+body {
+    color: #394867;
+    font-size: 20px;
+    font-weight: 300px;
+    background-color: #f1f6f9;
 }
 
-.MainContent{
-float: left;
-width: 50%;
+.MainContent {
+    float: left;
+    width: 50%;
 }
 
 .SecndContent {
-  padding: 35px;
-  float:none;
-  align-content: center;
-  text-align: center;
-  background-color: #D3D3D3;
+    padding: 35px;
+    float: none;
+    align-content: center;
+    text-align: center;
+    background-color: #D3D3D3;
 }
 
 .card-dash {
-  align-content: center;
+    align-content: center;
 }
 
 .row:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
-  @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .MainContent {
-      margin: auto;
-      width: 50%;
-      float:none;
-      align-content: center;
-      text-align: center;
+        margin: auto;
+        width: 50%;
+        float: none;
+        align-content: center;
+        text-align: center;
     }
-
     .row:after {
-      clear: both;
-      display:contents;
-
+        clear: both;
+        display: contents;
     }
-
-  }
 }
 
 .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
 
 .form-hidden {
     overflow: hidden;
@@ -81,4 +74,8 @@ width: 50%;
     width: 550px;
     transition: width 1s;
     visibility: visible;
+}
+
+.db-nav {
+    overflow-y: scroll;
 }

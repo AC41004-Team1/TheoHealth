@@ -1,47 +1,46 @@
 <?php
 include "head.php";
 include "authPHP.php";
+
 ?>
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dashboard</title>
-
 <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="./resources/styles/layout.css">
 </head>
 
 <body>
 
   <?php
-  include "./header.php";
+  include "header.php";
   ?>
 
-<!-- Mainbody of the web application--->
-<div class="jumbotron" >
-  <h1 class="text-center">Welcome Back <?php echo $_SESSION['userInfoArray'][0]; ?></h1>
-  <!--<hr class="my-4">-->
-  <!--<p class="lead">You could place something here</p>-->
-</div>
-
-<div class="MainContent">
-  <div class="column">
-  <!-- Replace with actual graph--->
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Your last results</h1>
-       </div>
-      <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js">
-      </script>
+  <!-- Mainbody of the web application--->
+  <div id="dashboard-content">
+    <div class="jumbotron">
+      <h1 class="text-center">Welcome Back <?php echo $_SESSION['userInfoArray'][0]; ?></h1>
+      <hr class="my-4">
+      <p class="lead">You could place something here</p>
     </div>
-  </div>
-  <div class="column">
-    <div class="row">
+
+    <div class="MainContent">
+      <div class="column">
+        <!-- Replace with actual graph--->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Your last results</h1>
+          </div>
+          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+          <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js">
+          </script>
+      </div>
+    </div>
+    <div class="column">
+      <div class="row">
         <div class='db-nav'>
             <!--- This will need to change for physicist --->
             <?php
@@ -110,6 +109,17 @@ include "authPHP.php";
                     echo "</div>";
                  echo "</div>";
               }
+              echo "{$valueInt}";
+              $wentIn = true;
+            }
+            if ($wentIn == true) {
+              echo "secs";
+            }
+            echo "</h6>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+          }
 
               //Start of section
               $role = $_SESSION['userInfoArray'][2];
@@ -271,6 +281,7 @@ include "authPHP.php";
                     </div>
                  </div> -->
 
+        </div>
       </div>
     </div>
   </div>
