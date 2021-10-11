@@ -16,7 +16,7 @@ if (isset($_SESSION['failedPassword']) == false) {
 <style type="text/css">
   body {
     display: grid;
-    grid-template-rows: 6em 10fr 1fr;
+    grid-template-rows: 10em 10fr 2em;
   }
 </style>
 

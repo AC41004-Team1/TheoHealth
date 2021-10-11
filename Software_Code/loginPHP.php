@@ -22,7 +22,7 @@
   if ($result->num_rows == 0) {
     //Failed login due to user not existing
     $_SESSION['failedUsername'] = 1;
-    header("Location: login.php");
+    header("Location: loginAndRegistration.php");
   } else {
     $resultRow = $result->fetch_array();
       if ($resultRow['UserPassword'] == $password) {
@@ -33,7 +33,7 @@
       } else {
         //Failed login due to password not correct
         $_SESSION['failedPassword'] = 1;
-        header("Location: login.php");
+        header("Location: loginAndRegistration.php");
       }
   }
 

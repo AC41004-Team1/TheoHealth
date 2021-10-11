@@ -21,7 +21,7 @@
         }
 
         closeCon($con);
-        $_SESSION['inviteLink'] = 'http://localhost/Software_Code/index.php?GUIDv1='.$GUIDv1;
+        $_SESSION['inviteLink'] = 'http://' . $_SERVER['HTTP_HOST'] . '/index.php?GUIDv1='.$GUIDv1;
         header('Location: testPHP.php');
     }
 ?>

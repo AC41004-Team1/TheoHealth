@@ -1,84 +1,5 @@
-/* * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-nav {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #1fbed1;
-    background: linear-gradient(180deg, rgba(31, 161, 179, 1) 0%, rgba(27, 186, 201, 1) 52%, rgba(31, 161, 179, 1) 85%, rgba(227, 227, 227, 0) 99%);
-    display: inline-block;
-}
-
-.logo {
-    filter: drop-shadow(0px 2px 2px #4444dd);
-    float: left;
-}
-
-.nav-links {
-    text-align: center;
-    display: flex;
-    justify-content: space-around;
-    width: 25%;
-    margin-top: 20px;
-    display: inline-block;
-}
-
-.nav-links li {
-    list-style: none;
-    align-items: center;
-    float: right;
-}
-
-.nav-links a {
-    color: #F0FFFF;
-    text-decoration: none;
-    letter-spacing: 3px;
-    font-weight: bold;
-    font-size: 14px;
-    display: inline-block;
-}
-
-.burger {
-    display: none;
-    cursor: pointer;
-}
-
-.nav-links {
-    width: 75%;
-}
-
-
-
-
-.nav-active {
-    transform: translateX(0%);
-}
-
-@keyframes navLinkFade {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0px);
-    }
-}
-
-.bi {
-    color: white;
-} */
-
-
-/* header */
-
 .header {
-    background-color: #1fbed1;
-    background: linear-gradient(180deg, rgba(31, 161, 179, 1) 0%, rgba(27, 186, 201, 1) 52%, rgba(31, 161, 179, 1) 85%, rgba(227, 227, 227, 0) 99%);
+    background-color: white;
     box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
     width: 100%;
     z-index: 3;
@@ -96,6 +17,7 @@ nav {
     padding: 20px 20px;
     border-right: 1px solid #f4f4f4;
     text-decoration: none;
+    color: #0297a2;
 }
 
 .header li a:hover,
@@ -111,6 +33,11 @@ nav {
     text-decoration: none;
 }
 
+.logo>img {
+    width: auto;
+    height: 1em;
+}
+
 
 /* menu */
 
@@ -121,9 +48,7 @@ nav {
 }
 
 .menu {
-    background-color: #1fbed1;
-    background: linear-gradient(180deg, rgba(31, 161, 179, 1) 0%, rgba(27, 186, 201, 1) 52%, rgba(31, 161, 179, 1) 85%, rgba(227, 227, 227, 0) 99%);
-    box-shadow: 1px 1px 4px 0 rgba(0, 0, 0, .1);
+    background-color: white;
 }
 
 
@@ -139,7 +64,7 @@ nav {
 }
 
 .header .menu-icon .navicon {
-    background: #333;
+    background: #0297a2;
     display: block;
     height: 2px;
     position: relative;
@@ -149,7 +74,7 @@ nav {
 
 .header .menu-icon .navicon:before,
 .header .menu-icon .navicon:after {
-    background: #333;
+    background: #0297a2;
     content: '';
     display: block;
     height: 100%;

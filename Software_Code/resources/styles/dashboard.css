@@ -27,6 +27,10 @@ body {
     align-content: center;
 }
 
+.row {
+    max-width: 100%;
+}
+
 .row:after {
     content: "";
     display: table;

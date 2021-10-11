@@ -1,11 +1,15 @@
-
-
+<?php include "head.php"; ?>
 <link rel="stylesheet" href="./resources/styles/general.css">
 <link rel="stylesheet" href="./resources/styles/footer.css">
 <link rel="stylesheet" href="./resources/styles/login.css">
 <style type="text/css"></style>
 
-
+<style>
+  body{
+    display: grid;
+    grid-template-rows: 10em auto 2em;
+  }
+</style>
 </head>
 
 <body>
@@ -47,7 +51,7 @@
               </span>
 
             </div>
-            <div id="form-group-right" >
+            <div id="form-group-right">
               <label for="email">Email:</label>
               <input type="email" name="email" id="email" class="form-control" placeholder="Enter email address" style="width: 250px">
               <span class="help-block" style="color:red">
@@ -68,20 +72,20 @@
               <span class="help-block" style="color:red">
               </span>
             </div>
-            </div>
-
-            <div class="form-container form-submit" >
-              <label for="signUpReason">Reason for sign up:</label>
-              <input type="text" name="signUpReason" id="signUpReason" class="form-control"  placeholder="Enter reason for sign up" style="width:100%">
-              <input type="hidden" name="GUID" id="GUID" class="form-control" value="<?php echo($_GET['ID']); ?>" style="width: 250px">
-              <button class="btn btn-outline-primary" type="submit" name="submitsignup" style="margin-top: 10px;">Sign up</button>
-              </div>
-
-
           </div>
-        </form>
+
+          <div class="form-container form-submit">
+            <label for="signUpReason">Reason for sign up:</label>
+            <input type="text" name="signUpReason" id="signUpReason" class="form-control" placeholder="Enter reason for sign up" style="width:100%">
+            <input type="hidden" name="GUID" id="GUID" class="form-control" value="<?php echo ($_GET['ID']); ?>" style="width: 250px">
+            <button class="btn btn-outline-primary" type="submit" name="submitsignup" style="margin-top: 10px;">Sign up</button>
+          </div>
+
+
       </div>
+      </form>
     </div>
+  </div>
 
   <footer>
     <?php

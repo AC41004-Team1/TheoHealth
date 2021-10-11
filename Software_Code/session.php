@@ -35,7 +35,7 @@ include "authPHP.php";
         </div>
         <div id="model-interaction">
             <ul id="muscles">
-                <li class="leftQuad rightQuad">
+                <li class="leftQuad rightQuad" style="display: none">
                     <div>
                         <div>Quads</div>
                         <ul class="exerciseList">
@@ -46,7 +46,7 @@ include "authPHP.php";
                         </ul>
                     </div>
                 </li>
-                <li class="leftHamstring rightHamstring">
+                <li class="leftHamstring rightHamstring" style="display: none">
                     <div>
                         <div>Hamstrings</div>
                         <ul class="exerciseList">

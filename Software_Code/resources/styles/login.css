@@ -90,3 +90,16 @@ body {
     width: 500px;
     float: left;
 }
+
+.btn.btn-outline-primary {
+    background-color: whitesmoke;
+}
+
+@media (max-width: 48em) {
+    #form-2-cols {
+        display: grid;
+        grid-template-columns: none;
+        grid-template-rows: 1fr 1fr 2em;
+        grid-gap: .1em;
+    }
+}
