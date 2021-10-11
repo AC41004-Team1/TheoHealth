@@ -1,0 +1,64 @@
+    #session-content {
+        /* background-color: #0297a2; */
+        /* background-color: blue; */
+        display: grid;
+        grid-template-areas: 'model interaction';
+        grid-template-columns: auto 1fr;
+    }
+    
+    #session-model {
+        background-color: #0297a2;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        #session-content {
+            display: grid;
+            grid-template-columns: none;
+            grid-template-areas: none;
+            grid-template-rows: auto 1fr;
+            align-items: center;
+        }
+    }
+    
+    #session-model {
+        grid-area: 'model';
+        position: relative;
+    }
+    
+    #model-interaction {
+        grid-area: 'interaction';
+    }
+    
+    #canvas-container {
+        position: relative;
+        text-align: center;
+    }
+    
+    #controls {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: .1em;
+    }
+    
+    #controls>*,
+    #play {
+        border: 1px solid black;
+        border-radius: .25em;
+        padding: .25em;
+        cursor: pointer;
+        background-color: #f36d21;
+        font-weight: 400;
+        text-align: center;
+    }
+    
+    #play {
+        width: 100%;
+    }
+    
+    #controls>*:hover {
+        opacity: .5;
+    }
+    
+    ul {
+        list-style-type: none;
+    }

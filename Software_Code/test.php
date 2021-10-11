@@ -9,7 +9,7 @@
 </head>
 
 <body style="background-color: black;">
-    <script type="module" src="./vis.js" defer></script>
+    <script type="module" src="./resources/scripts/vis.js" defer></script>
     <div id="canvas-container">
         <canvas style="width: 100%; height: 100%"></canvas>
     </div>

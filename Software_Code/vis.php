@@ -7,7 +7,7 @@
         $sessionIndex = $_POST['sessionIndexIn'];
       } else {
         //return to dashboard
-        header("Location: dashboard.php");
+        // header("Location: dashboard.php");
       }
 ?>
 
