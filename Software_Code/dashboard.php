@@ -1,17 +1,18 @@
 <?php
-  include "head.php";
-  include "authPHP.php";
+include "head.php";
+include "authPHP.php";
+?>
 
- ?>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css"/>
+<link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
 
   <?php
@@ -213,27 +214,72 @@
               echo "</script>";
               ?>
 
+        //Java script for the drop down menu
+        echo "<script>";
+        echo "console.log(\"Im in\");";
+        echo "var ddl = document.getElementById(\"ClientSelect\");";
+        echo "ddl.onchange = function(){";
+        //Get the drop down
+
+        //Get the client index selected in the drop down
+        echo "var selectedValue = ddl.value;";
+        echo "if(selectedValue == \"blank\"){";
+        echo "return false;";
+        echo "}";
+        //echo "console.log(selectedValue);";
+        echo "let userArray = [];";
+        //Loop through all form containers and set all to be invisible
+        $loopI = $tempI;
+        for ($loopI--; $loopI >= 0; $loopI--) {
+          echo "let user{$clientsIndex[$loopI]} = document.getElementById('user{$clientsIndex[$loopI]}-form-container');";
+          echo "user{$clientsIndex[$loopI]}.className = 'form-hidden';";
+          echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
+        }
+        //Set required
+        //echo "document.getElementById(myContainer.className) = form-container;";
+
+        // echo "for (let i = 0; i < {$tempI}; i++) {";
+        //   echo "userArray[i].className = form-hidden;";
+        // echo "}";
+
+        // //Concatenating a string to be the name of the container needed
+        echo "let myContainer = 'user';";
+        echo "myContainer += selectedValue;";
+        echo "myContainer += '-form-container';";
+        //Making the container visable
+        echo "document.getElementById(myContainer).className = 'form-container';";
+
+        //echo "console.log(\"something, please help\");";
+        //echo "console.log(selectedValue);";
+
+        echo "return false;";
+        echo "}";
+        echo "</script>";
+        ?>
 
 
-                 <!--<div class="card-dash">
+
+        <!--<div class="card-dash">
                    <div class="card" style="width: 40rem;">
                         <div href="#" class="card-body">
                           <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
                           <h5 class="card-title">Import new data from an external file</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">Last time you exercise was: </h6> --><!--Please Insert data of last data---> <!--
+                          <h6 class="card-subtitle mb-2 text-muted">Last time you exercise was: </h6> -->
+        <!--Please Insert data of last data--->
+        <!--
                         </div>
                     </div>
                  </div> -->
 
-          </div>
       </div>
     </div>
-    <?php
-    include "./footer.php";
-    ?>
-    <!-- <div class="SecndContent">-->
-      <!--- Place addditonal content below --->
-      <!-- <img src="https://via.placeholder.com/500x400" alt="">
+  </div>
+  <?php
+  include "./footer.php";
+  ?>
+  <!-- <div class="SecndContent">-->
+  <!--- Place addditonal content below --->
+  <!-- <img src="https://via.placeholder.com/500x400" alt="">
     </div> -->
 
 </body>
