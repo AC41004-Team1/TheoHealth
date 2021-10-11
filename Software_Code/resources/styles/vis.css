@@ -1,17 +1,36 @@
 .right-half {
-    position: absolute;
-    right: 0px;
     width: 50%;
     align-items: center;
     float: right;
-    height: 50%;
 }
 
 .left-half {
-    position: absolute;
-    left: 0px;
     width: 50%;
     align-items: center;
     float: left;
-    height: 50%;
+}
+
+.form-hidden {
+    overflow: hidden;
+    width: 0;
+    height: 0;
+    transition: width 1s;
+    visibility: hidden;
+}
+
+#vis-content {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: auto 1fr;
+}
+
+@media (max-width: 48em) {
+    #vis-content .form-container {
+        display: grid;
+        grid-template-columns: none;
+        grid-template-rows: auto 1fr;
+    }
+    #vis-content .form-container>* {
+        width: 100%;
+    }
 }

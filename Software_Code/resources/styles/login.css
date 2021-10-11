@@ -3,24 +3,47 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-image: url('../images/bg1920.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (max-width:1359px) {
+    body {
+        background-image: url('../images/bg1360.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 100% 100%;
+    }
+}
+
 #loginBox {
-    margin-left: 40px;
     overflow: hidden;
+    max-width: 100vw;
+    padding: 0 1em 0 1em;
 }
 
 .leftContainer {
     text-align: left;
     padding: 10px;
-    align-items: left
+    align-items: left;
+    max-width: 100vw;
 }
 
 .left-half {
-    position: absolute;
+    /* position: absolute;
     left: 0px;
     width: 50%;
     align-items: center;
     float: left;
-    margin: 10px;
+    margin: 10px; */
 }
 
 .form-container {
@@ -59,4 +82,24 @@
     width: 0;
     height: 0;
     transition: width 1s;
+}
+
+.form-submit {
+    text-align: left;
+    margin-left: 40px;
+    width: 500px;
+    float: left;
+}
+
+.btn.btn-outline-primary {
+    background-color: whitesmoke;
+}
+
+@media (max-width: 48em) {
+    #form-2-cols {
+        display: grid;
+        grid-template-columns: none;
+        grid-template-rows: 1fr 1fr 2em;
+        grid-gap: .1em;
+    }
 }

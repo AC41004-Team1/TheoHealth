@@ -35,30 +35,67 @@
             $phoneNum = $_POST['phoneNum'];
             $fname = $_POST['fname'];
             $sname = $_POST['sname'];
+            $signUpReason = "";
+            $GUID = $_POST['GUID'];
 
+            if (isset($_POST['signUpReason'])) {
+                $signUpReason = $_POST['signUpReason'];
+            }
+
+            if (isset($_POST['GUID'])) {
+                $signUpReason = $_POST['signUpReason'];
+            }
             //Makes sure that both password are identical
             if ($password == $checkerPassword) {
               //Got phone number checker from https://stackoverflow.com/questions/3090862/how-to-validate-phone-number-using-php
               //eliminate every char except 0-9
               $phoneNum = preg_replace("/[^0-9]/", '', $phoneNum);
               if (strlen($phoneNum) > 9) {
+
                 //Run query to find if there is anyone with that username already
-                $SQLInput = "CALL CheckUsername(\"{$username}\")";
+                $SQLInput = "CALL checkUsername(\"{$username}\")";
                 $queryOutput = $connection->query($SQLInput);
                 closeCon($connection);
+
+                $connection = openCon();
+                $SQLInput = "CALL getManagerIDWithGUID(\"{$GUID}\")";
+                $queryOutput2 = $connection->query($SQLInput);
+                $managerID = $queryOutput2 -> fetch_object()->managerID;
+                closeCon($connection);
+
                 //If username is unique
-                if ($queryOutput->num_rows > 0) {
+                if ($queryOutput->num_rows <= 0) {
                   //Add the user to the database
                   $connection = openCon();
+                  if (isset($_POST['signUpReason'])) {
+                      $SQLInput = "CALL addAthlete(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\",\"{$email}\", \"{$signUpReason}\")";
+                      $connection->query($SQLInput);
+                      closeCon($connection);
+
+                      $connection = openCon();
+                      $SQLInput = "CALL getUserIndex(\"{$username}\")";
+                      $queryOutput = $connection->query($SQLInput);
+                      $userIndex = $queryOutput -> fetch_object()->UserIndex;
+                      closeCon($connection);
+
+                      $connection = openCon();
+                      $SQLInput = "CALL addClienttoManager(\"{$userIndex}\",\"{$managerID}\")";
+                      $connection->query($SQLInput);
+                      var_dump($connection);
+                      closeCon($connection);
+                  }
+                  else{
                   $SQLInput = "CALL addUser(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\", \"{$email}\")";
                   $connection->query($SQLInput);
                   closeCon($connection);
+                }
+
                   //Welcome Message
                   echo "Welcome {$fname} {$sname}. Your account has now been created. You'll be taken to your Login in 10 seconds or you can click <a href/'/loginAndRegistration.php/'>here</a> to go there now.";
                   echo "<meta http-equiv=\"refresh\" content=\"10; URL=./loginAndRegistration.php\" />";
                 } else {
                   echo "Sorry your account could not be created. The username you entered is already taken.";
-                  echo "<meta http-equiv=\"refresh\" content=\"8; URL=./loginAndRegistration.php\" />";
+              //    echo "<meta http-equiv=\"refresh\" content=\"8; URL=./loginAndRegistration.php\" />";
                 }
               } else {
                 echo "Sorry your account could not be created. The phone number was invalid.";
@@ -78,7 +115,7 @@
     <footer>
              <?php
                include "footer.php";
-             ?> 
+             ?>
   </footer>
 </body>
 

@@ -1,82 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
-
 * {
-  font-family: 'Montserrat', sans-serif;
-
+    font-family: 'Montserrat', sans-serif;
 }
 
-:root {
-  --color-primary: #f3f4fa;
-  --color-primaryDM:#01a39b;
-  --color-primary-light: #e3e3e3;
-  --color-primary-dark: #0a423c;
-  --color-white: #c5c5c5;
+body {
+    color: #394867;
+    font-size: 20px;
+    font-weight: 300px;
+    background-color: #f1f6f9;
 }
 
-body{
-  background-color: #f3f4fa;
-  font-size: 20px;
-  font-weight: 300px;
-  color: #f3f4fa;
-  margin-left:40px;
-  padding: 35px;
-}
-
-.MainContent{
-background-color: #f3f4fa;
-float: left;
-width: 50%;
+.MainContent {
+    float: left;
+    width: 50%;
 }
 
 .SecndContent {
-  padding: 35px;
-  float:none;
-  align-content: center;
-  text-align: center;
-  background-color: #f3f4fa;
+    padding: 35px;
+    float: none;
+    align-content: center;
+    text-align: center;
+    background-color: #D3D3D3;
 }
 
 .card-dash {
-  align-content: center;
+    align-content: center;
+}
+
+.row {
+    max-width: 100%;
 }
 
 .row:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
 
-  @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
     .MainContent {
-      margin: auto;
-      width: 50%;
-      float:none;
-      align-content: center;
-      text-align: center;
+        margin: auto;
+        width: 50%;
+        float: none;
+        align-content: center;
+        text-align: center;
     }
-
     .row:after {
-      clear: both;
-      display:contents;
-
+        clear: both;
+        display: contents;
     }
-
-  }
 }
 
 .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
 
 .form-hidden {
     overflow: hidden;
@@ -115,4 +102,8 @@ width: 50%;
   -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
   -moz-hex-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
   box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+}
+
+.db-nav {
+    overflow-y: scroll;
 }
