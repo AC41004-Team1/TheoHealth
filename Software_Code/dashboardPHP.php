@@ -1,27 +1,31 @@
 <?php
     session_start();
-    if (isset($_POST['generateInvite'])) {
-        include "guidPHP.php";
-        include "connectionPHP.php";
+    if($_SESSION['userInfoArray'][2] == "P" || $_SESSION['userInfoArray'][2] == "PT"){
+      if (isset($_POST['generateInvite'])) {
+          include "guidPHP.php";
+          include "connectionPHP.php";
 
-        //$managerID = $_SESSION['userInfoArray'][1];
-        $managerID = '18';
-        $GUIDv1 = getGUID();
-        $isUsed = '0';
-        $generatedTime = time();
+          //$managerID = $_SESSION['userInfoArray'][1];
+          $managerID = $_SESSION['userInfoArray'][1];
+          $GUIDv1 = getGUID();
+          $isUsed = '0';
+          $generatedTime = time();
 
-        $con = openCon();
+          $con = openCon();
 
-        $inviteCreationQ = "INSERT INTO inviteLinksView (managerID, GUIDv1, isUsed, generatedTime) VALUES ('$managerID', '$GUIDv1', '$isUsed', '$generatedTime')";
+          $inviteCreationQ = "INSERT INTO inviteLinksView (managerID, GUIDv1, isUsed, generatedTime) VALUES ('$managerID', '$GUIDv1', '$isUsed', '$generatedTime')";
 
-        if ($con->query($inviteCreationQ) === TRUE) {
-            
-        } else {
-            echo "Error: " . $sql . "<br>" . $con->error;
-        }
+          if ($con->query($inviteCreationQ) === TRUE) {
 
-        closeCon($con);
-        $_SESSION['inviteLink'] = 'http://' . $_SERVER['HTTP_HOST'] . '/index.php?GUIDv1='.$GUIDv1;
-        header('Location: testPHP.php');
+          } else {
+              echo "Error: " . $sql . "<br>" . $con->error;
+          }
+
+          closeCon($con);
+          $_SESSION['inviteLink'] = 'http://' . $_SERVER['HTTP_HOST'] . '/index.php?GUIDv1='.$GUIDv1;
+          header('Location: dashboard.php');
+      }
+    }else{
+      header('Location: dashboard.php');
     }
 ?>
