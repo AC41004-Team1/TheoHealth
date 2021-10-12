@@ -75,11 +75,89 @@ body {
 
 .form-container {
     overflow: hidden;
-    width: 550px;
+    width: 100%;
     transition: width 1s;
     visibility: visible;
 }
 
+.card:hover {
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+    -moz-hex-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+}
+
+.chart-overall-container {
+    margin-top: 150px;
+    box-sizing: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 25px;
+    padding: 20px;
+    position: relative;
+    margin: auto;
+    height: 300px;
+}
+
+.chart-overall-container:hover {
+    -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+    -moz-hex-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+    box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.75);
+}
+
 .db-nav {
     overflow-y: scroll;
+    margin-left: 20px;
+}
+
+#DropDownBox{
+  padding-bottom: 10px;
+  padding-left: 5px;
+  font-size: 30px;
+  color: #384662;
+  margin: 8px;
+  margin-top: 0px;
+}
+
+#ClientSelect{
+  cursor: pointer;
+  transition: height .4s ease;
+  content: "+";
+  background-color: #E9ECEF;
+  border-color: #DBE0E5;
+  color: #384662;
+}
+
+
+#generatorButton{
+  font-size: 30px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.rightColumn{
+  position: absolute;
+  right: 5%;
+  width: 44%;
+  align-items: center;
+  float:right;
+}
+
+.leftColumn{
+  position: absolute;
+  left: 5%;
+  width: 44%;
+  align-items: center;
+  float:left;
+}
+
+.btn{
+  padding: 2px;
+  background-color: #F1F6F9;
+  border-color: #0297a2;
+  color: #0297a2;
+  border-width: 4px;
+}
+
+.btn:hover{
+  background-color: #0297a2;
+  color: white;
+  border-color: #0297a2;
 }
