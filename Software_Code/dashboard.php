@@ -31,6 +31,7 @@ include "authPHP.php";
 
     <div class="MainContent">
       <div class="column">
+        <div class="leftColumn">
         <!-- Replace with actual graph--->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -42,8 +43,21 @@ include "authPHP.php";
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.2/js/bootstrap.min.js"></script>
           <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script> <!-- Remove once implmenting the visualisation-->
+          <hr>
+          <div id="inviteLink">
+            <form  action="dashboardPHP.php" method="post">
+                <input id="generatorButton" class="btn btn-outline-primary" type="submit" name="generateInvite" value="Generate Invite" />
+            </form>
+            <?php
+            if (isset($_SESSION['inviteLink'])) {
+                echo "Here is the link to send to the client: <br><a href=\"{$_SESSION['inviteLink']}\">{$_SESSION['inviteLink']}</a>";
+                unset($_SESSION['inviteLink']);
+            }
+            ?>
+          </div>
+        </div>
       </div>
-      <div class="column">
+      <div class="rightColumn">
         <div class="row">
           <div class='db-nav'>
             <!--- This will need to change for physicist --->
@@ -104,10 +118,10 @@ include "authPHP.php";
             function printDashCard($sessionIndex, $sessionNum, $sessionDate, $sessionDuration)
             {
               echo "<div class=\"card-dash\">";
-              echo "<div class=\"card\" style=\"width: 40rem;\">";
+              echo "<div class=\"card\" style=\"width: 96%;\">";
               echo "<div class=\"card-body\">";
               echo "<form action=\"./vis.php\" method=\"post\">";
-              echo "<button name=\"sessionIndexIn\" type=\"submit\" value=\"{$sessionIndex}\"><h1> Session {$sessionNum} </h1></button>";
+              echo "<button name=\"sessionIndexIn\" class=\"btn btn-outline-primary\" type=\"submit\" value=\"{$sessionIndex}\"><h1> Session {$sessionNum} </h1></button>";
               echo "</form>";
               echo "<h5 class=\"card-title\">{$sessionDate}</h5>";
               echo "<h6 class=\"card-subtitle mb-2 text-muted\">This session lasted: ";
@@ -125,8 +139,10 @@ include "authPHP.php";
               //Call Query to get results
               $result = getSessions($_SESSION['userInfoArray'][1]);
               //If they have done a session before
-              if ($result->num_rows > 0) {
-                echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
+              $row = $result->fetch_object();
+              if (isset($row->DateTaken)) {
+                echo "<h1 style = \"float:left;\">What session would you like to view?</h1>";
+                printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                 while ($row = $result->fetch_object()) {
                   printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                 }
@@ -145,15 +161,15 @@ include "authPHP.php";
 
               //If there are clients
               if ($result->num_rows > 0) {
-                echo "<select id=\"ClientSelect\" name = \"Client\">";
-                echo "<option value=\"blank\"> Select Client </option>";
+                echo "<div id=\"DropDownBox\">Select a Client:  <select id=\"ClientSelect\" name = \"Client\"></div>";
+                echo "<option id=\"dropDownOption\" value=\"blank\"> pick here </option>";
                 while ($row = $result->fetch_object()) {
-                  echo "<option value=\"{$row->UserIndex}\"> {$row->FirstName} {$row->LastName} </option>";
+                  echo "<option id=\"dropDownOption\" value=\"{$row->UserIndex}\"> {$row->FirstName} {$row->LastName} </option>";
                   array_push($clientsIndex, $row->UserIndex);
                   $i++;
                   //echo "\"{$row -> UserIndex}\" | \"{$row -> FirstName}\" | \"{$row -> LastName}\" | \"{$row -> Username}\"";
                 }
-                echo "</select>";
+                echo "</select><hr>";
 
                 $tempI = $i;
 
@@ -161,17 +177,27 @@ include "authPHP.php";
                   //Call Query to get results
                   $result = getSessions($clientsIndex[$i]);
                   //If they have done a session before
-                  if ($result->num_rows > 0) {
-                    echo "<div id=\"user{$clientsIndex[$i]}-form-container\" class=\"form-hidden\">";
+                  echo "<div id=\"user{$clientsIndex[$i]}-form-container\" class=\"form-hidden\">";
+                  $nothingThere = false;
+                  $row = $result->fetch_object();
+                  if (isset($row->DateTaken)) {
                     echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
+                    printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                     while ($row = $result->fetch_object()) {
-                      printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
+                      if(isset($row->DateTaken)){
+                        printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
+                      } else{
+                        $nothingThere = true;
+                      }
                       //echo "{$row -> SessionIndex}{$row -> SessionNum}{$row -> DateTaken}{$row -> Duration}";
                     }
-                    echo "</div>";
+                    if($nothingThere == true){
+                      echo "<h1>This client hasn't started training yet.</h1>";
+                    }
                   } else {
                     echo "<h1>This client hasn't started training yet.</h1>";
                   }
+                  echo "</div>";
                 }
               } else {
                 echo "<h1>You currently have no clients</h1>";
@@ -187,9 +213,7 @@ include "authPHP.php";
 
             //Get the client index selected in the drop down
             echo "var selectedValue = ddl.value;";
-            echo "if(selectedValue == \"blank\"){";
-            echo "return false;";
-            echo "}";
+
             //echo "console.log(selectedValue);";
             echo "let userArray = [];";
             //Loop through all form containers and set all to be invisible
@@ -200,6 +224,10 @@ include "authPHP.php";
               echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
               $loopI--;
             }
+
+            echo "if(selectedValue == \"blank\"){";
+            echo "return false;";
+            echo "}";
             //Set required
             //echo "document.getElementById(myContainer.className) = form-container;";
 
@@ -291,10 +319,13 @@ include "authPHP.php";
       });
     </script>
   </div>
+</div>
 
+<footer>
   <?php
   include "footer.php";
   ?>
+</footer>
   <!-- <div class="SecndContent">-->
   <!--- Place addditonal content below --->
   <!-- <img src="https://via.placeholder.com/500x400" alt="">

@@ -19,7 +19,7 @@ if (isset($_POST['sessionIndexIn'])) {
 // Check if the form is submitted
 if (isset($_POST['submitMessage'])) {
   //retrieve the form data by using the element's name attributes value as key
-  echo "Message sent";
+  //echo "Message sent";
   $sessionIndex = $_POST['submitMessage'];
   $theMessage = $_POST['messageSent'];
   $connection = openCon();
@@ -34,11 +34,13 @@ if (isset($_POST['submitMessage'])) {
 <body>
   <?php include "header.php"; ?>
   <div id="vis-content">
+    <!-- title -->
     <div class="leftContainer">
       <h1 class="text-left">Visualisation</h1>
     </div>
 
     <div class=form-container>
+      <!-- Body Diagram -->
       <div class="right-half" style="padding: 50px;" style="margin-bottom:1px;">
         <div class="card">
           <!-- insert body model -->
@@ -50,12 +52,12 @@ if (isset($_POST['submitMessage'])) {
         </div>
       </div>
 
+      <!-- The graph -->
       <div class="left-half" style="padding: 50px;" style="margin-bottom:1px;">
         <div class="card">
           <!-- add graph in here -->
 
           <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-          <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
           <script src="./resources/scripts/tempGraph.js"></script>
@@ -64,9 +66,16 @@ if (isset($_POST['submitMessage'])) {
             <p class="card-text">Wow look at your cool graph. So exciting!!!!!!!!!!</p>
           </div>
         </div>
+      </div>
+    </div>
+
+        <hr>
+    <div class=form-container>
 
         <?php
+        echo "<div class=\"left-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
         echo "<div class=\"card\">";
+
         //Bool to see if user can send another message
         $alreadySent = false;
         //Get gets the comments
@@ -78,8 +87,12 @@ if (isset($_POST['submitMessage'])) {
         if ($result->num_rows > 0) {
           echo "<div class=\"card-body\">";
           echo "<h5 class=\"card-title\">Feedback:</h5>";
+          $previousMessage;
           //Grabs each comment and display them
           while ($row = $result->fetch_object()) {
+            if(isset($previousMessage)){
+              echo "<hr>";
+            }
             //If this user is ourself just use username already given and set variable
             if ($row->SenderIndex == $_SESSION['userInfoArray'][1]) {
               echo "<p id=\"userName\">{$_SESSION['userInfoArray'][0]}:</p>";
@@ -100,11 +113,12 @@ if (isset($_POST['submitMessage'])) {
             }
             //Display message
             echo  "<p id=\"userMessage\">{$row->MessageSent}</p>";
-            echo "<hr>";
+            $previousMessage = "Yup";
           }
           echo "</div>";
         }
-        echo "</div>";
+        echo "</div></div>";
+        echo "<div class=\"right-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
         //For sending a message
         if ($alreadySent == false) {
           echo "<div class=\"form-group\">";
@@ -117,11 +131,10 @@ if (isset($_POST['submitMessage'])) {
           echo "</form>";
           echo "</div>";
         }
-        echo "</div>";
+        echo "</div></div>";
         ?>
       </div>
     </div>
-  </div>
   <!-- if needed for bootstrap layout again -->
   <!--  id="exampleFormControlTextarea1" rows="3"></textarea>  -->
   <footer>
