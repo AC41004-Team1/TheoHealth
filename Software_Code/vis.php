@@ -1,5 +1,6 @@
 <?php include "head.php";
 include "authPHP.php";
+
 // Check if the form is submitted
 if (isset($_POST['sessionIndexIn'])) {
   //retrieve the form data by using the element's name attributes value as key
@@ -42,17 +43,27 @@ if (isset($_POST['submitMessage'])) {
     <div class=form-container>
       <!-- Body Diagram -->
       <div class="right-half" style="padding: 50px;" style="margin-bottom:1px;">
-        <div class="card">
-          <!-- insert body model -->
-          <img src="./resources/images/silverGuy1.jpg" width="300" height="300" alt="">
-          <div class="card-body">
-            <h5 class="card-title">Example body</h5>
-            <p class="card-text">Wow look at your body and analyse your performance.</p>
+        <div class="card" id="cardID">
+          <div class="left-half" id="leftHalfID">
+            <!-- insert body model -->
+            <img src="./resources/images/silverGuy1.jpg" width="300" height="300" alt="">
+          </div>
+          <div class="right-half" id="rightHalfID">
+            <div class="card-body">
+              <h5 class="card-title">View Model</h5>
+              <p class="card-text">Click below to see your results in 3D.</p>
+              <form action="visualize.php">
+           <?php   
+              echo "<input type=text value= \"{$sessionIndex}\" name = 'sessionIndexIn' class = \"form-hidden\" ></input>";
+              echo "<button class=\"btn btn-outline-primary\" type=\"submit\" name=\"submitMessage\" >View</button>";
+             ?> 
+             </form>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- The graph -->
+      
       <div class="left-half" style="padding: 50px;" style="margin-bottom:1px;">
         <div class="card">
           <!-- add graph in here -->
@@ -61,6 +72,7 @@ if (isset($_POST['submitMessage'])) {
           <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
           <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
           <script src="./resources/scripts/tempGraph.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
           <div class="card-body">
             <h5 class="card-title">Example Graph</h5>
             <p class="card-text">Wow look at your cool graph. So exciting!!!!!!!!!!</p>
@@ -69,72 +81,72 @@ if (isset($_POST['submitMessage'])) {
       </div>
     </div>
 
-        <hr>
+    <hr>
     <div class=form-container>
 
-        <?php
-        echo "<div class=\"left-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
-        echo "<div class=\"card\">";
+      <?php
+      echo "<div class=\"left-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
+      echo "<div class=\"card\">";
 
-        //Bool to see if user can send another message
-        $alreadySent = false;
-        //Get gets the comments
-        $conn = openCon();
-        $SQLInput = "CALL getComments(\"{$sessionIndex}\")";
-        $result = $conn->query($SQLInput);
-        closeCon($conn);
-        //If there are comments
-        if ($result->num_rows > 0) {
-          echo "<div class=\"card-body\">";
-          echo "<h5 class=\"card-title\">Feedback:</h5>";
-          $previousMessage;
-          //Grabs each comment and display them
-          while ($row = $result->fetch_object()) {
-            if(isset($previousMessage)){
-              echo "<hr>";
-            }
-            //If this user is ourself just use username already given and set variable
-            if ($row->SenderIndex == $_SESSION['userInfoArray'][1]) {
-              echo "<p id=\"userName\">{$_SESSION['userInfoArray'][0]}:</p>";
-              $alreadySent = true;
-            }
-            //if not ourself get and display username
-            else {
-              //query database for username
-              $conn = openCon();
-              $SQLInput = "CALL getUsername(\"{$row->SenderIndex}\")";
-              $result1 = $conn->query($SQLInput);
-              closeCon($conn);
-              if ($result1->num_rows > 0) {
-                $row1 = $result1->fetch_object();
-                $tester = $row1->Username;
-                echo "<p id=\"userName\">{$tester}:</p>";
-              }
-            }
-            //Display message
-            echo  "<p id=\"userMessage\">{$row->MessageSent}</p>";
-            $previousMessage = "Yup";
+      //Bool to see if user can send another message
+      $alreadySent = false;
+      //Get gets the comments
+      $conn = openCon();
+      $SQLInput = "CALL getComments(\"{$sessionIndex}\")";
+      $result = $conn->query($SQLInput);
+      closeCon($conn);
+      //If there are comments
+      if ($result->num_rows > 0) {
+        echo "<div class=\"card-body\">";
+        echo "<h5 class=\"card-title\">Feedback:</h5>";
+        $previousMessage;
+        //Grabs each comment and display them
+        while ($row = $result->fetch_object()) {
+          if (isset($previousMessage)) {
+            echo "<hr>";
           }
-          echo "</div>";
+          //If this user is ourself just use username already given and set variable
+          if ($row->SenderIndex == $_SESSION['userInfoArray'][1]) {
+            echo "<span id=\"userName\">{$_SESSION['userInfoArray'][0]}: </span>";
+            $alreadySent = true;
+          }
+          //if not ourself get and display username
+          else {
+            //query database for username
+            $conn = openCon();
+            $SQLInput = "CALL getUsername(\"{$row->SenderIndex}\")";
+            $result1 = $conn->query($SQLInput);
+            closeCon($conn);
+            if ($result1->num_rows > 0) {
+              $row1 = $result1->fetch_object();
+              $tester = $row1->Username;
+              echo "<span id=\"userName\">{$tester}: </span>";
+            }
+          }
+          //Display message
+          echo  "<span id=\"userMessage\">{$row->MessageSent}</span>";
+          $previousMessage = "Yup";
         }
-        echo "</div></div>";
-        echo "<div class=\"right-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
-        //For sending a message
-        if ($alreadySent == false) {
-          echo "<div class=\"form-group\">";
-          //Create form with text area and
-          echo "<form action=\"#\" method=\"post\">";
-          echo "<label for=\"messageSent\">Enter Feedback:</label>";
-          echo "<textarea class=\"form-control\" name = \"messageSent\" rows=\"3\"></textarea>";
-          echo "<input type=text value= \"{$sessionIndex}\" name = 'sessionIndexIn' class = \"form-hidden\" ></input>";
-          echo "<button class=\"btn btn-outline-primary\" type=\"submit\" name=\"submitMessage\" value = \"{$sessionIndex}\" style=\"margin-top: 10px;\">Send feedback</button>";
-          echo "</form>";
-          echo "</div>";
-        }
-        echo "</div></div>";
-        ?>
-      </div>
+        echo "</div>";
+      }
+      echo "</div></div>";
+      echo "<div class=\"right-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
+      //For sending a message
+      if ($alreadySent == false) {
+        echo "<div class=\"form-group\">";
+        //Create form with text area and
+        echo "<form action=\"#\" method=\"post\">";
+        echo "<label class=\"card-title\" for=\"messageSent\">Enter Feedback:</label>";
+        echo "<textarea class=\"form-control\" name = \"messageSent\" rows=\"3\"></textarea>";
+        echo "<input type=text value= \"{$sessionIndex}\" name = 'sessionIndexIn' class = \"form-hidden\" ></input>";
+        echo "<button class=\"btn btn-outline-primary\" type=\"submit\" name=\"submitMessage\" value = \"{$sessionIndex}\" style=\"margin-top: 10px;\">Send feedback</button>";
+        echo "</form>";
+        echo "</div>";
+      }
+      echo "</div></div>";
+      ?>
     </div>
+  </div>
   <!-- if needed for bootstrap layout again -->
   <!--  id="exampleFormControlTextarea1" rows="3"></textarea>  -->
   <footer>

@@ -35,22 +35,46 @@
     }
 }
 
-.btn{
-  padding: 2px;
-  font-size: 24px;
-  background-color: #F1F6F9;
-  border-color: #0297a2;
-  color: #0297a2;
-  border-width: 4px;
+.btn {
+    padding: 2px;
+    font-size: 24px;
+    background-color: #F1F6F9;
+    border-color: #0297a2;
+    color: #0297a2;
+    border-width: 4px;
 }
 
-.btn:hover{
-  background-color: #0297a2;
-  color: white;
-  border-color: #0297a2;
+.btn:hover {
+    background-color: #0297a2;
+    color: white;
+    border-color: #0297a2;
 }
 
-#card{
-  background: rgba(0,0,0,0.5);
-  background-color: red;
+.card {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+}
+
+.card-title {
+    font-size: 28px;
+    color: #20a5b7;
+}
+
+#userName {
+    font-weight: 600;
+}
+
+#cardID {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+#rightHalfID {
+    width: auto;
+    padding-top: 40px;
+}
+
+#leftHalfID {
+    width: auto;
 }
