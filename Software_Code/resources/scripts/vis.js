@@ -129,6 +129,8 @@ export default class BodyVis {
             var intersects = this.raycaster.intersectObjects(this.scene.children, true);
             if (intersects.length > 0) {
                 intersects[0].object.callback()
+            } else {
+                this.callback("reset")
             }
 
         })
@@ -187,6 +189,7 @@ export default class BodyVis {
                 })
                 this.scene.getObjectByName("body_low_1").callback = () => {
                     console.log("reset");
+                    this.callback("reset")
                 }
                 this.raycastMeshes()
             });

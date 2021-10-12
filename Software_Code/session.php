@@ -19,7 +19,7 @@ include "authPHP.php";
     <div id="session-content">
         <div id="session-model">
             <div id="canvas-container">
-                <canvas style="width :50vmin; height: 50vmin;"></canvas>
+                <canvas style="width:100%"></canvas>
 
             </div>
             <div id="controls">
