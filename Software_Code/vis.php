@@ -14,7 +14,7 @@ if (isset($_POST['sessionIndexIn'])) {
 <link rel="stylesheet" href="./resources/styles/general.css">
 <link rel="stylesheet" href="./resources/styles/vis.css">
 <link rel="stylesheet" href="./resources/styles/layout.css">
-
+<link rel="manifest" href="manifest.webmanifest">
 <?php
 // Check if the form is submitted
 if (isset($_POST['submitMessage'])) {

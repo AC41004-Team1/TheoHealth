@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="./resources/styles/general.css">
   <link rel="stylesheet" href="./resources/styles/footer.css">
   <link rel="stylesheet" href="./resources/styles/register.css">
+  <link rel="manifest" href="manifest.webmanifest">
 </head>
 
 <body>

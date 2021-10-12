@@ -7,6 +7,7 @@ include "authPHP.php";
 <link rel="stylesheet" href="./resources/styles/session.css">
 <link rel="stylesheet" href="./resources/styles/range.css">
 <link rel="stylesheet" href="./resources/styles/layout.css">
+<link rel="manifest" href="manifest.webmanifest">
 <script type="module" src="./resources/scripts/vis.js" defer></script>
 <script type="module" src="./resources/scripts/session.js" defer></script>
 </head>
