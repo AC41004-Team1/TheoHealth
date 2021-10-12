@@ -4,10 +4,12 @@
 
 <!-- Insert PHP Database connect here -->
 
+
+
 <?php
 
-include "connection.php";
-$connection = openCon();
+
+$userSession = $_SESSION["userSession"];
 
 ?>
 
@@ -20,13 +22,17 @@ $connection = openCon();
 </head>
 
 <body>
+
+<div class ="chartBox">
+  <canvas id="myChart"></canvas>
+</div>
+
   <?php
   try {
-
+    $connection = openCon();
     // Change first para to client thing;
-    $queryInput = "CALL getClientDataWithSensor(1,1)";
+    $queryInput = "CALL getClientDataWithSensor(\"{$userSession}\",1)";
     $result = $connection->query($queryInput);
-
 
     if ($result->num_rows > 0) {
 
@@ -56,7 +62,7 @@ $connection = openCon();
   try {
 
     // Change first para to client thing;
-    $queryInput = "CALL getClientDataWithSensor(1,2)";
+    $queryInput = "CALL getClientDataWithSensor(\"{$userSession}\",2)";
     $result = $connection->query($queryInput);
 
 
@@ -88,7 +94,7 @@ $connection = openCon();
   try {
 
     // Change first para to client thing;
-    $queryInput = "CALL getClientDataWithSensor(1,3)";
+    $queryInput = "CALL getClientDataWithSensor(\"{$userSession}\",3)";
     $result = $connection->query($queryInput);
 
 
@@ -119,7 +125,7 @@ $connection = openCon();
   try {
 
     // Change first para to client thing;
-    $queryInput = "CALL getClientDataWithSensor(1,4)";
+    $queryInput = "CALL getClientDataWithSensor(\"{$userSession}\",4)";
     $result = $connection->query($queryInput);
 
 
@@ -177,19 +183,9 @@ $connection = openCon();
         data: reading1, // Replace with Sensor
         backgroundColor: [
           'rgba(255, 199, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 186, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 164, 0.2)'
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
         ],
         borderWidth: 0.1,
       },
@@ -197,20 +193,10 @@ $connection = openCon();
         label: 'Right Hamstring (Semitendinosus)',
         data: reading2, // Replace with Sensor
         backgroundColor: [
-          'rgba(25, 99, 132, 0.2)',
-          'rgba(54, 62, 235, 0.2)',
-          'rgba(25, 206, 86, 0.2)',
-          'rgba(75, 12, 192, 0.2)',
-          'rgba(13, 102, 5, 0.2)',
-          'rgba(25, 59, 64, 0.2)'
+          'rgba(25, 99, 132, 0.2)'
         ],
         borderColor: [
-          'rgba(55, 99, 132, 1)',
-          'rgba(54, 162, 35, 1)',
-          'rgba(255, 26, 86, 1)',
-          'rgba(75, 12, 192, 1)',
-          'rgba(153, 12, 25, 1)',
-          'rgba(25, 19, 64, 1)'
+          'rgba(55, 99, 132, 1)'
         ],
         borderWidth: 0.1
       },
@@ -218,20 +204,11 @@ $connection = openCon();
         label: 'Left Quadricep (Rectus Femoris)',
         data: reading3, // Replace with Sensor
         backgroundColor: [
-          'rgba(25, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(5, 206, 86, 0.2)',
-          'rgba(75, 92, 192, 0.2)',
-          'rgba(13, 102, 25, 0.2)',
-          'rgba(5, 159, 6, 0.2)'
+          'rgba(25, 99, 132, 0.2)'
+
         ],
         borderColor: [
-          'rgba(55, 99, 132, 1)',
-          'rgba(54, 12, 35, 1)',
-          'rgba(255, 26, 86, 1)',
-          'rgba(75, 12, 12, 1)',
-          'rgba(153, 12, 255, 1)',
-          'rgba(25, 159, 64, 1)'
+          'rgba(55, 99, 132, 1)'
         ],
         borderWidth: 0.1
       },
@@ -239,20 +216,11 @@ $connection = openCon();
         label: 'Right Quadricep (Rectus Femoris)',
         data: reading3, // Replace with Sensor
         backgroundColor: [
-          'rgba(25, 99, 132, 0.2)',
-          'rgba(54, 162, 35, 0.2)',
-          'rgba(25, 206, 86, 0.2)',
-          'rgba(75, 12, 192, 0.2)',
-          'rgba(132, 102, 25, 0.2)',
-          'rgba(215, 159, 64, 0.2)'
+          'rgba(25, 99, 132, 0.2)'
+
         ],
         borderColor: [
-          'rgba(155, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 26, 86, 1)',
-          'rgba(175, 12, 192, 1)',
-          'rgba(153, 12, 255, 1)',
-          'rgba(252, 19, 64, 1)'
+          'rgba(155, 99, 132, 1)'
         ],
         borderWidth: 0.1
       }
@@ -290,7 +258,7 @@ $connection = openCon();
 </script>
 
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script> -->
-
+<!--
 <script type="module">
   import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
   import {
@@ -479,7 +447,7 @@ $connection = openCon();
     }
   }
 
-  
+
 
   init();
   window.addEventListener('mousemove', onMouseMove, false);
@@ -487,6 +455,6 @@ $connection = openCon();
   // document.appendChild(Object.assign(document.createElement('button'), {
   //   "innerText": "button"
   // }))
-</script>
+</script> -->
 
 </html>

@@ -1,10 +1,14 @@
 <?php include "head.php";
 include "authPHP.php";
 
+
+
 // Check if the form is submitted
 if (isset($_POST['sessionIndexIn'])) {
   //retrieve the form data by using the element's name attributes value as key
   $sessionIndex = $_POST['sessionIndexIn'];
+  $_SESSION["userSession"] = $sessionIndex;
+
 } else {
   //return to dashboard
   // header("Location: dashboard.php");
@@ -53,29 +57,28 @@ if (isset($_POST['submitMessage'])) {
               <h5 class="card-title">View Model</h5>
               <p class="card-text">Click below to see your results in 3D.</p>
               <form action="visualize.php">
-           <?php   
+           <?php
               echo "<input type=text value= \"{$sessionIndex}\" name = 'sessionIndexIn' class = \"form-hidden\" ></input>";
               echo "<button class=\"btn btn-outline-primary\" type=\"submit\" name=\"submitMessage\" >View</button>";
-             ?> 
+             ?>
              </form>
             </div>
           </div>
         </div>
       </div>
 
-      
+
       <div class="left-half" style="padding: 50px;" style="margin-bottom:1px;">
         <div class="card">
           <!-- add graph in here -->
 
-          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-          <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-          <script src="./resources/scripts/tempGraph.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+          <div class ="chartBox">
+            <canvas id="myChart"><?php include "visualize.php";?></canvas>
+          </div>
           <div class="card-body">
-            <h5 class="card-title">Example Graph</h5>
-            <p class="card-text">Wow look at your cool graph. So exciting!!!!!!!!!!</p>
+            <h5 class="card-title">Muscle Tension Graph </h5>
+            <p class="card-text">Have a look at your muscle tension during this exce</p>
           </div>
         </div>
       </div>
