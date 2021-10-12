@@ -103,3 +103,17 @@ body {
         grid-gap: .1em;
     }
 }
+
+.btn{
+  padding: 2px;
+  background-color: #F1F6F9;
+  border-color: #0297a2;
+  color: #0297a2;
+  border-width: 4px;
+}
+
+.btn:hover{
+  background-color: #0297a2;
+  color: white;
+  border-color: #0297a2;
+}

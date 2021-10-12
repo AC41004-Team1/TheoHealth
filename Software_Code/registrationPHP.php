@@ -46,7 +46,7 @@
                 $signUpReason = $_POST['signUpReason'];
             }
             //Makes sure that both password are identical
-            if ($password == $checkerPassword) {
+            if ($password == $checkerPassword && isset($password)) {
               //Got phone number checker from https://stackoverflow.com/questions/3090862/how-to-validate-phone-number-using-php
               //eliminate every char except 0-9
               $phoneNum = preg_replace("/[^0-9]/", '', $phoneNum);
@@ -81,7 +81,11 @@
                       $connection = openCon();
                       $SQLInput = "CALL addClienttoManager(\"{$userIndex}\",\"{$managerID}\")";
                       $connection->query($SQLInput);
-                      var_dump($connection);
+                      closeCon($connection);
+
+                      $connection = openCon();
+                      $SQLInput = "CALL updateInviteUsed(\"{$GUID}\")";
+                      $connection->query($SQLInput);
                       closeCon($connection);
                   }
                   else{
@@ -102,7 +106,7 @@
                 echo "<meta http-equiv=\"refresh\" content=\"8; URL=./loginAndRegistration.php\" />";
               }
             } else {
-              echo "Sorry your account could not be created. The second password doesn't match the first.";
+              echo "Sorry your account could not be created. The second password doesn't match the first or the password was blank.";
               echo "<meta http-equiv=\"refresh\" content=\"8; URL=./loginAndRegistration.php\" />";
             }
           } else {
