@@ -73,12 +73,12 @@ if (isset($_POST['submitMessage'])) {
           <!-- add graph in here -->
 
 
-          <div class ="chartBox">
+          <div class ="chartBox" style="padding: 20px;">
             <canvas id="myChart"><?php include "visualize.php";?></canvas>
           </div>
           <div class="card-body">
             <h5 class="card-title">Muscle Tension Graph </h5>
-            <p class="card-text">Have a look at your muscle tension during this exce</p>
+            <p class="card-text">Have a look at your muscle tension during this excercise</p>
           </div>
         </div>
       </div>

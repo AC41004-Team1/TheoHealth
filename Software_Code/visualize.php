@@ -179,50 +179,50 @@ $userSession = $_SESSION["userSession"];
   const data = {
     labels: time1, // Put times here but we need to edit it Manually put in time labels to fix this problem
     datasets: [{
-        label: 'Muscle Tension Left Hamstring (Semitendinosus)',
+        label: 'Left Hamstring (Semitendinosus)',
         data: reading1, // Replace with Sensor
         backgroundColor: [
-          'rgba(255, 199, 132, 0.2)',
+          '#75E6DA',
         ],
         borderColor: [
-          'rgba(255, 99, 132, 1)',
+          '#05445E',
         ],
-        borderWidth: 0.1,
+        borderWidth: 0.35,
       },
       {
         label: 'Right Hamstring (Semitendinosus)',
         data: reading2, // Replace with Sensor
         backgroundColor: [
-          'rgba(25, 99, 132, 0.2)'
+          '#FF8300'
         ],
         borderColor: [
-          'rgba(55, 99, 132, 1)'
+          '#DF362D'
         ],
-        borderWidth: 0.1
+        borderWidth: 0.35,
       },
       {
         label: 'Left Quadricep (Rectus Femoris)',
         data: reading3, // Replace with Sensor
         backgroundColor: [
-          'rgba(25, 99, 132, 0.2)'
+          '#868B8E'
 
         ],
         borderColor: [
-          'rgba(55, 99, 132, 1)'
+          '#EEEDE7'
         ],
-        borderWidth: 0.1
+        borderWidth: 0.35
       },
       {
         label: 'Right Quadricep (Rectus Femoris)',
         data: reading3, // Replace with Sensor
         backgroundColor: [
-          'rgba(25, 99, 132, 0.2)'
+          '#A82810'
 
         ],
         borderColor: [
-          'rgba(155, 99, 132, 1)'
+          '#A82810'
         ],
-        borderWidth: 0.1
+        borderWidth: 0.35
       }
     ]
 
