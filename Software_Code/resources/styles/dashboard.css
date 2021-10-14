@@ -3,6 +3,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+
 body {
     color: #394867;
     font-size: 20px;
@@ -148,6 +149,8 @@ body {
   float:left;
 }
 
+
+
 .btn{
   padding: 2px;
   background-color: #F1F6F9;
@@ -160,4 +163,26 @@ body {
   background-color: #0297a2;
   color: white;
   border-color: #0297a2;
+}
+
+#deleteBtn{
+  border-color: red;
+  color: red;
+}
+
+#deleteBtn:hover{
+  background-color: red;
+  color: white;
+  border-color: red;
+}
+
+.deleteBtn{
+  border-color: red;
+  color: red;
+}
+
+.deleteBtn:hover{
+  background-color: red;
+  color: white;
+  border-color: red;
 }
