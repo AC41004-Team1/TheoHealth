@@ -12,19 +12,6 @@
         background-color: white;
     }
     
-    @media only screen and (max-width: 768px) {
-        #session-content {
-            display: grid;
-            grid-template-columns: 100%;
-            grid-template-areas: none;
-            grid-template-rows: auto auto;
-        }
-        #model-interaction {
-            margin-left: .5em;
-            margin-right: .5em;
-        }
-    }
-    
     @media only screen and (min-width: 768px) {
         ol>li {
             max-width: 40vw;
@@ -59,8 +46,26 @@
         text-align: center;
     }
     
+    #swapDimensions {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+    }
+    
+    #swapDimensions>svg {
+        fill: white;
+        width: 2em;
+        height: 2em;
+    }
+    
     #canvas-container {
         width: 100%;
+    }
+    
+    #canvas-container>svg {
+        width: 100%;
+        max-height: 50vh;
+        min-height: 50vmin;
     }
     
     canvas {
@@ -108,7 +113,7 @@
     
     #readings>div {
         text-align: center;
-        border: 1px solid;
+        border: .25em solid;
         border-color: #0297a2;
         display: grid;
         grid-template-rows: auto auto;
@@ -176,6 +181,7 @@
     
     ol>li {
         word-wrap: break-word;
+        text-align: left;
     }
     
     #muscles>li>.closeExercisePanel {
@@ -192,4 +198,34 @@
     
     li.exerciseExample {
         text-align: center;
+    }
+    
+    #Map {
+        background-color: #0297a2;
+        fill: white;
+    }
+    /* 2D */
+    
+    #HAMSTRINGS-LEFT:hover,
+    #HAMSTRINGS-RIGHT:hover,
+    #QUADS-LEFT:hover,
+    #QUADS-RIGHT:hover {
+        fill: black;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        #session-content {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-areas: none;
+            grid-template-rows: auto auto;
+        }
+        #model-interaction {
+            margin-left: .5em;
+            margin-right: .5em;
+        }
+        .exerciseImages>img {
+            width: 40vw;
+            width: 500px;
+        }
     }

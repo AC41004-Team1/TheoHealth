@@ -22,15 +22,44 @@ function getHighlightColour(val) {
         return "orange"
     return "green"
 }
+const sensorToIdMap = {
+    leftHamstring: "HAMSTRINGS-LEFT",
+    rightHamstring: "HAMSTRINGS-RIGHT",
+    leftQuad: "QUADS-LEFT",
+    rightQuad: "QUADS-RIGHT"
+}
+Object.values(sensorToIdMap).forEach((id, index) => {
+    document.getElementById(id).onclick = () => {
+        let muscles = document.querySelector("#muscles").children
+        Array.from(muscles).forEach((e) => {
+            console.log(e);
+            if (e.classList.contains(Object.keys(sensorToIdMap)[index])) {
+                e.style = "display: block"
+
+            } else {
+                e.style = "display: none"
+            }
+        })
+    }
+})
+
+function update2dSensor(sensorName, value) {
+
+
+    document.getElementById(sensorToIdMap[sensorName]).setAttribute('fill', getHighlightColour(value))
+}
 export default function initPlayer(sensors) {
     function updateHeatMap(readings) {
         readings.readings.forEach((cur, i) => {
+            //update models
             bodyVis.changeColourSensor(getHighlightColour(cur.value), cur.sensorName)
+            update2dSensor(cur.sensorName, cur.value)
+
+            //update dashboard 
             let valueBox = document.querySelector(`#readings #${cur.sensorName}`)
             valueBox.style = `border-color: ${getHighlightColour(cur.value)}`
             valueBox.querySelector(".value").innerText = cur.value;
         })
-        console.log(readings.date);
         timeLabel.innerText = `${readings.date.getHours()} : ${readings.date.getMinutes()} : ${readings.date.getSeconds().toString().length == 1 ? "0" + readings.date.getSeconds().toString() : readings.date.getSeconds().toString()}`
 
     }
@@ -47,8 +76,6 @@ export default function initPlayer(sensors) {
     }
 
     playButton.onclick = () => {
-        console.log(rangeSlider);
-        console.log(playButton);
         if (playButton.getAttribute("playing") === "t") {
             var id = window.setTimeout(function() {}, 0);
             while (id--) {
@@ -109,3 +136,22 @@ close.forEach((e) => {
 
     }
 })
+
+
+let swap = document.getElementById('swapDimensions')
+
+swap.onclick = () => {
+    console.log(swap.children);
+    Array.from(swap.children).forEach((child) => {
+        child.style.display = child.style.display == "none" ? "block" : "none"
+    })
+
+    Array.from(document.querySelectorAll('#canvas-container > canvas , #canvas-container > svg')).forEach((child) => {
+        child.style.display = child.style.display == "none" ? "block" : "none"
+    })
+
+    let controls = document.getElementById('controls')
+
+    controls.style.display = controls.style.display == "none" ? "grid" : "none"
+
+}
