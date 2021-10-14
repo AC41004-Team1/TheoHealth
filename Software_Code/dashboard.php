@@ -64,13 +64,16 @@ include "authPHP.php";
           <div class ="chartBox">
             <canvas id="myChart" width="900" height="500"><?php include "dashboardgraph.php";?></canvas>
           </div>
-          <hr>
-          <div id="inviteLink">
-            <form  action="dashboardPHP.php" method="post">
-                <input id="generatorButton" class="btn btn-outline-primary" type="submit" name="generateInvite" value="Generate Invite" />
-            </form>
-
-          </div>
+          <?php
+            if($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT"){
+              echo "<hr>";
+              echo "<div id=\"inviteLink\">";
+                echo "<form  action=\"dashboardPHP.php\" method=\"post\">";
+                    echo "<input id=\"generatorButton\" class=\"btn btn-outline-primary\" type=\"submit\" name=\"generateInvite\" value=\"Generate Invite\" />";
+                echo "</form>";
+              echo "</div>";
+            }
+          ?>
         </div>
       </div>
       <div class="rightColumn">
