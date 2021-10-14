@@ -1,19 +1,17 @@
 <?php include "head.php" ?>
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <meta charset="utf-8">
+
   <title>Sign up</title>
-  <link rel="stylesheet" href="./resources/styles/general.css">
-  <link rel="stylesheet" href="./resources/styles/footer.css">
   <link rel="stylesheet" href="./resources/styles/register.css">
 </head>
 
 <body>
   <header style="height:200px;">
     <div class="leftContainer">
-      <img src="./resources/images/theoLogo.png" alt="" width="500" height="100">
+      <img src="./resources/images/theoLogo.png" alt="TheoLogo" width="500" height="100">
       <h1 class="text-left">Sign up</h1>
     </div>
+  </header>
+  <div id="register-main">
     <div class="left-half" style="padding:0" style="margin-bottom:1px">
       <div class="card border-light mb-3" style="max-width: 30rem;" style="margin: 10px;">
         <div class="card-header">Important</div>
@@ -83,10 +81,12 @@
                       $connection->query($SQLInput);
                       closeCon($connection);
 
-                      $connection = openCon();
-                      $SQLInput = "CALL updateInviteUsed(\"{$GUID}\")";
-                      $connection->query($SQLInput);
-                      closeCon($connection);
+                      if (isset($_POST['GUID'])) {
+                        $connection = openCon();
+                        $SQLInput = "CALL updateInviteUsed(\"{$GUID}\")";
+                        $connection->query($SQLInput);
+                        closeCon($connection);
+                      }
                   }
                   else{
                   $SQLInput = "CALL addUser(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\", \"{$email}\")";
@@ -99,7 +99,7 @@
                   echo "<meta http-equiv=\"refresh\" content=\"10; URL=./loginAndRegistration.php\" />";
                 } else {
                   echo "Sorry your account could not be created. The username you entered is already taken.";
-              //    echo "<meta http-equiv=\"refresh\" content=\"8; URL=./loginAndRegistration.php\" />";
+                  echo "<meta http-equiv=\"refresh\" content=\"8; URL=./loginAndRegistration.php\" />";
                 }
               } else {
                 echo "Sorry your account could not be created. The phone number was invalid.";
@@ -116,10 +116,11 @@
         </div>
       </div>
     </div>
-    <footer>
-             <?php
-               include "footer.php";
-             ?>
+  </div>
+  <footer>
+     <?php
+       include "footer.php";
+     ?>
   </footer>
 </body>
 
