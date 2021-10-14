@@ -139,8 +139,10 @@ include "authPHP.php";
               //Call Query to get results
               $result = getSessions($_SESSION['userInfoArray'][1]);
               //If they have done a session before
-              if (isset($result->DateTaken)) {
+              $row = $result->fetch_object();
+              if (isset($row->DateTaken)) {
                 echo "<h1 style = \"float:left;\">What session would you like to view?</h1>";
+                printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                 while ($row = $result->fetch_object()) {
                   printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                 }
@@ -177,8 +179,10 @@ include "authPHP.php";
                   //If they have done a session before
                   echo "<div id=\"user{$clientsIndex[$i]}-form-container\" class=\"form-hidden\">";
                   $nothingThere = false;
-                  if ($result->num_rows > 0) {
+                  $row = $result->fetch_object();
+                  if (isset($row->DateTaken)) {
                     echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
+                    printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                     while ($row = $result->fetch_object()) {
                       if(isset($row->DateTaken)){
                         printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
