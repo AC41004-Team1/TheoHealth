@@ -2,9 +2,7 @@
 <link rel="stylesheet" href="./resources/styles/general.css">
 <link rel="stylesheet" href="./resources/styles/footer.css">
 <link rel="stylesheet" href="./resources/styles/login.css">
-<script src="index.js"></script>
 <style type="text/css"></style>
-<link rel="manifest" href="manifest.webmanifest">
 <style>
   body{
     display: grid;
