@@ -13,6 +13,23 @@ include "authPHP.php";
 
 <link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="./resources/styles/layout.css">
+
+<?php
+//Way to delete a user
+  if(isset($_POST['userToDelete'])){
+    $deletedUser = $_POST['userToDelete'];
+
+    $connection = openCon();
+    $query = "CALL deleteUser(\"{$deletedUser}\")";
+    $result = $connection->query($query);
+    closeCon($connection);
+
+    $connection = openCon();
+    $query = "CALL deleteUser(\"{$deletedUser}\")";
+    $result = $connection->query($query);
+    closeCon($connection);
+  }
+?>
 </head>
 
 <body>
@@ -188,7 +205,6 @@ include "authPHP.php";
                       } else{
                         $nothingThere = true;
                       }
-                      //echo "{$row -> SessionIndex}{$row -> SessionNum}{$row -> DateTaken}{$row -> Duration}";
                     }
                     if($nothingThere == true){
                       echo "<h1>This client hasn't started training yet.</h1>";
@@ -196,6 +212,11 @@ include "authPHP.php";
                   } else {
                     echo "<h1>This client hasn't started training yet.</h1>";
                   }
+                  //Delete user button
+                  echo "<form action=\"#\" method=\"post\">";
+                  echo "<button name=\"userToDelete\" class=\" btn btn-outline-primary deleteBtn\" id=\"deleteBtn\" type=\"submit\" value=\"{$clientsIndex[$i]}\">Delete User</button>";
+                  echo "</form>";
+
                   echo "</div>";
                 }
               } else {
