@@ -6,7 +6,12 @@ import {
     GLTFLoader
 } from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
 
+
+
+//export this class to be used by session.js
 export default class BodyVis {
+
+    //colour definitions 
     colours() {
         return {
             teal: 0x0297a2,
@@ -22,6 +27,8 @@ export default class BodyVis {
 
         }
     }
+
+    //take in the element in various forms and the click callback
     constructor(element, callback) {
         if (typeof element == "string") {
             element = document.querySelector(element)
@@ -34,50 +41,51 @@ export default class BodyVis {
     }
 
     setup() {
-        this.renderer = new THREE.WebGLRenderer({
-            canvas: this.canvas
-        })
+            this.renderer = new THREE.WebGLRenderer({
+                    canvas: this.canvas
+                })
+                //camera setup 
+            this.camOpts = {
+                fov: 45,
+                aspect: 2,
+                near: 0.1,
+                far: 100,
+            }
 
-        this.camOpts = {
-            fov: 45,
-            aspect: 2,
-            near: 0.1,
-            far: 100,
+            this.camera = new THREE.PerspectiveCamera(
+                this.camOpts.fov,
+                this.camOpts.aspect,
+                this.camOpts.near,
+                this.camOpts.far)
+
+            this.camera.position.set(0, 10, 20)
+
+            this.controls = new OrbitControls(this.camera, this.canvas);
+            this.controls.enablePan = false;
+            this.controls.target.set(0, 0, 0);
+            this.controls.update();
+
+
+            this.scene = new THREE.Scene()
+            this.scene.background = new THREE.Color(this.theme().background)
+
+            this.scene.add(new THREE.HemisphereLight(this.colours().white, this.colours().white, 0.4))
+
+            //scope inside {} to ensure vars are not reused
+            {
+                //adds a white light to the
+                const color = 0xFFFFFF;
+                const intensity = 1;
+                const light = new THREE.DirectionalLight(color, intensity);
+                light.position.set(5, 10, 2);
+                this.scene.add(light);
+                this.scene.add(light.target);
+            }
+
+            this.load()
+
         }
-
-        this.camera = new THREE.PerspectiveCamera(
-            this.camOpts.fov,
-            this.camOpts.aspect,
-            this.camOpts.near,
-            this.camOpts.far)
-
-        this.camera.position.set(0, 10, 20)
-
-        this.controls = new OrbitControls(this.camera, this.canvas);
-        this.controls.enablePan = false;
-        this.controls.target.set(0, 0, 0);
-        this.controls.update();
-
-
-        this.scene = new THREE.Scene()
-        this.scene.background = new THREE.Color(this.theme().background)
-
-        this.scene.add(new THREE.HemisphereLight(this.colours().white, this.colours().white, 0.4))
-
-        //scope inside {} to ensure vars are not reused
-        {
-            //adds a white light to the
-            const color = 0xFFFFFF;
-            const intensity = 1;
-            const light = new THREE.DirectionalLight(color, intensity);
-            light.position.set(5, 10, 2);
-            this.scene.add(light);
-            this.scene.add(light.target);
-        }
-
-        this.load()
-
-    }
+        // frame camera to a vector position , default 0 0 1 : front 
     frameCamera(dirVector = [0, 0, 1]) {
         if (this.gltf == undefined) {
             return
@@ -108,18 +116,22 @@ export default class BodyVis {
         this.frameCamera()
     }
     lookBack() {
-        this.frameCamera([0, 0, -1])
-    }
-
+            this.frameCamera([0, 0, -1])
+        }
+        //helper function to more reliably get the mouse location
     getMouseLocationWithEvent(event) {
         return {
             x: ((event.clientX - (this.renderer.domElement.getBoundingClientRect().left + this.renderer.domElement.scrollLeft)) / this.renderer.domElement.width) * 2 - 1,
             y: -((event.y - (this.renderer.domElement.getBoundingClientRect().top + this.renderer.domElement.scrollTop)) / this.renderer.domElement.height) * 2 + 1
         }
     }
+
+    //deal with raycasting in here
     raycastMeshes() {
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
+
+
         this.canvas.addEventListener('click', (event) => {
             event.preventDefault();
             this.mouse = this.getMouseLocationWithEvent(event)
@@ -129,6 +141,8 @@ export default class BodyVis {
             var intersects = this.raycaster.intersectObjects(this.scene.children, true);
             if (intersects.length > 0) {
                 intersects[0].object.callback()
+            } else {
+                this.callback("reset")
             }
 
         })
@@ -144,12 +158,12 @@ export default class BodyVis {
             Object.keys(this.sensorAreas).forEach((e) => {
 
                 if (intersectName == this.sensorAreas[e].obj.name) {
-                    this.sensorAreas[e].colReset = true
+                    this.sensorAreas[e].colReset = true // we need to change this colour back 
                     this.changeColour(this.sensorAreas[e].obj, "black")
                 } else {
                     if (this.sensorAreas[e].colReset && this.sensorAreas[e].col) {
-                        this.changeColour(this.sensorAreas[e].obj, this.sensorAreas[e].col)
-                        this.colReset = false
+                        this.changeColour(this.sensorAreas[e].obj, this.sensorAreas[e].col) // change colour back 
+                        this.colReset = false // we don't need to change cgain 
 
                     }
 
@@ -187,6 +201,7 @@ export default class BodyVis {
                 })
                 this.scene.getObjectByName("body_low_1").callback = () => {
                     console.log("reset");
+                    this.callback("reset")
                 }
                 this.raycastMeshes()
             });
@@ -232,7 +247,6 @@ export default class BodyVis {
         requestAnimationFrame(render);
     }
     changeColourSensor(color, bodyPart) {
-        console.log(color, bodyPart);
         this.sensorAreas[bodyPart].col = color
         this.changeColour(this.sensorAreas[bodyPart].obj, color)
     }

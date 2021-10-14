@@ -175,6 +175,9 @@ $userSession = $_SESSION["userSession"];
   const reading4 = <?php echo json_encode($reading4); ?>;
 
   console.log(reading1);
+  console.log(reading2);
+  console.log(reading3);
+  console.log(reading4);
 
   const data = {
     labels: time1, // Put times here but we need to edit it Manually put in time labels to fix this problem

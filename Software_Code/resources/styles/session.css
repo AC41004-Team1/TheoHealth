@@ -3,30 +3,34 @@
         /* background-color: blue; */
         display: grid;
         grid-template-areas: 'model interaction';
-        grid-template-columns: auto 1fr;
-    }
-    
-    #session-model {
-        background-color: #0297a2;
-    }
-    
-    @media only screen and (max-width: 768px) {
-        #session-content {
-            display: grid;
-            grid-template-columns: none;
-            grid-template-areas: none;
-            grid-template-rows: auto 1fr;
-            align-items: center;
-        }
+        grid-template-columns: 1fr auto;
+        grid-template-rows: none;
+        /* max-height: 85vh; */
     }
     
     #session-model {
         grid-area: 'model';
         position: relative;
+        background-color: white;
     }
     
     #model-interaction {
         grid-area: 'interaction';
+        overflow-y: scroll;
+        max-height: calc(100vh - 114px)
+    }
+    /* remove padding from lists  */
+    
+    #muscles>*,
+    #muscles,
+    .exerciseList {
+        padding: 0;
+    }
+    
+    #timeLabel {
+        text-align: center;
+        width: 100%;
+        font-weight: 500;
     }
     
     #canvas-container {
@@ -34,25 +38,55 @@
         text-align: center;
     }
     
+    #swapDimensions {
+        position: absolute;
+        top: 1em;
+        right: 1em;
+    }
+    
+    #swapDimensions>svg {
+        fill: white;
+        width: 2em;
+        height: 2em;
+    }
+    
+    #canvas-container {
+        width: 100%;
+    }
+    
+    #canvas-container>svg {
+        width: 100%;
+        max-height: 50vh;
+        min-height: 50vmin;
+    }
+    
+    canvas {
+        width: 100%;
+        max-height: 50vh;
+        min-height: 50vmin;
+    }
+    
     #controls {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: .1em;
+        grid-template-columns: auto auto;
+        grid-gap: .25em;
+        justify-content: center;
     }
     
     #controls>*,
     #play {
         border: 1px solid black;
         border-radius: .25em;
-        padding: .25em;
+        padding: .25em 1em;
         cursor: pointer;
         background-color: #f36d21;
         font-weight: 400;
         text-align: center;
+        width: fit-content;
     }
     
     #play {
-        width: 100%;
+        width: auto;
     }
     
     #controls>*:hover {
@@ -61,4 +95,135 @@
     
     ul {
         list-style-type: none;
+    }
+    
+    #readings {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-gap: 1%;
+    }
+    
+    #readings>div {
+        text-align: center;
+        border: .25em solid;
+        border-color: #0297a2;
+        display: grid;
+        grid-template-rows: auto auto;
+    }
+    
+    #readings>div>span:first-child {
+        font-weight: 500;
+        font-size: .75em;
+    }
+    
+    .slidecontainer {
+        padding: 2%;
+        margin: 1%;
+        margin-top: 1em;
+        border: .1em solid #0297a2;
+        display: grid;
+        justify-content: center;
+        grid-template-columns: 100%;
+        grid-template-rows: 2em auto auto;
+        grid-gap: 1em;
+    }
+    
+    #muscles>li>div>div {
+        text-align: center;
+        font-size: 2em;
+        border-bottom: .1em ridge #0297a2;
+    }
+    
+    #muscles>li>div>ul>li {
+        border-bottom: .1em solid #0297a2;
+        margin-bottom: .1em;
+    }
+    
+    #muscles>li>div>ul>li>span {
+        font-weight: 500;
+    }
+    
+    #muscles>li>div>ul>li>div>div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+    }
+    
+    .exerciseImages>img {
+        max-width: 20vw;
+    }
+    
+    .minimizeExercise {
+        float: right;
+        position: relative;
+    }
+    
+    .minimizeExercise::after {
+        position: absolute;
+        top: -.5em;
+        left: -1em;
+        content: '\2212';
+        font-size: 2em;
+    }
+    
+    .minimizeExercise.maximize::after {
+        content: '\002B';
+        font-size: 2em;
+    }
+    
+    ol>li {
+        word-wrap: break-word;
+        text-align: left;
+    }
+    
+    #muscles>li>.closeExercisePanel {
+        position: relative;
+        float: right;
+    }
+    
+    #muscles>li>.closeExercisePanel::after {
+        content: '\1F5D9';
+        font-size: 2em;
+        position: absolute;
+        left: -1em;
+    }
+    
+    li.exerciseExample {
+        text-align: center;
+    }
+    
+    #Map {
+        background-color: #0297a2;
+        fill: white;
+    }
+    /* 2D */
+    
+    #HAMSTRINGS-LEFT:hover,
+    #HAMSTRINGS-RIGHT:hover,
+    #QUADS-LEFT:hover,
+    #QUADS-RIGHT:hover {
+        fill: black;
+    }
+    
+    @media only screen and (max-width: 768px) {
+        #session-content {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-areas: none;
+            grid-template-rows: auto auto;
+        }
+        #model-interaction {
+            margin-left: .5em;
+            margin-right: .5em;
+        }
+        .exerciseImages>img {
+            width: 40vw;
+            width: 500px;
+        }
+    }
+    
+    @media only screen and (min-width: 768px) {
+        ol>li {
+            max-width: 40vw;
+        }
     }
