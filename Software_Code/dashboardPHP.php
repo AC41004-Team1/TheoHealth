@@ -23,7 +23,7 @@
 
           closeCon($con);
           $_SESSION['inviteLink'] = 'http://' . $_SERVER['HTTP_HOST'] . '/index.php?GUIDv1='.$GUIDv1;
-          header('Location: dashboard.php');
+          header('Location: ./invite.php');
       }
     }else{
       header('Location: dashboard.php');

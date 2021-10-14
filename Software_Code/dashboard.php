@@ -48,12 +48,7 @@ include "authPHP.php";
             <form  action="dashboardPHP.php" method="post">
                 <input id="generatorButton" class="btn btn-outline-primary" type="submit" name="generateInvite" value="Generate Invite" />
             </form>
-            <?php
-            if (isset($_SESSION['inviteLink'])) {
-                echo "Here is the link to send to the client: <br><a href=\"{$_SESSION['inviteLink']}\">{$_SESSION['inviteLink']}</a>";
-                unset($_SESSION['inviteLink']);
-            }
-            ?>
+            
           </div>
         </div>
       </div>

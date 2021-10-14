@@ -12,15 +12,29 @@
 </style>
 </head>
 
+<?php
+ $guid = $_GET['ID'];
+?>
+
 <body>
   <header style="height:200px;">
     <div class="leftContainer">
       <img src="./resources/images/theoLogo.png" alt="" width="500" height="100">
       <h1 class="text-left">Registration</h1>
+        <h2 style="font-size:24px">You have been invited by
+        <?php
+          $connection = openCon();
+          $SQLInput = "CALL getUsernameFromGUID(\"{$guid}\")";
+          $queryOutput2 = $connection->query($SQLInput);
+          $username = $queryOutput2 -> fetch_object()->Username;
+          closeCon($connection);
+          echo $username
+        ?>
+      </h2>
     </div>
   </header>
   <div id="loginBox" class="form-container">
-    <div class="left-half" style="padding:0" style="margin-bottom:1px;">
+    <div class="left-half" style="padding:0" style="margin-bottom:1px;" style="margin-top:40px">
 
       <div id="signin-form-container" class="form-container">
         <form action="registrationPHP.php" method="post">
@@ -77,7 +91,7 @@
           <div class="form-container form-submit">
             <label for="signUpReason">Reason for sign up:</label>
             <input type="text" name="signUpReason" id="signUpReason" class="form-control" placeholder="Enter reason for sign up" style="width:100%">
-            <input type="hidden" name="GUID" id="GUID" class="form-control" value="<?php echo ($_GET['ID']); ?>" style="width: 250px">
+            <input type="hidden" name="GUID" id="GUID" class="form-control" value="<?php echo $guid; ?>" style="width: 250px">
             <button class="btn btn-outline-primary" type="submit" name="submitsignup" style="margin-top: 10px;">Sign up</button>
           </div>
 
