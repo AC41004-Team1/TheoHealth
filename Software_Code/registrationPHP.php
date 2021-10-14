@@ -83,10 +83,12 @@
                       $connection->query($SQLInput);
                       closeCon($connection);
 
-                      $connection = openCon();
-                      $SQLInput = "CALL updateInviteUsed(\"{$GUID}\")";
-                      $connection->query($SQLInput);
-                      closeCon($connection);
+                      if (isset($_POST['GUID'])) {
+                        $connection = openCon();
+                        $SQLInput = "CALL updateInviteUsed(\"{$GUID}\")";
+                        $connection->query($SQLInput);
+                        closeCon($connection);
+                      }
                   }
                   else{
                   $SQLInput = "CALL addUser(\"{$fname}\", \"{$sname}\", \"{$phoneNum}\", \"{$username}\", \"{$password}\", \"{$role}\", \"{$email}\")";
