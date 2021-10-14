@@ -1,0 +1,36 @@
+{
+  "short_name": "Theo",
+  "name": "Theo visualise",
+  "icons": [
+    {
+      "src": "./resources/images/maskable_icon_x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose":"any maskable"
+    },
+    {
+      "src": "./resources/images/maskable_icon_x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose":"any maskable"
+    }
+  ],
+  "start_url": ".",
+  "background_color": "#1ebecf",
+  "display": "fullscreen",
+  "scope": ".",
+  "theme_color": "#f98913",
+  "description": "Theo allows you to visualise improvements to your injury ",
+  "screenshots": [
+    {
+      "src": "/resources/images/screenshot1.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    },
+    {
+      "src": "/resources/images/screenshot2.jpg",
+      "type": "image/jpg",
+      "sizes": "540x720"
+    }
+  ]
+}
