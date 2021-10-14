@@ -35,20 +35,24 @@ include "authPHP.php";
         <!-- Replace with actual graph--->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Your last results</h1>
+            <?php
+            if($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT"){
+              echo "<h1 class=\"h2\">Client Last Results</h1>";
+            }
+            else{
+                echo "<h1 class=\"h2\">Your Last Results</h1>";
+            }
+            ?>
           </div>
-          <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-          <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"></script>
-          <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.2/js/bootstrap.min.js"></script>
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.js"></script> <!-- Remove once implmenting the visualisation-->
+          <div class ="chartBox">
+            <canvas id="myChart" width="900" height="500"><?php include "dashboardgraph.php";?></canvas>
+          </div>
           <hr>
           <div id="inviteLink">
             <form  action="dashboardPHP.php" method="post">
                 <input id="generatorButton" class="btn btn-outline-primary" type="submit" name="generateInvite" value="Generate Invite" />
             </form>
-            
+
           </div>
         </div>
       </div>
@@ -197,11 +201,11 @@ include "authPHP.php";
               } else {
                 echo "<h1>You currently have no clients</h1>";
               }
-            }
+
 
             //Java script for the drop down menu
             echo "<script>";
-            echo "console.log(\"Im in\");";
+
             echo "var ddl = document.getElementById(\"ClientSelect\");";
             echo "ddl.onchange = function(){";
             //Get the drop down
@@ -243,6 +247,7 @@ include "authPHP.php";
             echo "return false;";
             echo "}";
             echo "</script>";
+          }
             ?>
 
 
@@ -263,56 +268,6 @@ include "authPHP.php";
         </div>
       </div>
     </div>
-    <script>
-      var xValues = [50, 60, 70, 80, 90, 100, 110];
-      var yValues = [7, 8, 8, 9, 9, 9, 10, 11, 14, 14, 15];
-
-      var options = {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            stacked: true,
-            grid: {
-              display: true,
-              color: "rgba(255,99,132,0.2)"
-            }
-          },
-          x: {
-            grid: {
-              display: false
-            }
-          }
-        }
-      };
-
-      new Chart("myChart", {
-        type: "line",
-        data: {
-          labels: xValues,
-          datasets: [{
-            fill: false,
-            lineTension: 0,
-            backgroundColor: "rgba(0,0,255,1.0)",
-            borderColor: "rgba(0,0,255,0.1)",
-            data: yValues
-          }]
-        },
-        options: {
-          legend: {
-            display: false
-          },
-          scales: {
-            yAxes: [{
-              ticks: {
-                min: 6,
-                max: 16
-              }
-            }],
-          }
-        }
-      });
-    </script>
   </div>
 </div>
 
