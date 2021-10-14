@@ -235,7 +235,6 @@ export default class BodyVis {
         requestAnimationFrame(render);
     }
     changeColourSensor(color, bodyPart) {
-        console.log(color, bodyPart);
         this.sensorAreas[bodyPart].col = color
         this.changeColour(this.sensorAreas[bodyPart].obj, color)
     }

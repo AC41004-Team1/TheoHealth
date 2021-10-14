@@ -6,6 +6,6 @@ body {
 
 body {
     display: grid;
-    grid-template-rows: 4em auto 2em;
+    grid-template-rows: 74px auto 40px;
     grid-template-columns: 100%;
 }

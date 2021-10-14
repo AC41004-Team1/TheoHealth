@@ -56,7 +56,7 @@ if (isset($_POST['submitMessage'])) {
             <div class="card-body">
               <h5 class="card-title">View Model</h5>
               <p class="card-text">Click below to see your results in 3D.</p>
-              <form action="visualize.php">
+              <form action="session.php" method="post">
            <?php
               echo "<input type=text value= \"{$sessionIndex}\" name = 'sessionIndexIn' class = \"form-hidden\" ></input>";
               echo "<button class=\"btn btn-outline-primary\" type=\"submit\" name=\"submitMessage\" >View</button>";
