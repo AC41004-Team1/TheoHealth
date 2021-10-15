@@ -2,8 +2,7 @@
 <link rel="stylesheet" href="./resources/styles/general.css">
 <link rel="stylesheet" href="./resources/styles/footer.css">
 <link rel="stylesheet" href="./resources/styles/login.css">
-<style type="text/css"></style>
-
+<link rel="stylesheet" href="./resources/styles/inviteReg.css">
 <style>
   body{
     display: grid;
@@ -19,7 +18,7 @@
 <body>
   <header style="height:200px;">
     <div class="leftContainer">
-      <img src="./resources/images/theoLogo.png" alt="" width="500" height="100">
+      <img src="./resources/images/theoLogo.png" alt="" id = "inviteRegImg">
       <h1 class="text-left">Registration</h1>
         <h2 style="font-size:24px">You have been invited by
         <?php
@@ -90,8 +89,8 @@
 
           <div class="form-container form-submit">
             <label for="signUpReason">Reason for sign up:</label>
-            <input type="text" name="signUpReason" id="signUpReason" class="form-control" placeholder="Enter reason for sign up" style="width:100%">
-            <input type="hidden" name="GUID" id="GUID" class="form-control" value="<?php echo $guid; ?>" style="width: 250px">
+            <input type="text" name="signUpReason" id="signUpReason" class="form-control" placeholder="Enter reason for sign up" >
+            <input type="hidden" name="GUID" id="GUID" class="form-control" value="<?php echo $guid; ?>" >
             <button class="btn btn-outline-primary" type="submit" name="submitsignup" style="margin-top: 10px;">Sign up</button>
           </div>
 

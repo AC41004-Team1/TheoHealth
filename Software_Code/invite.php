@@ -1,6 +1,9 @@
 <?php
 include "head.php";
 include "authPHP.php";
+if (!isset($_SESSION['inviteLink'])) {
+    header('Location: dashboard.php');
+}
 ?>
 <title>Invite</title>
 
@@ -16,20 +19,27 @@ include "authPHP.php";
     include "header.php";
     ?>
     <div id="invite-content">
-        <?php
-        if (isset($_SESSION['inviteLink'])) {
-            echo "Here is the link to send to the client: <br><a href=\"{$_SESSION['inviteLink']}\">{$_SESSION['inviteLink']}</a>";
-            
-        }
-        ?>
+
+
+        <div id="heading-label">
+            Provide the Client with the link or QR code below.
+        </div>
+        <div id="copy-link">
+
+            <textarea href=<?php echo "\"{$_SESSION['inviteLink']}\"" ?>><?php echo $_SESSION['inviteLink'] ?></textarea>
+        </div>
         <div id="qrcode"></div>
-        <script type="text/javascript">
+        <script type="text/javascript" defer>
             var qrcode = new QRCode(document.getElementById("qrcode"), {
-                text: <?php echo "\"{$_SESSION['inviteLink']}\""?>,
+                text: <?php echo "\"{$_SESSION['inviteLink']}\"" ?>,
                 colorDark: "#0297a2",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
+
+            document.querySelector("#copy-link textarea").onclick = (e) => {
+                console.log(e);
+            }
         </script>
     </div>
     <?php

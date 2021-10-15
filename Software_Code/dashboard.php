@@ -6,29 +6,28 @@ include "authPHP.php";
 <title>Dashboard</title>
 
 <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
 <link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css" />
 
-<link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="./resources/styles/layout.css">
 
 <?php
 //Way to delete a user
-  if(isset($_POST['userToDelete'])){
-    $deletedUser = $_POST['userToDelete'];
+if (isset($_POST['userToDelete'])) {
+  $deletedUser = $_POST['userToDelete'];
 
-    $connection = openCon();
-    $query = "CALL deleteUser(\"{$deletedUser}\")";
-    $result = $connection->query($query);
-    closeCon($connection);
+  $connection = openCon();
+  $query = "CALL deleteUser(\"{$deletedUser}\")";
+  $result = $connection->query($query);
+  closeCon($connection);
 
-    $connection = openCon();
-    $query = "CALL deleteUser(\"{$deletedUser}\")";
-    $result = $connection->query($query);
-    closeCon($connection);
-  }
+  $connection = openCon();
+  $query = "CALL deleteUser(\"{$deletedUser}\")";
+  $result = $connection->query($query);
+  closeCon($connection);
+}
 ?>
 </head>
 
@@ -48,33 +47,32 @@ include "authPHP.php";
 
     <div class="MainContent">
       <div class="column">
-        <div class="leftColumn">
+
         <!-- Replace with actual graph--->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <?php
-            if($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT"){
+            if ($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT") {
               echo "<h1 class=\"h2\">Client Last Results</h1>";
-            }
-            else{
-                echo "<h1 class=\"h2\">Your Last Results</h1>";
+            } else {
+              echo "<h1 class=\"h2\">Your Last Results</h1>";
             }
             ?>
           </div>
-          <div class ="chartBox">
-            <canvas id="myChart" width="900" height="500"><?php include "dashboardgraph.php";?></canvas>
+          <div class="chartBox">
+            <canvas id="myChart" width="900" height="500"><?php include "dashboardgraph.php"; ?></canvas>
           </div>
           <?php
-            if($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT"){
-              echo "<hr>";
-              echo "<div id=\"inviteLink\">";
-                echo "<form  action=\"dashboardPHP.php\" method=\"post\">";
-                    echo "<input id=\"generatorButton\" class=\"btn btn-outline-primary\" type=\"submit\" name=\"generateInvite\" value=\"Generate Invite\" />";
-                echo "</form>";
-              echo "</div>";
-            }
+          if ($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT") {
+            echo "<hr>";
+            echo "<div id=\"inviteLink\">";
+            echo "<form  action=\"dashboardPHP.php\" method=\"post\">";
+            echo "<input id=\"generatorButton\" class=\"btn btn-outline-primary\" type=\"submit\" name=\"generateInvite\" value=\"Generate Invite\" />";
+            echo "</form>";
+            echo "</div>";
+          }
           ?>
-        </div>
+
       </div>
       <div class="rightColumn">
         <div class="row">
@@ -203,13 +201,13 @@ include "authPHP.php";
                     echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
                     printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                     while ($row = $result->fetch_object()) {
-                      if(isset($row->DateTaken)){
+                      if (isset($row->DateTaken)) {
                         printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
-                      } else{
+                      } else {
                         $nothingThere = true;
                       }
                     }
-                    if($nothingThere == true){
+                    if ($nothingThere == true) {
                       echo "<h1>This client hasn't started training yet.</h1>";
                     }
                   } else {
@@ -220,58 +218,58 @@ include "authPHP.php";
                   echo "<button name=\"userToDelete\" class=\" btn btn-outline-primary deleteBtn\" id=\"deleteBtn\" type=\"submit\" value=\"{$clientsIndex[$i]}\">Delete User</button>";
                   echo "</form>";
 
-                  echo "</div>";
+                  echo "</div> </div>";
                 }
               } else {
                 echo "<h1>You currently have no clients</h1>";
               }
 
 
-            //Java script for the drop down menu
-            echo "<script>";
+              //Java script for the drop down menu
+              echo "<script>";
 
-            echo "var ddl = document.getElementById(\"ClientSelect\");";
-            echo "ddl.onchange = function(){";
-            //Get the drop down
+              echo "var ddl = document.getElementById(\"ClientSelect\");";
+              echo "ddl.onchange = function(){";
+              //Get the drop down
 
-            //Get the client index selected in the drop down
-            echo "var selectedValue = ddl.value;";
+              //Get the client index selected in the drop down
+              echo "var selectedValue = ddl.value;";
 
-            //echo "console.log(selectedValue);";
-            echo "let userArray = [];";
-            //Loop through all form containers and set all to be invisible
-            $loopI = $tempI - 1;
-            while ($loopI >= 0) {
-              echo "let user{$clientsIndex[$loopI]} = document.getElementById('user{$clientsIndex[$loopI]}-form-container');";
-              echo "user{$clientsIndex[$loopI]}.className = 'form-hidden';";
-              echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
-              $loopI--;
+              //echo "console.log(selectedValue);";
+              echo "let userArray = [];";
+              //Loop through all form containers and set all to be invisible
+              $loopI = $tempI - 1;
+              while ($loopI >= 0) {
+                echo "let user{$clientsIndex[$loopI]} = document.getElementById('user{$clientsIndex[$loopI]}-form-container');";
+                echo "user{$clientsIndex[$loopI]}.className = 'form-hidden';";
+                echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
+                $loopI--;
+              }
+
+              echo "if(selectedValue == \"blank\"){";
+              echo "return false;";
+              echo "}";
+              //Set required
+              //echo "document.getElementById(myContainer.className) = form-container;";
+
+              // echo "for (let i = 0; i < {$tempI}; i++) {";
+              //   echo "userArray[i].className = form-hidden;";
+              // echo "}";
+
+              // //Concatenating a string to be the name of the container needed
+              echo "let myContainer = 'user';";
+              echo "myContainer += selectedValue;";
+              echo "myContainer += '-form-container';";
+              //Making the container visable
+              echo "document.getElementById(myContainer).className = 'form-container';";
+
+              //echo "console.log(\"something, please help\");";
+              //echo "console.log(selectedValue);";
+
+              echo "return false;";
+              echo "}";
+              echo "</script>";
             }
-
-            echo "if(selectedValue == \"blank\"){";
-            echo "return false;";
-            echo "}";
-            //Set required
-            //echo "document.getElementById(myContainer.className) = form-container;";
-
-            // echo "for (let i = 0; i < {$tempI}; i++) {";
-            //   echo "userArray[i].className = form-hidden;";
-            // echo "}";
-
-            // //Concatenating a string to be the name of the container needed
-            echo "let myContainer = 'user';";
-            echo "myContainer += selectedValue;";
-            echo "myContainer += '-form-container';";
-            //Making the container visable
-            echo "document.getElementById(myContainer).className = 'form-container';";
-
-            //echo "console.log(\"something, please help\");";
-            //echo "console.log(selectedValue);";
-
-            echo "return false;";
-            echo "}";
-            echo "</script>";
-          }
             ?>
 
 
@@ -293,13 +291,12 @@ include "authPHP.php";
       </div>
     </div>
   </div>
-</div>
 
-<footer>
+
   <?php
   include "footer.php";
   ?>
-</footer>
+
   <!-- <div class="SecndContent">-->
   <!--- Place addditonal content below --->
   <!-- <img src="https://via.placeholder.com/500x400" alt="">
