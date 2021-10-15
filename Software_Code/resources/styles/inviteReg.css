@@ -1,0 +1,31 @@
+#inviteRegImg {
+    width: 500px;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    #inviteRegImg {
+        width: 90vw;
+    }
+    #loginBox {
+        overflow: auto;
+        padding: 0;
+    }
+    .form-control {
+        width: auto;
+    }
+    #signUpReason {
+        word-break: break-word;
+    }
+    .form-submit {
+        width: auto;
+    }
+    .form-container {
+        width: auto;
+    }
+}

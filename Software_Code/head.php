@@ -14,6 +14,7 @@
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <link href="./resources/styles/footer.css" rel="stylesheet" type="text/css" />
     <link href="./resources/styles/header.css" rel="stylesheet" type="text/css" />
+    
     <link rel="manifest" href="manifest.webmanifest">
     <meta name="theme-color" content="#f98913">
     <link rel="apple-touch-icon" href="./resources/images/maskable_icon.png">

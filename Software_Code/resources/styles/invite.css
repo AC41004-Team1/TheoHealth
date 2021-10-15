@@ -1,0 +1,32 @@
+#invite-content {
+    text-align: center;
+    justify-content: center;
+    margin: 5%;
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 100%;
+}
+
+#copy-link>* {
+    background-color: #0297a2;
+    padding: 1em;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: .75em;
+    width: 100%;
+}
+
+#copy-link {
+    /* overflow: hidden; */
+}
+
+#qrcode {
+    text-align: center;
+}
+
+#qrcode>img {
+    margin-left: auto;
+    margin-right: auto;
+}
