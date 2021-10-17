@@ -1,52 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./resources/styles/general.css">
-    <link rel="manifest" href="manifest.webmanifest">
-    <title>You are offline</title>
+<!-- page for if someone tries to access the website while offline -->
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="./resources/styles/general.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>You are offline</title>
 
-    <!-- Inline the page's stylesheet. -->
-  </head>
-  <body>
-    <h1>You are offline</h1>
+  <!-- Inline the page's stylesheet. -->
+</head>
 
-    <p>Click the button below to try reloading.</p>
-    <button type="button">⤾ Reload</button>
+<body>
+  <h1>You are offline</h1>
 
-    <!-- Inline the page's JavaScript file. -->
-    <script>
-      // Manual reload feature.
-      document.querySelector("button").addEventListener("click", () => {
-        window.location.reload();
-      });
+  <p>Click the button below to try reloading.</p>
+  <button type="button">⤾ Reload</button>
 
-      // Listen to changes in the network state, reload when online.
-      // This handles the case when the device is completely offline.
-      window.addEventListener('online', () => {
-        window.location.reload();
-      });
+  <!-- Inline the page's JavaScript file. -->
+  <script>
+    // Manual reload feature.
+    document.querySelector("button").addEventListener("click", () => {
+      window.location.reload();
+    });
 
-      // Check if the server is responding and reload the page if it is.
-      // This handles the case when the device is online, but the server
-      // is offline or misbehaving.
-      async function checkNetworkAndReload() {
-        try {
-          const response = await fetch('.');
-          // Verify we get a valid response from the server
-          if (response.status >= 200 && response.status < 500) {
-            window.location.reload();
-            return;
-          }
-        } catch {
-          // Unable to connect to the server, ignore.
+    // Listen to changes in the network state, reload when online.
+    // This handles the case when the device is completely offline.
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+
+    // Check if the server is responding and reload the page if it is.
+    // This handles the case when the device is online, but the server
+    // is offline or misbehaving.
+    async function checkNetworkAndReload() {
+      try {
+        const response = await fetch('.');
+        // Verify we get a valid response from the server
+        if (response.status >= 200 && response.status < 500) {
+          window.location.reload();
+          return;
         }
-        window.setTimeout(checkNetworkAndReload, 2500);
+      } catch {
+        // Unable to connect to the server, ignore.
       }
+      window.setTimeout(checkNetworkAndReload, 2500);
+    }
 
-      checkNetworkAndReload();
-    </script>
-  </body>
+    checkNetworkAndReload();
+  </script>
+</body>
+
 </html>

@@ -1,6 +1,8 @@
 <?php
 include "head.php";
 include "checkSigninPHP.php";
+
+//Variables to set tags if a user logs in with incorrect username or password
 if (isset($_SESSION['failedUsername']) == false) {
   $_SESSION['failedUsername'] = 0;
 }
@@ -21,6 +23,7 @@ if (isset($_SESSION['failedPassword']) == false) {
 </style>
 
 <script>
+  //javascript to swap between login and registration
   function swapSignIn(e) {
     let signup = document.getElementById('signup-form-container')
     let signin = document.getElementById('signin-form-container')
@@ -34,12 +37,14 @@ if (isset($_SESSION['failedPassword']) == false) {
 </head>
 
 <body>
-  <header >
+  <!-- header -->
+  <header>
     <div class="leftContainer">
       <img src="./resources/images/theoLogo.png" alt="" style="height:1em; width :auto;">
       <h1 class="text-left">Login</h1>
     </div>
   </header>
+  <!-- login -->
   <div id="loginBox" class="form-container">
     <a href="#" style="font-size: 0.75em; " class="link-primary" onclick="swapSignIn(this)">Not Registered?</a>
     <div class="left-half" style="padding:0" style="margin-bottom:1px;">
@@ -51,6 +56,7 @@ if (isset($_SESSION['failedPassword']) == false) {
             <input type="text" name="username" id="username" class="form-control" placeholder="Enter username" style="width: 250px">
             <span class="help-block" style="color:red">
               <?php
+              //if user tried to log in with an incorrect username
               if ($_SESSION['failedUsername'] == true) {
                 echo "User Not Found!";
                 $_SESSION['failedUsername'] = 0;
@@ -62,6 +68,7 @@ if (isset($_SESSION['failedPassword']) == false) {
             <input type="password" name="password" id="password" class="form-control" placeholder="Enter password" style="width: 250px">
             <span class="help-block" style="color:red">
               <?php
+              //if user tried to log in with an incorrect username
               if ($_SESSION['failedPassword'] == true) {
                 echo "Incorrect Password!";
                 $_SESSION['failedPassword'] = 0;
@@ -74,6 +81,7 @@ if (isset($_SESSION['failedPassword']) == false) {
           </div>
         </form>
       </div>
+      <!-- Registration -->
       <div id="signup-form-container" class="form-hidden">
         <form action="registrationPHP.php" method="post">
           <div class="form-group" id="form-2-cols">

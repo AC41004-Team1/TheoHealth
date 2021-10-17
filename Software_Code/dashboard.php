@@ -1,16 +1,16 @@
 <?php
+//Include all things that are needed in each head and redirect people who aren't logged in
 include "head.php";
 include "authPHP.php";
 
 ?>
 <title>Dashboard</title>
 
+<!-- CSS used -->
 <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/dashboard/">
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"> </script>
 <link href="./resources/styles/dashboard.css" rel="stylesheet" type="text/css" />
-
 <link rel="stylesheet" href="./resources/styles/layout.css">
 
 <?php
@@ -22,36 +22,29 @@ if (isset($_POST['userToDelete'])) {
   $query = "CALL deleteUser(\"{$deletedUser}\")";
   $result = $connection->query($query);
   closeCon($connection);
-
-  $connection = openCon();
-  $query = "CALL deleteUser(\"{$deletedUser}\")";
-  $result = $connection->query($query);
-  closeCon($connection);
 }
 ?>
 </head>
 
 <body>
-
   <?php
+  //Make the page header appear
   include "header.php";
   ?>
 
-  <!-- Mainbody of the web application--->
+  <!-- Make the title card with users name --->
   <div id="dashboard-content">
     <div class="jumbotron">
       <h1 class="text-center">Welcome Back <?php echo $_SESSION['userInfoArray'][0]; ?></h1>
-      <!--<hr class="my-4">-->
-      <!--<p class="lead">You could place something here</p>-->
     </div>
 
     <div class="MainContent">
       <div class="column">
-
-        <!-- Replace with actual graph--->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <!-- Title of the graph --->
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <?php
+            //changes the graph title depending on who logs in
             if ($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT") {
               echo "<h1 class=\"h2\">Client Last Results</h1>";
             } else {
@@ -59,10 +52,13 @@ if (isset($_POST['userToDelete'])) {
             }
             ?>
           </div>
+          <!-- displays the graph from the graph file--->
           <div class="chartBox">
-            <canvas id="myChart" width="900" height="500"><?php include "dashboardgraph.php"; ?></canvas>
+            <canvas id="myChart" width="900" height="500"><?php include "dashboardGraph.php"; ?></canvas>
           </div>
+
           <?php
+          //If the user is a physio or personal trainer display the generate invite link button
           if ($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT") {
             echo "<hr>";
             echo "<div id=\"inviteLink\">";
@@ -72,14 +68,14 @@ if (isset($_POST['userToDelete'])) {
             echo "</div>";
           }
           ?>
-
       </div>
+
       <div class="rightColumn">
         <div class="row">
           <div class='db-nav'>
             <!--- This will need to change for physicist --->
             <?php
-            //Gets a users session
+            //Gets all of a users session
             function getSessions($userIndex)
             {
               $con = openCon();
@@ -92,10 +88,12 @@ if (isset($_POST['userToDelete'])) {
             //function to print the time in a readable fashion rather than large number
             function printTime($timeGiven)
             {
+              //Split the integer into an array of chars
               $durArray = str_split($timeGiven, 1);
               $counter = strlen($timeGiven);
               $wentIn = false;
 
+              //Display the number of hours
               while ($counter > 4) {
                 echo "{$durArray[strLen($timeGiven) -$counter]}";
                 $counter = $counter - 1;
@@ -106,6 +104,7 @@ if (isset($_POST['userToDelete'])) {
                 $wentIn = false;
               }
 
+              //Display number of mins
               while ($counter > 2) {
                 echo "{$durArray[strLen($timeGiven) -$counter]}";
                 $counter = $counter - 1;
@@ -116,9 +115,11 @@ if (isset($_POST['userToDelete'])) {
                 $wentIn = false;
               }
 
+              //Display number of seconds
               if ($counter > 0) {
                 $valueString = $durArray[strLen($timeGiven) - $counter];
                 $valueString .= $durArray[strLen(($timeGiven) - $counter) - 1];
+                //If the number of seconds is over 59 then minus 40 because the number is works as if it adds to a next column at 100 rather than at 60.
                 $valueInt = intval($valueString);
                 if ($valueInt > 59) {
                   $valueInt = $valueInt - 40;
@@ -137,6 +138,7 @@ if (isset($_POST['userToDelete'])) {
               echo "<div class=\"card-dash\">";
               echo "<div class=\"card\" style=\"width: 96%;\">";
               echo "<div class=\"card-body\">";
+              //Using a form for the session buttons so that we can post the session index into the session page
               echo "<form action=\"./vis.php\" method=\"post\">";
               echo "<button name=\"sessionIndexIn\" class=\"btn btn-outline-primary\" type=\"submit\" value=\"{$sessionIndex}\"><h1> Session {$sessionNum} </h1></button>";
               echo "</form>";
@@ -149,7 +151,7 @@ if (isset($_POST['userToDelete'])) {
               echo "</div>";
             }
 
-            //Start of section
+            //Start of right column
             $role = $_SESSION['userInfoArray'][2];
             //For athletes and injured athletes
             if ($role == "A" || $role == "IA") {
@@ -158,15 +160,17 @@ if (isset($_POST['userToDelete'])) {
               //If they have done a session before
               $row = $result->fetch_object();
               if (isset($row->DateTaken)) {
+                //Print all of the users sessions
                 echo "<h1 style = \"float:left;\">What session would you like to view?</h1>";
                 printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                 while ($row = $result->fetch_object()) {
                   printDashCard("{$row->SessionIndex}", "{$row->SessionNum}", "{$row->DateTaken}", "{$row->Duration}");
                 }
               } else {
+                //If they haven't done a session yet print message
                 echo "<h1>Come back here once you've started your training.</h1>";
               }
-              //For physio and personal trainer
+            //For physio and personal trainer
             } else {
               //Get client list
               $conn = openCon();
@@ -176,26 +180,31 @@ if (isset($_POST['userToDelete'])) {
               closeCon($conn);
               $clientsIndex = [];
 
-              //If there are clients
+              //If there have clients
               if ($result->num_rows > 0) {
+                //Create a drop down menu where the PT/P can select any of their clients
                 echo "<div id=\"DropDownBox\">Select a Client:  <select id=\"ClientSelect\" name = \"Client\"></div>";
                 echo "<option id=\"dropDownOption\" value=\"blank\"> pick here </option>";
+                //Create a drop down option for all the clients with the value being their user index
                 while ($row = $result->fetch_object()) {
                   echo "<option id=\"dropDownOption\" value=\"{$row->UserIndex}\"> {$row->FirstName} {$row->LastName} </option>";
+                  //Add all the clients indexes to an array
                   array_push($clientsIndex, $row->UserIndex);
+                  //Use i to keep track of the amount of clients
                   $i++;
-                  //echo "\"{$row -> UserIndex}\" | \"{$row -> FirstName}\" | \"{$row -> LastName}\" | \"{$row -> Username}\"";
                 }
                 echo "</select><hr>";
 
                 $tempI = $i;
 
+                //For every client
                 for ($i--; $i >= 0; $i--) {
-                  //Call Query to get results
+                  //Call Query to get all of that clients sessions
                   $result = getSessions($clientsIndex[$i]);
-                  //If they have done a session before
+                  //If they have done a session before create a container around all of their session cards being named after their user index
                   echo "<div id=\"user{$clientsIndex[$i]}-form-container\" class=\"form-hidden\">";
                   $nothingThere = false;
+                  //For all of the users sessions create session cards (like done for the client)
                   $row = $result->fetch_object();
                   if (isset($row->DateTaken)) {
                     echo "<h4 class=\"text-center\">What session would you like to view?</h4>";
@@ -213,7 +222,7 @@ if (isset($_POST['userToDelete'])) {
                   } else {
                     echo "<h1>This client hasn't started training yet.</h1>";
                   }
-                  //Delete user button
+                  //At the end of the session list add a delete user button that runs the PHP at the top of this page
                   echo "<form action=\"#\" method=\"post\">";
                   echo "<button name=\"userToDelete\" class=\" btn btn-outline-primary deleteBtn\" id=\"deleteBtn\" type=\"submit\" value=\"{$clientsIndex[$i]}\">Delete User</button>";
                   echo "</form>";
@@ -228,33 +237,24 @@ if (isset($_POST['userToDelete'])) {
               //Java script for the drop down menu
               echo "<script>";
 
+              //get drop down list
               echo "var ddl = document.getElementById(\"ClientSelect\");";
+              //Upon the drop down list changing run this function
               echo "ddl.onchange = function(){";
-              //Get the drop down
-
               //Get the client index selected in the drop down
               echo "var selectedValue = ddl.value;";
-
-              //echo "console.log(selectedValue);";
-              echo "let userArray = [];";
-              //Loop through all form containers and set all to be invisible
+              //Loop through all form containers containing users sessions and set all to be invisible
               $loopI = $tempI - 1;
               while ($loopI >= 0) {
                 echo "let user{$clientsIndex[$loopI]} = document.getElementById('user{$clientsIndex[$loopI]}-form-container');";
                 echo "user{$clientsIndex[$loopI]}.className = 'form-hidden';";
-                echo "userArray[{$loopI}] = user{$clientsIndex[$loopI]};";
                 $loopI--;
               }
 
+              //If the user selected no user then stop here
               echo "if(selectedValue == \"blank\"){";
-              echo "return false;";
+                echo "return false;";
               echo "}";
-              //Set required
-              //echo "document.getElementById(myContainer.className) = form-container;";
-
-              // echo "for (let i = 0; i < {$tempI}; i++) {";
-              //   echo "userArray[i].className = form-hidden;";
-              // echo "}";
 
               // //Concatenating a string to be the name of the container needed
               echo "let myContainer = 'user';";
@@ -262,44 +262,19 @@ if (isset($_POST['userToDelete'])) {
               echo "myContainer += '-form-container';";
               //Making the container visable
               echo "document.getElementById(myContainer).className = 'form-container';";
-
-              //echo "console.log(\"something, please help\");";
-              //echo "console.log(selectedValue);";
-
               echo "return false;";
               echo "}";
               echo "</script>";
             }
             ?>
-
-
-
-            <!--<div class="card-dash">
-                   <div class="card" style="width: 40rem;">
-                        <div href="#" class="card-body">
-                          <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                          <h5 class="card-title">Import new data from an external file</h5>
-                          <h6 class="card-subtitle mb-2 text-muted">Last time you exercise was: </h6> -->
-            <!--Please Insert data of last data--->
-            <!--
-                        </div>
-                    </div>
-                 </div> -->
-
           </div>
         </div>
       </div>
     </div>
   </div>
-
-
   <?php
+  //Add the footer to the page
   include "footer.php";
   ?>
-
-  <!-- <div class="SecndContent">-->
-  <!--- Place addditonal content below --->
-  <!-- <img src="https://via.placeholder.com/500x400" alt="">
-    </div> -->
 
 </body>

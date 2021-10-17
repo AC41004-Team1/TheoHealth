@@ -1,5 +1,6 @@
 <?php
 //This function was taken from user Rakesh Sharma on stackoverflow and modifed for use in our program.
+//Generates a unique string that can be used to uniquely identify a link
 function getGUID(){
     if (function_exists('com_create_guid')){
         return com_create_guid();
@@ -12,7 +13,4 @@ function getGUID(){
         return $uuid;
     }
 }
-
-//$test = getGUID();
-//echo $test;
 ?>

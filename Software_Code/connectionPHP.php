@@ -1,4 +1,5 @@
 <?php
+//Function to open a connection to the server and return that to the variable the method is set to.
   function openCon()
   {
     //Credentials
@@ -16,7 +17,7 @@
 
     return $conn;
   }
-
+//Closes a connection that is passed into this method
   function closeCon($conn)
   {
     $conn->close();

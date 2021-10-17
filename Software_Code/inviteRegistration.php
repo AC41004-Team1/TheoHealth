@@ -12,16 +12,19 @@
 </head>
 
 <?php
+//Get the GUID passed in
  $guid = $_GET['ID'];
 ?>
 
 <body>
+  <!-- creates the header of the page -->
   <header style="height:200px;">
     <div class="leftContainer">
       <img src="./resources/images/theoLogo.png" alt="" id = "inviteRegImg">
       <h1 class="text-left">Registration</h1>
         <h2 style="font-size:24px">You have been invited by
         <?php
+          //Grabs from the database the user who they were invited by and displays their username
           $connection = openCon();
           $SQLInput = "CALL getUsernameFromGUID(\"{$guid}\")";
           $queryOutput2 = $connection->query($SQLInput);
@@ -32,6 +35,8 @@
       </h2>
     </div>
   </header>
+
+  <!-- The same form that was in the registration part of login and registration but now with a reason-->
   <div id="loginBox" class="form-container">
     <div class="left-half" style="padding:0" style="margin-bottom:1px;" style="margin-top:40px">
 
@@ -90,10 +95,11 @@
           <div class="form-container form-submit">
             <label for="signUpReason">Reason for sign up:</label>
             <input type="text" name="signUpReason" id="signUpReason" class="form-control" placeholder="Enter reason for sign up" >
+            <!-- A hidden form element to also pass in the GUID with the rest of the data -->
             <input type="hidden" name="GUID" id="GUID" class="form-control" value="<?php echo $guid; ?>" >
+            
             <button class="btn btn-outline-primary" type="submit" name="submitsignup" style="margin-top: 10px;">Sign up</button>
           </div>
-
 
       </div>
       </form>

@@ -2,15 +2,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
 
-<!-- Insert PHP Database connect here -->
-
-
-
 <?php
-
-
+//Store the user index
 $userIndex = $_SESSION["userInfoArray"][1];
-
 ?>
 
 
@@ -29,15 +23,16 @@ $userIndex = $_SESSION["userInfoArray"][1];
 
   <?php
   try {
+    //If it is a P or PT accessing this page then select an appropriate user
     if($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT"){
       $userIndex = 1;
     }
     $connection = openCon();
-    // Change first para to client thing;
+    // Get the info needed from the database
     $queryInput = "CALL getClientMax(\"{$userIndex}\")";
     $result = $connection->query($queryInput);
 
-
+    //If the user has results then save them to arrays
     if ($result->num_rows > 0) {
       $reading = array();
       $session = array();
@@ -67,18 +62,19 @@ $userIndex = $_SESSION["userInfoArray"][1];
 
 <script>
 
-
+  //Read in the arrays from the PHP to the Javascript
   const reading = <?php echo json_encode($reading); ?>;
   const session = <?php echo json_encode($session); ?>;
   const sensornumber = <?php echo json_encode($sensornumber); ?>;
 
-
+  //Log the arrays in the console
   console.log(reading[0]);
   console.log(session);
   console.log(sensornumber);
 
 
   const data = {
+    //Label and create all 4 lines, corresponding to the 4 muscles
     labels: [1], // Put times here but we need to edit it Manually put in time labels to fix this problem
     datasets: [{
         maxBarThickness: 250,
@@ -146,8 +142,8 @@ $userIndex = $_SESSION["userInfoArray"][1];
     options: {
       plugins: {
         title: {
-          display: true,
-          text: 'Great'
+          display: false,
+          text: ''
         },
       },
       responsive: true,
@@ -162,7 +158,6 @@ $userIndex = $_SESSION["userInfoArray"][1];
     }
   };
   //render
-
   const myChart = new Chart(
     document.getElementById('myChart'),
     config
