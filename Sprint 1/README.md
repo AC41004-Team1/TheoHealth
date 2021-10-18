@@ -71,7 +71,7 @@ Very short meeting due to a Management meeting starting at 10AM, most of the tea
 ---
 ## Day [4] - Meeting Summary
 The Chair for this meeting was **Taha Kashaf**
-
+Meeting started at 11:00AM
 
 ### Members Present:
 Taha, Craig, Jesse, Euan, Elliot, Christy
@@ -83,6 +83,13 @@ William
 
 
 ### Summary of Conversation:
+Had an in-depth meeting on the marking scheme and decided on what was missing and our next steps. Most of the team seemed content with how we're moving.
+
+ - Went over the marking scheme to discuss what we had left.
+ - Looked at what long term goals for the app.
+ - Did some additional research on applications similar to the app.
+ - Planning to make some additional/Update wireframes for the new iterations.
+ - Start to continue with work when we get home. 
 
 ---
 
@@ -100,5 +107,15 @@ William
 
 
 ### Summary of Conversation:
+
+We did some work yesterday related to the in-person meeting we had. Today we'll continue with the we planned.
+
+ - Christy: Working on 3d visualization for snapping camera. May have issues move to correct vectors
+ - Craig: More work on PHP dashboard fixing minor and some major bugs
+ - Elliot: Start up with a plan on the progressive web app and what changes will need to be made for the future
+ - Euan: Work with craig on the dashboard with the comment section
+ - Griff: Fix invite bug with GUID and should be completed overall.
+ - Jesse: Fix invite bug with GUID and should be completed overall.
+
 
 ---
