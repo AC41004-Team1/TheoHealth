@@ -82,7 +82,8 @@ Short meeting at the start of the everyone discussed what they needed to do for 
  - Prepare powerpoint
  - Write basic script
  - Decided to meet earlier at 12:00 to do a short rehearsal but have normal meeting time for additional prep
----
+ - Decided not to use live demo because more can go wrong due to potential problems may appear.
+
 
 ## Day [5] - Meeting Summary
 The Chair for this meeting was **Taha Kashaf**
