@@ -116,13 +116,18 @@ export default class BodyVis {
         this.frameCamera()
     }
     lookBack() {
-            this.frameCamera([0, 0, -1])
-        }
-        //helper function to more reliably get the mouse location
+        this.frameCamera([0, 0, -1])
+    }
+
+    //helper function to more reliably get the mouse location
     getMouseLocationWithEvent(event) {
         return {
-            x: ((event.clientX - (this.renderer.domElement.getBoundingClientRect().left + this.renderer.domElement.scrollLeft)) / this.renderer.domElement.width) * 2 - 1,
-            y: -((event.y - (this.renderer.domElement.getBoundingClientRect().top + this.renderer.domElement.scrollTop)) / this.renderer.domElement.height) * 2 + 1
+            x: ((event.clientX - (this.renderer.domElement.getBoundingClientRect().left +
+                    this.renderer.domElement.scrollLeft)) /
+                this.renderer.domElement.width) * 2 - 1,
+            y: -((event.y - (this.renderer.domElement.getBoundingClientRect().top +
+                    this.renderer.domElement.scrollTop)) /
+                this.renderer.domElement.height) * 2 + 1
         }
     }
 
@@ -146,33 +151,33 @@ export default class BodyVis {
             }
 
         })
+
         this.canvas.addEventListener('mousemove', (event) => {
             event.preventDefault();
+            // get the mouse location more reliably // incl offsets to doument 
             this.mouse = this.getMouseLocationWithEvent(event)
+
             this.raycaster.setFromCamera(this.mouse, this.camera);
+
             var intersects = this.raycaster.intersectObjects(this.scene.children, true);
-            let intersectName = ""
-            if (intersects.length > 0) {
-                intersectName = intersects[0].object.name
-            }
+
+            let intersectName = intersects.length > 0 ? intersects[0].object.name : ""
+
             Object.keys(this.sensorAreas).forEach((e) => {
 
                 if (intersectName == this.sensorAreas[e].obj.name) {
                     this.sensorAreas[e].colReset = true // we need to change this colour back 
                     this.changeColour(this.sensorAreas[e].obj, "black")
                 } else {
+                    // only change when needed to speed up rendering 
                     if (this.sensorAreas[e].colReset && this.sensorAreas[e].col) {
-                        this.changeColour(this.sensorAreas[e].obj, this.sensorAreas[e].col) // change colour back 
+                        // change colour back 
+                        this.changeColour(this.sensorAreas[e].obj, this.sensorAreas[e].col)
                         this.colReset = false // we don't need to change cgain 
-
                     }
-
                 }
             })
-
         })
-
-
     }
     load() {
         const gltfLoader = new GLTFLoader();
