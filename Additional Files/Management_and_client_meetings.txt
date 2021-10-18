@@ -1,3 +1,28 @@
+Management Meetings
+
+27/09/21
+We are choosing for an agile approach.
+They recommended us to complete 2d first before 3D since it could be a bigger task than expected 
+We expected a real time data flow, but we can just simulate it ourselves or just upload CSV’s.
+Talked about a missing group member and whether they would continue with the group project with us
+Asked us how we were feeling about the project.
+Talked about branding but needed to wait until first client meeting.
+
+04/10/21
+Clarify the way the data was simulated or was real time only simulate.
+Gained clarification of ethics approval – simple sign the sheet on MyDundee
+We don’t need to moderate messages for comment sections.
+IP is ours and not the Uni if we needed help just ask.
+
+11/10/21
+Don’t recommend giving a live link to people because they might get distracted during presentation
+We can’t use google form need to proper ethics forms 
+Advised against recording voice 
+Presentation should only take 10 mins rest for questions.
+1-3 people present is perfect
+
+
+Client Meetings
 4/10/21
 We can use branding
 Loves paint - Current placeholders
@@ -13,7 +38,7 @@ Can add mock data
 Taking data and present 
 We're getting logo’s on team.
 
-18/10/21
+11/10/21
 Top Bar color change - Be colour friendly
 Graph: Percentage activated? Out of 900 - Show max activation per session
 Per muscle - Show muscle
