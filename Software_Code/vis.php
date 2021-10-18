@@ -1,16 +1,11 @@
 <?php include "head.php";
 include "authPHP.php";
 
-
-
 // Check if the form is submitted
 if (isset($_POST['sessionIndexIn'])) {
   //retrieve the form data by using the element's name attributes value as key
   $sessionIndex = $_POST['sessionIndexIn'];
   $_SESSION["userSession"] = $sessionIndex;
-} else {
-  //return to dashboard
-  // header("Location: dashboard.php");
 }
 ?>
 
@@ -24,9 +19,9 @@ if (isset($_POST['sessionIndexIn'])) {
 // Check if the form is submitted
 if (isset($_POST['submitMessage'])) {
   //retrieve the form data by using the element's name attributes value as key
-  //echo "Message sent";
   $sessionIndex = $_POST['submitMessage'];
   $theMessage = $_POST['messageSent'];
+  //Add the comment to the database
   $connection = openCon();
   $query = "CALL addComment('{$sessionIndex}','{$_SESSION['userInfoArray'][1]}','{$theMessage}')";
   $result = $connection->query($query);
@@ -38,18 +33,18 @@ if (isset($_POST['submitMessage'])) {
 
 <body>
   <?php include "header.php"; ?>
+
   <div id="vis-content">
-    <!-- title -->
+    <!-- the title -->
     <div class="leftContainer">
       <h1 class="text-left">Visualisation</h1>
     </div>
 
+    <!-- the 3D model link and image -->
     <div class=form-container>
-      <!-- Body Diagram -->
       <div class="right-half" style="margin-bottom:1px;">
         <div class="card" id="cardID">
           <div class="left-half" id="leftHalfID">
-            <!-- insert body model -->
             <img src="./resources/images/silverGuy1.jpg" alt="">
           </div>
           <div class="right-half" id="rightHalfID">
@@ -58,6 +53,7 @@ if (isset($_POST['submitMessage'])) {
               <p class="card-text">Click below to see your results in 3D.</p>
               <form action="session.php" method="post">
                 <?php
+                //A form with a hidden element to send in the session index to the 3D model page
                 echo "<input type=text value= \"{$sessionIndex}\" name = 'sessionIndexIn' class = \"form-hidden\" ></input>";
                 echo "<button class=\"btn btn-outline-primary\" type=\"submit\" name=\"submitMessage\" >View</button>";
                 ?>
@@ -67,13 +63,11 @@ if (isset($_POST['submitMessage'])) {
         </div>
       </div>
 
-
+      <!-- the graph -->
       <div class="left-half" style="margin-bottom:1px;">
         <div class="card">
-          <!-- add graph in here -->
-
-
           <div class="chartBox" style="padding: 20px;">
+            <!-- import graph from other php page -->
             <canvas id="myChart"><?php include "visualize.php"; ?></canvas>
           </div>
           <div class="card-body">
@@ -85,15 +79,15 @@ if (isset($_POST['submitMessage'])) {
     </div>
 
     <hr>
-    <div class=form-container>
 
+    <!-- the comment section -->
+    <div class=form-container>
       <?php
       echo "<div class=\"left-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
       echo "<div class=\"card\">";
-
       //Bool to see if user can send another message
       $alreadySent = false;
-      //Get gets the comments
+      //Gets the comments
       $conn = openCon();
       $SQLInput = "CALL getComments(\"{$sessionIndex}\")";
       $result = $conn->query($SQLInput);
@@ -133,14 +127,17 @@ if (isset($_POST['submitMessage'])) {
         echo "</div>";
       }
       echo "</div></div>";
-      echo "<div class=\"right-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
+
       //For sending a message
+      echo "<div class=\"right-half\" style=\"padding: 50px;\" style=\"margin-bottom:1px;\">";
       if ($alreadySent == false) {
         echo "<div class=\"form-group\">";
         //Create form with text area and
         echo "<form action=\"#\" method=\"post\">";
         echo "<label class=\"card-title\" for=\"messageSent\">Enter Feedback:</label>";
+        //Text area for collecting the message
         echo "<textarea class=\"form-control\" name = \"messageSent\" rows=\"3\"></textarea>";
+        //Hidden text input for sending session index
         echo "<input type=text value= \"{$sessionIndex}\" name = 'sessionIndexIn' class = \"form-hidden\" ></input>";
         echo "<button class=\"btn btn-outline-primary\" type=\"submit\" name=\"submitMessage\" value = \"{$sessionIndex}\" style=\"margin-top: 10px;\">Send feedback</button>";
         echo "</form>";
@@ -150,11 +147,8 @@ if (isset($_POST['submitMessage'])) {
       ?>
     </div>
   </div>
-  <!-- if needed for bootstrap layout again -->
-  <!--  id="exampleFormControlTextarea1" rows="3"></textarea>  -->
 
   <?php include "footer.php" ?>
-
 
 </body>
 

@@ -20,23 +20,25 @@ include "authPHP.php";
         $_SESSION["userSession"] = $sessionIndex;
     }
     try {
-
         $times = array();
         $readings = array();
+        //Grab the sensor data for each sensor and push to appropriate arrays
         for ($i = 1; $i <= 4; $i++) {
+            //Run query to get data
             $connection = openCon();
-
             $queryString = "CALL getClientDataWithSensor(\"{$sessionIndex}\",{$i})";
             $result = $connection->query($queryString);
-            //var_dump($result);
-            //echo $queryString;
+
+            //If there is data
             if ($result->num_rows > 0) {
                 $curTimes = array();
                 $curReadings = array();
+                //Save all the data to arrays
                 while ($row = $result->fetch_object()) {
                     $curTimes[] = $row->TimeStamp;
                     $curReadings[] = $row->Reading;
                 }
+                //Concatenate the array for this sensor to the array for all sensors
                 array_push($times, $curTimes);
                 array_push($readings, $curReadings);
             }
@@ -49,15 +51,19 @@ include "authPHP.php";
     }
 
     ?>
+
     <script type="module" defer>
+        //grab the sensor reading arrays into javascript from PHP
         const readings = <?php echo json_encode($readings); ?>;
         const times = <?php echo json_encode($times); ?>;
         console.log(readings);
         console.log(times);
+        //Initalise the player
         import initPlayer from "./resources/scripts/session.js"
 
-
+        //Pass in a time as a string and returns it as a date
         function createTime(timeString) {
+            //splits apart time given by the : and saves each part to a new date
             let timeInts = timeString.split(':').map((e) => {
                 return parseInt(e)
             })
@@ -67,6 +73,8 @@ include "authPHP.php";
             date.setSeconds(timeInts[2])
             return date
         }
+
+        //Define variables
         const sensorValues = {}
         const sensorNames = [
             "rightQuad",
@@ -74,16 +82,18 @@ include "authPHP.php";
             "leftHamstring",
             "rightHamstring"
         ]
+
         times.forEach((timeArr, timeArrIndex) => {
             console.log(timeArrIndex);
             timeArr.forEach((time, timeIndex) => {
+                //If there is no sensor reading for a specific time set that reading to null
                 if (!sensorValues[time]) {
                     sensorValues[time] = {
                         readings: [],
                         date: createTime(time)
                     }
-
                 }
+                //Push the sensor name and value (with time) to the sensor values array
                 sensorValues[time].readings.push({
                     sensorName: sensorNames[timeArrIndex],
                     value: readings[timeArrIndex][timeIndex]
@@ -91,8 +101,10 @@ include "authPHP.php";
             })
         })
         console.log(sensorValues);
+        //Initialise the player with the correct sensor values and time
         initPlayer(sensorValues, times)
     </script>
+
     <?php
     include "header.php";
     ?>
@@ -101,6 +113,7 @@ include "authPHP.php";
             <div id="canvas-container">
                 <canvas style="width:100%"></canvas>
                 <svg style="display:none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Map" class="gen-by-synoptic-designer" viewBox="0 0 578 538" xml:space="preserve">
+                    <!-- define each part of the model -->
                     <polygon id="Left_Pec_Mayoris" title="" points="144,116,142,149,159,156,183,150,190,130,169,116" />
                     <polygon id="Right_Pec_Mayoris" title="" points="90,128,94,150,117,156,135,149,134,117,109,117" />
                     <polygon id="Left_Rectus_Abdominis" title="" points="155,159,159,171,160,205,160,241,155,255,152,269,143,278,142,221,141,179,142,154" />
@@ -170,6 +183,7 @@ include "authPHP.php";
                     <polygon id="PERONEALS" title="" points="390,484,395,521,390,528,387,518" />
                     <polygon id="PERONEALS" title="" points="504,482,499,521,503,528,508,517" />
                 </svg>
+                <!-- Swaps between 2D and 3D -->
                 <div id="swapDimensions">
                     <svg style="display: none" version="1.1" id="cube" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="209.291px" height="209.291px" viewBox="0 0 209.291 209.291" style="enable-background:new 0 0 209.291 209.291;" xml:space="preserve">
                         <g>
@@ -186,14 +200,17 @@ include "authPHP.php";
                     </svg>
                 </div>
             </div>
+
+            <!-- Creates buttons for looking at the front or back of the model -->
             <div id="controls">
                 <div id="front">Front</div>
                 <div id="back">Back</div>
-
             </div>
 
+            <!-- Time bar -->
             <div class="slidecontainer">
                 <label id="timeLabel" for="timeRange"></label>
+                <!-- boxes containing value of each muscle -->
                 <div id="readings">
                     <div id="leftQuad">
                         <span>Left Quad</span>
@@ -215,8 +232,9 @@ include "authPHP.php";
                 <input name="timeRange " type="range" min="0" max="100" value="0" class="slider" id="myRange">
                 <button id="play">Play </button>
             </div>
-
         </div>
+
+        <!-- The pages displayed depending on the muscle clicked -->
         <div id="model-interaction">
             <ul id="muscles">
                 <li class="leftQuad rightQuad" style="display: none">

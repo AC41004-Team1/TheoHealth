@@ -2,17 +2,9 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
 
-<!-- Insert PHP Database connect here -->
-
-
-
 <?php
-
-
 $userSession = $_SESSION["userSession"];
-
 ?>
-
 
 <html lang="en" dir="ltr">
 
@@ -23,11 +15,12 @@ $userSession = $_SESSION["userSession"];
 
 <body>
 
-<div class ="chartBox">
-  <canvas id="myChart"></canvas>
-</div>
+  <div class="chartBox">
+    <canvas id="myChart"></canvas>
+  </div>
 
   <?php
+  //Gets the sensor reading for each muscle and saves the reading and the time to an array named 1,2,3 or 4.
   try {
     $connection = openCon();
     // Change first para to client thing;
@@ -148,10 +141,6 @@ $userSession = $_SESSION["userSession"];
 
     die($e->getMessage());
   }
-
-
-
-
   ?>
 
   <div style="width: 20vw">
@@ -159,16 +148,14 @@ $userSession = $_SESSION["userSession"];
 </body>
 
 <script>
+  //grabs the time from muscle 1 from the PHP into the javascript
   var time1 = <?php echo json_encode($time1); ?>;
   time1.map((e) => {
     return new Date(e)
   });
 
-
-
-
   console.log(time1);
-
+  //grabs all the muscle readings from the PHP into the javascript
   const reading1 = <?php echo json_encode($reading1); ?>;
   const reading2 = <?php echo json_encode($reading2); ?>;
   const reading3 = <?php echo json_encode($reading3); ?>;
@@ -179,6 +166,7 @@ $userSession = $_SESSION["userSession"];
   console.log(reading3);
   console.log(reading4);
 
+  //Display all the data from each muscle, labeled correctly
   const data = {
     labels: time1, // Put times here but we need to edit it Manually put in time labels to fix this problem
     datasets: [{
@@ -231,9 +219,7 @@ $userSession = $_SESSION["userSession"];
 
   };
 
-
-  //config
-
+  //General graph configurations
   const config = {
     type: 'line',
     data,
@@ -249,7 +235,6 @@ $userSession = $_SESSION["userSession"];
     }
   };
   //render
-
   const myChart = new Chart(
     document.getElementById('myChart'),
     config

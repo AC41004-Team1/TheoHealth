@@ -58,16 +58,16 @@ export default function initPlayer(sensors) {
 
     function updateHeatMap(readings) {
         readings.readings.forEach((cur, i) => {
-            //update models
-            bodyVis.changeColourSensor(getHighlightColour(cur.value), cur.sensorName)
-            update2dSensor(cur.sensorName, cur.value)
+                //update models
+                bodyVis.changeColourSensor(getHighlightColour(cur.value), cur.sensorName)
+                update2dSensor(cur.sensorName, cur.value)
 
-            //update dashboard 
-            let valueBox = document.querySelector(`#readings #${cur.sensorName}`)
-            valueBox.style = `border-color: ${getHighlightColour(cur.value)}`
-            valueBox.querySelector(".value").innerText = cur.value;
-        })
-        //update label
+                //update dashboard 
+                let valueBox = document.querySelector(`#readings #${cur.sensorName}`)
+                valueBox.style = `border-color: ${getHighlightColour(cur.value)}`
+                valueBox.querySelector(".value").innerText = cur.value;
+            })
+            //update label
         timeLabel.innerText = `${readings.date.getHours()} : ${readings.date.getMinutes()} : ${readings.date.getSeconds().toString().length == 1 ? "0" + readings.date.getSeconds().toString() : readings.date.getSeconds().toString()}`
 
     }
@@ -77,11 +77,11 @@ export default function initPlayer(sensors) {
 
     //update range to be correct length with step of 1 
     let rangeSlider = document.querySelector(".slidecontainer input")
-    //play button functions 
+        //play button functions 
     let playButton = document.getElementById("play")
 
 
-    
+
     rangeSlider.min = 0;
     rangeSlider.max = Object.keys(sensors).length - 1
     rangeSlider.step = 1
@@ -91,7 +91,7 @@ export default function initPlayer(sensors) {
     }
     rangeSlider.onclick = (e) => {
         if (playButton.getAttribute("playing") === "t") {
-            var id = window.setTimeout(function () { }, 0);
+            var id = window.setTimeout(function() {}, 0);
             //loop through timeouts and destroy them all
             while (id--) {
                 window.clearTimeout(id);
@@ -105,11 +105,11 @@ export default function initPlayer(sensors) {
 
 
 
-    
+
     playButton.onclick = () => {
         //if playing we pause 
         if (playButton.getAttribute("playing") === "t") {
-            var id = window.setTimeout(function () { }, 0);
+            var id = window.setTimeout(function() {}, 0);
             //loop through timeouts and destroy them all
             while (id--) {
                 window.clearTimeout(id);
@@ -124,7 +124,7 @@ export default function initPlayer(sensors) {
         // starting to play
         playButton.setAttribute("playing", "t")
         playButton.innerText = "Pause"
-        //get the initial time to be used later
+            //get the initial time to be used later
         let initialTime = sensors[Object.keys(sensors)[0]].date
         for (let x = 0; x <= rangeSlider.max; x++) {
 
@@ -132,7 +132,7 @@ export default function initPlayer(sensors) {
             setTimeout(() => {
                 //update value 
                 rangeSlider.value = x
-                //updating value doesn't fire event so fire the event manually 
+                    //updating value doesn't fire event so fire the event manually 
                 updateHeatMap(sensors[Object.keys(sensors)[x]])
 
             }, curTime.getTime() - initialTime.getTime()); // timeout until the delta between initial time and this time 
