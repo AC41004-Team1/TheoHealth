@@ -170,7 +170,7 @@ if (isset($_POST['userToDelete'])) {
                 //If they haven't done a session yet print message
                 echo "<h1>Come back here once you've started your training.</h1>";
               }
-            //For physio and personal trainer
+              //For physio and personal trainer
             } else {
               //Get client list
               $conn = openCon();
@@ -253,7 +253,7 @@ if (isset($_POST['userToDelete'])) {
 
               //If the user selected no user then stop here
               echo "if(selectedValue == \"blank\"){";
-                echo "return false;";
+              echo "return false;";
               echo "}";
 
               // //Concatenating a string to be the name of the container needed

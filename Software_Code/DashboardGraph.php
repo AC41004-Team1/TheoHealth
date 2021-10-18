@@ -17,14 +17,14 @@ $userIndex = $_SESSION["userInfoArray"][1];
 
 <body>
 
-<div class ="chartBox">
-  <canvas id="myChart"></canvas>
-</div>
+  <div class="chartBox">
+    <canvas id="myChart"></canvas>
+  </div>
 
   <?php
   try {
     //If it is a P or PT accessing this page then select an appropriate user
-    if($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT"){
+    if ($_SESSION["userInfoArray"][2] == "P" || $_SESSION["userInfoArray"][2] == "PT") {
       $userIndex = 1;
     }
     $connection = openCon();
@@ -61,7 +61,6 @@ $userIndex = $_SESSION["userInfoArray"][1];
 
 
 <script>
-
   //Read in the arrays from the PHP to the Javascript
   const reading = <?php echo json_encode($reading); ?>;
   const session = <?php echo json_encode($session); ?>;
@@ -162,9 +161,6 @@ $userIndex = $_SESSION["userInfoArray"][1];
     document.getElementById('myChart'),
     config
   );
-
-
-
 </script>
 
 </html>

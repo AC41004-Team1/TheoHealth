@@ -3,7 +3,7 @@
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.1/papaparse.min.js"></script>
 
 <?php
-  $userSession = $_SESSION["userSession"];
+$userSession = $_SESSION["userSession"];
 ?>
 
 <html lang="en" dir="ltr">
@@ -15,9 +15,9 @@
 
 <body>
 
-<div class ="chartBox">
-  <canvas id="myChart"></canvas>
-</div>
+  <div class="chartBox">
+    <canvas id="myChart"></canvas>
+  </div>
 
   <?php
   //Gets the sensor reading for each muscle and saves the reading and the time to an array named 1,2,3 or 4.

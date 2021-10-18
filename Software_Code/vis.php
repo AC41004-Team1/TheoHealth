@@ -149,6 +149,7 @@ if (isset($_POST['submitMessage'])) {
   </div>
 
   <?php include "footer.php" ?>
-  
+
 </body>
+
 </html>
