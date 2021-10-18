@@ -1,0 +1,23 @@
+4/10/21
+We can use branding
+Loves paint - Current placeholders
+Seen Data 
+Ideally wants 3D graph
+Muscles group interactive add different exercise e.g press quad show quad exercise 
+No instant messaging ideally comment on session - One comment each 
+Physio and client – physio can add/remove client
+Long run both for now at current business only
+Ideally physio should know what know there job so we don't need to tell them what to do only show data
+You can easily present data.
+Can add mock data
+Taking data and present 
+We're getting logo’s on team.
+
+18/10/21
+Top Bar color change - Be colour friendly
+Graph: Percentage activated? Out of 900 - Show max activation per session
+Per muscle - Show muscle
+Figures currently present in data are level of activation
+Looking for heigh/low, so % should show activated threshold
+For example if they’re going from 300-600 then they’re using 300 out of a potential 900? So only 33%
+compare between legs
